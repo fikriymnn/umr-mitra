@@ -25,3 +25,11 @@ body {
     )
     rgb(var(--background-start-rgb));
 }
+
+.yellow {
+  background-color: #E3B02B;
+}
+
+.yellowtext{
+  color: #E3B02B;
+}
