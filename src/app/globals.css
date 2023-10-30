@@ -16,12 +16,27 @@
   }
 }
 
+::-webkit-scrollbar {
+  width: 0.1em;
+}
+
+::-webkit-scrollbar-thumb {
+  background: none;
+}
+
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
+  background: linear-gradient(to bottom,
       transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+      rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));
+  scrollbar-width: thin;
+  scrollbar-color: transparent transparent
+}
+
+.yellow {
+  background-color: #E3B02B;
+}
+
+.yellowtext {
+  color: #E3B02B;
 }
