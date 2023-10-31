@@ -18,34 +18,46 @@ export default function SideBar({ dashboard, detailAkun, order, paket }: { dashb
         <div className="z-40 ">
             <div
                 className={`${bar == 1
-                    ? " w-[252px] duration-100 ease-in-out"
-                    : " w-[80px] duration-100 ease-in-out"
+                    ? " w-[252px] "
+                    : " w-[80px] "
                     } h-full  flex-col text-black bg-white`}
             >
 
 
-                <div className="w-full pt-[38px] pb-[33px] px-[25px] ">
+                <div className={`w-full pt-[38px] pb-[33px] px-[16px]`}>
                     <button className="w-full h-full" onClick={toggleBar}>
                         {bar === 0 ? (
-                            <div className="text-[40px] font-[800] text-black">I</div>
+                            <>
+                                <Image alt="logo1"
+                                    src={"/logo.png"}
+                                    height={130}
+                                    width={500}
+                                />
+                            </>
                         ) : (
                             <>
-                                <div className="text-[40px] font-[800] text-black">Ibadahku</div>
+                                <Image alt="logo"
+                                    src={"/logo-full.png"}
+                                    height={80}
+                                    width={500}
+                                />
+
                             </>
                         )}
                     </button>
                 </div>
 
                 <div className="flex flex-col justify-between ">
-                    <div>
+                    <div className="pl-[18px]">
 
 
                         <a href="/dashboard">
+
                             <button
 
                                 className={`${bar == 1
-                                    ? "ms-[18px] justify-start items-center"
-                                    : "ms-2 justify-center items-center"
+                                    ? "justify-start items-center"
+                                    : " justify-center items-center"
                                     } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${dashboard}`}
                             >
@@ -73,8 +85,8 @@ export default function SideBar({ dashboard, detailAkun, order, paket }: { dashb
                             <button
 
                                 className={`${bar == 1
-                                    ? "ms-[18px] justify-start items-center"
-                                    : "ms-2 justify-center items-center"
+                                    ? "justify-start items-center"
+                                    : "justify-center items-center"
                                     } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${detailAkun}`}
                             >
@@ -102,8 +114,8 @@ export default function SideBar({ dashboard, detailAkun, order, paket }: { dashb
                             <button
 
                                 className={`${bar == 1
-                                    ? "ms-[18px] justify-start items-center"
-                                    : "ms-2 justify-center items-center"
+                                    ? " justify-start items-center"
+                                    : " justify-center items-center"
                                     } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}
                             >
@@ -133,8 +145,8 @@ export default function SideBar({ dashboard, detailAkun, order, paket }: { dashb
                             <button
 
                                 className={`${bar == 1
-                                    ? "ms-[18px] justify-start items-center"
-                                    : "ms-2 justify-center items-center"
+                                    ? " justify-start items-center"
+                                    : " justify-center items-center"
                                     } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${order}`}
                             >
