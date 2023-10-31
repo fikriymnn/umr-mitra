@@ -1,5 +1,6 @@
 'use client';
 import SideBar from '@/components/sideBar'
+import Link from 'next/link';
 import React from 'react'
 import { useState, useEffect } from 'react';
 
@@ -19,7 +20,7 @@ function UbahPassword() {
 
     return (
         <div className='flex'>
-            <SideBar order="ps-3 text-white bg-[#E3B02B]" />
+            <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
             <div className='h-screen w-screen bg-[#E3B02B] p-[28px]' >
                 <div>
                     <label className="text-black text-2xl font-semibold  ">
@@ -80,7 +81,7 @@ function UbahPassword() {
 
                                 </label>
 
-                                {!passwordMatch && <label className='text-red-600 font-semibold text-1xl ml-[160px]'> Password tidak cocok </label>}
+                                {!passwordMatch && <label className='text-red-600 font-semibold text-1xl ml-[150px]'> Password tidak cocok </label>}
 
 
                             </div>
@@ -98,9 +99,12 @@ function UbahPassword() {
                             <button type="submit" className='bg-amber-400 text-white font-bold w-36 h-7 mt-[10px]  rounded-sm focus:outline-none focus:shadow-outline"'>
                                 Ubah Password
                             </button>
-                            <button className="w-16 h-7 ml-[22px] rounded-sm border border-amber-400 text-center text-amber-400 text-base font-medium ">
-                                Batal
-                            </button>
+                            <Link href='/detailAkun/editprofile'>
+                                <button className="w-16 h-7 ml-[22px] rounded-sm border border-amber-400 text-center text-amber-400 text-base font-medium ">
+                                    Batal
+                                </button>
+                            </Link>
+
                         </form>
 
                     </div>
