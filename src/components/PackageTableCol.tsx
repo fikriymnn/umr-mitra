@@ -13,7 +13,7 @@ function PackageTableCol({ no, title, price, stock }: { no?: any, title?: any, p
                     <div className='w-full  text-[20px] line-clamp-1'><p>{stock}</p></div>
                     <div className='w-[450px] flex gap-3'>
                         <div className='bg-white w-full'>
-                            <a href="detail">
+                            <a href="/paket/tambah">
                                 <button className='w-full flex justify-center items-center bg-blue-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>Detail</button>
                             </a>
                         </div>
