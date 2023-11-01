@@ -227,97 +227,99 @@ function Tambah() {
                     {
                         hotel.map((val, i) => {
                             return (
-                                <div>
-                                    <p className='pt-2 text-[41px] font-semibold'>{i + 1}</p>
-                                    <div className='flex w-full gap-10'>
-                                        <div className=' w-3/6'>
-                                            <div className=''>
-                                                <p className='text-[16px] font-medium'>Kota</p>
-                                                <div className="relative w-full">
-                                                    <input
-                                                        type="text"
-                                                        className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                                                        placeholder="Masukkan Nama Kota"
-                                                    />
-                                                    <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
-                                                </div>
-                                                <div className='mt-5'>
-                                                    <p className='text-[16px] font-medium'>Hotel</p>
+                                <>
+                                    <div>
+                                        <p className='pt-2 text-[41px] font-semibold'>{i + 1}</p>
+                                        <div className='flex w-full gap-10'>
+                                            <div className=' w-3/6'>
+                                                <div className=''>
+                                                    <p className='text-[16px] font-medium'>Kota</p>
                                                     <div className="relative w-full">
                                                         <input
                                                             type="text"
                                                             className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                                                            placeholder="Masukkan Nama Hotel"
+                                                            placeholder="Masukkan Nama Kota"
                                                         />
                                                         <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                                                     </div>
-                                                </div>
-                                                <div className='mt-5'>
-                                                    <p className='text-[16px] font-medium'>Fasilitas</p>
-                                                    <div className="w-full">
-                                                        <div className='flex mt-3'>
-                                                            <div className=' w-3/6 flex justify-start'>
-                                                                <div className='flex items-center justify-center gap-2'>
-
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
-                                                                    <span className="text-black font-medium">Free WiFi</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className=' w-3/6 flex justify-start'>
-                                                                <div className='flex items-center justify-center gap-2'>
-
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
-                                                                    <span className="text-black font-medium">Disabilitas</span>
-                                                                </div>
-                                                            </div>
+                                                    <div className='mt-5'>
+                                                        <p className='text-[16px] font-medium'>Hotel</p>
+                                                        <div className="relative w-full">
+                                                            <input
+                                                                type="text"
+                                                                className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
+                                                                placeholder="Masukkan Nama Hotel"
+                                                            />
+                                                            <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                                                         </div>
-                                                        <div className='flex mt-3'>
-                                                            <div className=' w-3/6 flex justify-start'>
-                                                                <div className='flex items-center justify-center gap-2'>
-
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
-                                                                    <span className="text-black font-medium">Tempat Makan</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className=' w-3/6'></div>
-                                                        </div>
-                                                        <div className='flex mt-3'>
-                                                            <div className=' w-3/6 flex justify-start'>
-                                                                <div className='flex items-center justify-center gap-2'>
-
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
-                                                                    <span className="text-black font-medium">Pelayanan Kamar</span>
-                                                                </div>
-                                                            </div>
-                                                            <div className=' w-3/6'></div>
-                                                        </div>
-
                                                     </div>
+                                                    <div className='mt-5'>
+                                                        <p className='text-[16px] font-medium'>Fasilitas</p>
+                                                        <div className="w-full">
+                                                            <div className='flex mt-3'>
+                                                                <div className=' w-3/6 flex justify-start'>
+                                                                    <div className='flex items-center justify-center gap-2'>
+
+                                                                        <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                        <span className="text-black font-medium">Free WiFi</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className=' w-3/6 flex justify-start'>
+                                                                    <div className='flex items-center justify-center gap-2'>
+
+                                                                        <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                        <span className="text-black font-medium">Disabilitas</span>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div className='flex mt-3'>
+                                                                <div className=' w-3/6 flex justify-start'>
+                                                                    <div className='flex items-center justify-center gap-2'>
+
+                                                                        <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                        <span className="text-black font-medium">Tempat Makan</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className=' w-3/6'></div>
+                                                            </div>
+                                                            <div className='flex mt-3'>
+                                                                <div className=' w-3/6 flex justify-start'>
+                                                                    <div className='flex items-center justify-center gap-2'>
+
+                                                                        <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                        <span className="text-black font-medium">Pelayanan Kamar</span>
+                                                                    </div>
+                                                                </div>
+                                                                <div className=' w-3/6'></div>
+                                                            </div>
+
+                                                        </div>
+                                                    </div>
+
                                                 </div>
 
                                             </div>
+                                            <div className='py-3 w-3/6'>
+                                                <p className='text-[16px] font-medium'>Gambar Hotel</p>
+                                                <button className='w-full border border-black mt- hover:bg-slate-200'>
+                                                    <div className='w-full h-28 flex flex-col justify-center items-center'>
+                                                        <p className='font-semibold text-4xl'>+</p>
+                                                        <p className='font-semibold'>Tambah Gambar</p>
+                                                    </div>
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div className='flex flex-col gap-5 w-44 my-3'>
+                                            {
+                                                hotel.length !== 1 && (
+
+                                                    <button onClick={(e) => handleDeleteHotel(i)} className='bg-red-600 text-white font-medium hover:bg-red-500 px-5 py-2 rounded-md'>Hapus Hotel</button>
+                                                )
+                                            }
 
                                         </div>
-                                        <div className='py-3 w-3/6'>
-                                            <p className='text-[16px] font-medium'>Gambar Hotel</p>
-                                            <button className='w-full border border-black mt- hover:bg-slate-200'>
-                                                <div className='w-full h-28 flex flex-col justify-center items-center'>
-                                                    <p className='font-semibold text-4xl'>+</p>
-                                                    <p className='font-semibold'>Tambah Gambar</p>
-                                                </div>
-                                            </button>
-                                        </div>
                                     </div>
-                                    <div className='flex flex-col gap-5 w-44 my-3'>
-                                        {
-                                            hotel.length !== 1 && (
-
-                                                <button onClick={(e) => handleDeleteHotel(i)} className='bg-red-600 text-white font-medium hover:bg-red-500 px-5 py-2 rounded-md'>Hapus Hotel</button>
-                                            )
-                                        }
-
-                                    </div>
-                                </div>
+                                </>
 
                             )
                         })
@@ -340,26 +342,29 @@ function Tambah() {
                             {
                                 jadwal.map((val, i) => {
                                     return (
-                                        <div>
-                                            <p className='text-[16px] font-medium'>Hari {i + 1}</p>
-                                            <div className="relative w-full">
-                                                <input
-                                                    type="text"
-                                                    className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                                                    placeholder="Masukkan Agenda"
-                                                />
-                                                <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
-                                            </div>
-                                            <div className='flex flex-col gap-5 w-44 my-3'>
-                                                {
-                                                    jadwal.length !== 1 && (
-                                                        <button onClick={(e) => handleDeleteJadwal(i)} className='bg-red-600 text-white font-medium hover:bg-red-500 px-5 py-2 rounded-md'>Hapus Jadwal</button>
-                                                    )
-                                                }
+                                        <>
+
+                                            <div>
+                                                <p className='text-[16px] font-medium'>Hari {i + 1}</p>
+                                                <div className="relative w-full">
+                                                    <input
+                                                        type="text"
+                                                        className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
+                                                        placeholder="Masukkan Agenda"
+                                                    />
+                                                    <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
+                                                </div>
+                                                <div className='flex flex-col gap-5 w-44 my-3'>
+                                                    {
+                                                        jadwal.length !== 1 && (
+                                                            <button onClick={(e) => handleDeleteJadwal(i)} className='bg-red-600 text-white font-medium hover:bg-red-500 px-5 py-2 rounded-md'>Hapus Jadwal</button>
+                                                        )
+                                                    }
 
 
+                                                </div>
                                             </div>
-                                        </div>
+                                        </>
                                     )
                                 })
                             }
