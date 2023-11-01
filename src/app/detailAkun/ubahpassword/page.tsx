@@ -21,9 +21,9 @@ function UbahPassword() {
     return (
         <div className='flex'>
             <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
-            <div className='h-screen w-screen bg-[#E3B02B] p-[28px]' >
+            <div className='h-screen w-screen bg-[#E3B02B] p-[28px]  overflow-y-scroll' >
                 <div>
-                    <label className="text-black text-2xl font-semibold  ">
+                    <label className="text-black font-semibold text-[28px] ">
                         Ubah Password
                     </label>
                     <div className='flex mt-[28px] '>
@@ -96,11 +96,11 @@ function UbahPassword() {
                                     onChange={(e) => setconfpassword(e.target.value)}
                                 />
                             </div>
-                            <button type="submit" className='bg-amber-400 text-white font-bold w-36 h-7 mt-[10px]  rounded-sm focus:outline-none focus:shadow-outline"'>
+                            <button type="submit" className='bg-amber-400 text-white font-bold w-36 h-7 mt-[10px]  rounded-md focus:outline-none focus:shadow-outline"'>
                                 Ubah Password
                             </button>
                             <Link href='/detailAkun/editprofile'>
-                                <button className="w-16 h-7 ml-[22px] rounded-sm border border-amber-400 text-center text-amber-400 text-base font-medium ">
+                                <button className="w-16 h-7 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 text-base font-medium ">
                                     Batal
                                 </button>
                             </Link>

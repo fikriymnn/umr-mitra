@@ -1,21 +1,27 @@
 import SideBar from '@/components/sideBar'
 import Link from 'next/link'
 import React from 'react'
-
+import Image from "next/image";
 function DetailAkun() {
     return (
         <div className='flex'>
             <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
-            <div className='h-screen w-screen bg-[#E3B02B] p-[28px]' >
+            <div className='h-screen w-screen bg-[#E3B02B] p-[28px]  overflow-y-scroll' >
                 <div>
-                    <label className="text-black text-2xl font-semibold  ">
+                    <label className="text-black font-semibold text-[28px] ">
                         Detail Mitra
                     </label>
                     <div className='flex '>
                         <div className='flex flex-col bg-white w-[320px] h-[580px] shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4 mt-[28px]'>
                             <div className="flex flex-wrap ml-[44px]">
+                                <Image
+                                    alt="logo1"
+                                    src={"/profil.jpeg"}
+                                    height={176}
+                                    width={176}
+                                    className="shadow w-44 h-44 bg-zinc-300 rounded-full"
+                                />
 
-                                <img src="" alt="..." className="shadow w-44 h-44 bg-zinc-300 rounded-full" />
 
                             </div>
                             <div>
