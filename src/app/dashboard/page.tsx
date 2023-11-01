@@ -2,10 +2,14 @@
 
 import SideBar from '@/components/sideBar'
 import Image from 'next/image'
-import React from 'react'
+import React, { useState } from 'react'
+
+
+
 
 
 function Dashboard() {
+
     return (
         <div className='flex h-screen'>
             <SideBar dashboard="ps-3 text-white bg-[#E3B02B]" />
@@ -44,13 +48,16 @@ function Dashboard() {
                         </div>
                     </div>
                     {/* rating */}
+
                     <div className='h-[254px] bg-white rounded-[10px_10px_10px_10px]'>
                         <div className='flex items-center justify-start h-[94px] w-full bg-black  rounded-[10px_10px_0px_0px] '>
                             <p className='ml-[67px] yellowtext text-[35px] font-[500]'>Rating</p>
 
                         </div>
+
                         <div className='flex items-center justify-start w-full '>
                             <div>
+
                                 <p className='ml-[67px] text-black text-[39px] font-medium'>ini rating</p>
                                 <p className='ml-[67px] text-black text-[39px] font-medium'>260 Penilaian</p>
                             </div>
