@@ -1,6 +1,7 @@
 "use client"
 
 import SideBar from '@/components/sideBar'
+import { Rating } from '@mui/material'
 import Image from 'next/image'
 import React, { useState } from 'react'
 
@@ -55,10 +56,11 @@ function Dashboard() {
 
                         </div>
 
-                        <div className='flex items-center justify-start w-full '>
+                        <div className='flex items-center justify-start w-full h-[160px] '>
                             <div>
 
-                                <p className='ml-[67px] text-black text-[39px] font-medium'>ini rating</p>
+                                <Rating className='ml-[67px]' name="half-rating-read" defaultValue={5} precision={0.5} readOnly size='large' />
+
                                 <p className='ml-[67px] text-black text-[39px] font-medium'>260 Penilaian</p>
                             </div>
 
