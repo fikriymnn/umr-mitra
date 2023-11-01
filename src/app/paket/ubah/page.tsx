@@ -6,7 +6,7 @@ const ReactQuill = dynamic(() => import("react-quill"), { ssr: false });
 import "react-quill/dist/quill.snow.css";
 
 
-function Tambah() {
+function UbahPaket() {
     const modules = {
         toolbar: {
             container: [
@@ -437,4 +437,4 @@ function Tambah() {
     )
 }
 
-export default Tambah
+export default UbahPaket
