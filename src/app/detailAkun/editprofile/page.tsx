@@ -1,8 +1,30 @@
+'use client';
+
 import SideBar from '@/components/sideBar'
 import Link from 'next/link'
 import React from 'react'
-import Image from "next/image";
+import { useState } from "react";
+
 function EditProfile() {
+    const [selectedImage, setSelectedImage] = useState(null);
+    const [imagePreview, setImagePreview] = useState<any | null>(null);
+
+    const imageChange = (e) => {
+        const file = e.target.files[0];
+
+        if (file) {
+            const reader = new FileReader();
+
+            reader.onloadend = () => {
+                setSelectedImage(file);
+                setImagePreview(reader.result);
+            };
+
+            reader.readAsDataURL(file);
+        }
+    };
+
+
     return (
         <div>
             <div className='flex'>
@@ -15,17 +37,40 @@ function EditProfile() {
                         <div className='flex '>
                             <div className='flex flex-col bg-white w-[550px] h-[670px] shadow-lg rounded-lg px-9 pt-6 pb-8 mb-4 mt-[28px]'>
                                 <div className="flex flex-wrap ml-[34px]">
-                                    <Image
+                                    {!imagePreview && <><img
                                         alt="logo1"
-                                        src={"/profil.jpeg"}
+                                        src={'/profil.jpeg'}
                                         height={128}
                                         width={128}
-                                        className="shadow w-32 h-32 bg-zinc-300 rounded-full"
+                                        className=" w-32 h-32 bg-zinc-300 rounded-full" /></>
+                                        // <button
+                                        //     className='w-24 h-6 bg-amber-400 rounded-md text-white text-base font-normal ml-[36px] mt-[58px]'
+                                        //     onChange={imageChange}
+                                        // >
+                                        //     Pilih Foto
+                                        // </button>
+                                    }
+                                    {imagePreview && <><img
+                                        alt="logo1"
+                                        src={imagePreview}
+                                        height={128}
+                                        width={128}
+                                        className=" w-32 h-32 bg-zinc-300 rounded-full" /></>
+                                        // <button
+                                        //     className='w-24 h-6 bg-amber-400 rounded-md text-white text-base font-normal ml-[36px] mt-[58px]'
+                                        //     onChange={imageChange}
+                                        // >
+                                        //     Pilih Foto
+                                        // </button>
+                                    }
+                                    <input
+
+                                        type="file"
+                                        onChange={imageChange}
+                                        className="w-[106px] h-7  file:bg-amber-400 ml-[36px] mt-[58px] text file:text-white rounded-md"
                                     />
-                                    <button className='w-24 h-6 bg-amber-400 rounded-md text-white text-base font-normal ml-[36px] mt-[58px]'>
-                                        Pilih Foto
-                                    </button>
                                 </div>
+
                                 <div className='mt-[20px]'>
                                     <label className="w-60 h-7 text-1xl text-black  font-normal">
                                         Nama Mitra
@@ -129,9 +174,10 @@ function EditProfile() {
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
+
 }
 
 export default EditProfile
