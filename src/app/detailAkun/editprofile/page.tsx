@@ -17,7 +17,7 @@ function EditProfile() {
 
             reader.onloadend = () => {
                 setSelectedImage(file);
-                setImagePreview(reader.result);
+                setImagePreview(reader.result); 0
             };
 
             reader.readAsDataURL(file);
@@ -43,12 +43,6 @@ function EditProfile() {
                                         height={128}
                                         width={128}
                                         className=" w-32 h-32 bg-zinc-300 rounded-full" /></>
-                                        // <button
-                                        //     className='w-24 h-6 bg-amber-400 rounded-md text-white text-base font-normal ml-[36px] mt-[58px]'
-                                        //     onChange={imageChange}
-                                        // >
-                                        //     Pilih Foto
-                                        // </button>
                                     }
                                     {imagePreview && <><img
                                         alt="logo1"
@@ -56,18 +50,12 @@ function EditProfile() {
                                         height={128}
                                         width={128}
                                         className=" w-32 h-32 bg-zinc-300 rounded-full" /></>
-                                        // <button
-                                        //     className='w-24 h-6 bg-amber-400 rounded-md text-white text-base font-normal ml-[36px] mt-[58px]'
-                                        //     onChange={imageChange}
-                                        // >
-                                        //     Pilih Foto
-                                        // </button>
                                     }
                                     <input
 
                                         type="file"
                                         onChange={imageChange}
-                                        className="w-[106px] h-7  file:bg-amber-400 ml-[36px] mt-[58px] text file:text-white rounded-md"
+                                        className="w-28 file:bg-amber-400 ml-[36px] mt-[58px] text file:text-white"
                                     />
                                 </div>
 
