@@ -64,7 +64,7 @@ function UbahPassword() {
                             </div>
                             <div>
                                 <input
-                                    className="w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal"
+                                    className='w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal '
 
                                     id="newpassword"
                                     placeholder="  Masukkan password baru"
@@ -87,7 +87,8 @@ function UbahPassword() {
                             </div>
                             <div>
                                 <input
-                                    className="w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px]  text-opacity-60 text-1xl font-normal"
+                                    className={`... ${!passwordMatch ? 'w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal  border border-red-500' : 'w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal'} ...`}
+
                                     id="confirmoldpassword"
                                     placeholder="  Masukkan password baru"
                                     required
@@ -95,6 +96,7 @@ function UbahPassword() {
                                     type="password"
                                     onChange={(e) => setconfpassword(e.target.value)}
                                 />
+
                             </div>
                             <button type="submit" className='bg-amber-400 text-white font-bold w-36 h-7 mt-[10px]  rounded-md focus:outline-none focus:shadow-outline"'>
                                 Ubah Password
@@ -109,8 +111,8 @@ function UbahPassword() {
 
                     </div>
                 </div>
-            </div>
-        </div>
+            </div >
+        </div >
     )
 }
 

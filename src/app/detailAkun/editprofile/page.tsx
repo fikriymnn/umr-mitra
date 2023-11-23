@@ -9,7 +9,7 @@ function EditProfile() {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState<any | null>(null);
 
-    const imageChange = (e) => {
+    const imageChange = (e: any) => {
         const file = e.target.files[0];
 
         if (file) {
