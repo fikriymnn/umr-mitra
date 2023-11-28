@@ -29,13 +29,13 @@ function EditProfile() {
         <div>
             <div className='flex'>
                 <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
-                <div className='h-screen w-screen bg-[#E3B02B] p-[28px]  overflow-y-scroll' >
+                <div className='h-screen w-screen bg-[#E3B02B] px-[28px] py-[20px]  overflow-y-scroll' >
                     <div>
                         <label className="text-black font-semibold text-[28px]  ">
                             Edit Detail Profile
                         </label>
                         <div className='flex '>
-                            <div className='flex flex-col bg-white w-[550px] h-[670px] shadow-lg rounded-lg px-9 pt-6 pb-8 mb-4 mt-[28px]'>
+                            <div className='flex flex-col bg-white w-[650px] h-[720px] shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]'>
                                 <div className="flex flex-wrap ml-[34px]">
                                     {!imagePreview && <><img
                                         alt="logo1"
@@ -60,13 +60,13 @@ function EditProfile() {
                                 </div>
 
                                 <div className='mt-[20px]'>
-                                    <label className="w-60 h-7 text-1xl text-black  font-normal">
+                                    <label className="w-60 h-7 text-xl text-black  font-normal">
                                         Nama Mitra
                                     </label>
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base font-normal "
+                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
                                         id="namamitra"
                                         placeholder="  Masukan Nama Mitra"
                                         required
@@ -74,13 +74,13 @@ function EditProfile() {
                                     />
                                 </div>
                                 <div className='mt-[7px]'>
-                                    <label className="w-60 h-7 text-1xl text-black  font-normal">
+                                    <label className="w-60 h-7 text-xl text-black  font-normal">
                                         Nama Perusahaan
                                     </label>
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base font-normal "
+                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
                                         id="namaperusahaan"
                                         placeholder="  Masukan Nama Perusahaan"
                                         required
@@ -89,13 +89,13 @@ function EditProfile() {
                                 </div>
 
                                 <div className='mt-[7px]'>
-                                    <label className="w-60 h-7 text-1xl text-black  font-normal">
+                                    <label className="w-60 h-7 text-xl text-black  font-normal">
                                         Lokasi
                                     </label>
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base font-normal "
+                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
                                         id="lokasimitra"
                                         placeholder="  Masukan Lokasi"
                                         required
@@ -103,13 +103,13 @@ function EditProfile() {
                                     />
                                 </div>
                                 <div className='mt-[7px]'>
-                                    <label className="w-60 h-7 text-1xl text-black  font-normal">
+                                    <label className="w-60 h-7 text-xl text-black  font-normal">
                                         Email (kontak)
                                     </label>
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base font-normal "
+                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
                                         id="emailmitra"
                                         placeholder="  Masukan Email"
                                         required
@@ -117,13 +117,13 @@ function EditProfile() {
                                     />
                                 </div>
                                 <div className='mt-[7px]'>
-                                    <label className="w-60 h-7 text-1xl text-black  font-normal">
+                                    <label className="w-60 h-7 text-xl text-black  font-normal">
                                         Website
                                     </label>
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base font-normal "
+                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
                                         id="websitemitra"
                                         placeholder="  Masukan website"
                                         required
@@ -131,29 +131,29 @@ function EditProfile() {
                                     />
                                 </div>
                                 <div>
-                                    <button className='w-24 h-7 bg-amber-400 rounded-md text-white text-base font-normal mt-[24px]'>
+                                    <button className='w-[115px] h-8 bg-amber-400 rounded-md text-white text-xl font-normal mt-[24px]'>
                                         Konfirmasi
                                     </button>
                                     <Link href='/detailAkun'>
-                                        <button className="w-16 h-7 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 text-base font-medium ">
+                                        <button className="w-[80px] h-8 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 text-xl font-medium ">
                                             Batal
                                         </button>
                                     </Link>
 
                                 </div>
                                 <div className='mt-[24px]'>
-                                    <label className="w-60 h-7 text-1xl text-black  font-normal ">
+                                    <label className="w-60 h-7 text-xl text-black  font-normal ">
                                         Email (Akun)
                                     </label>
                                 </div>
                                 <div>
-                                    <label className="w-60 h-7 text-1xl text-black  font-normal">
+                                    <label className="w-60 h-8 text-xl text-black  font-normal">
                                         traveldongsadmin@gmail.com
                                     </label>
                                 </div>
                                 <div>
                                     <Link href='/detailAkun/ubahpassword'>
-                                        <button className='w-36 h-7 bg-amber-400 rounded-md text-white text-base font-normal mt-[24px]'>
+                                        <button className='w-[170px] h-8 bg-amber-400 rounded-md text-white text-xl font-normal mt-[24px]'>
                                             Ubah Password
                                         </button>
                                     </Link>

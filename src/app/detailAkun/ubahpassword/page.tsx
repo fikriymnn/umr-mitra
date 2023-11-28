@@ -21,50 +21,50 @@ function UbahPassword() {
     return (
         <div className='flex'>
             <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
-            <div className='h-screen w-screen bg-[#E3B02B] p-[28px]  overflow-y-scroll' >
+            <div className='h-screen w-screen bg-[#E3B02B] px-[28px] py-[20px]  overflow-y-scroll' >
                 <div>
                     <label className="text-black font-semibold text-[28px] ">
                         Ubah Password
                     </label>
-                    <div className='flex mt-[28px] '>
+                    <div className='flex mt-[20px] '>
 
-                        <form className="bg-white w-[617px] shadow-lg rounded-lg px-8 pt-6 pb-8 mb-4">
+                        <form className="bg-white w-[720px] shadow-xl rounded-lg px-9 pt-7 pb-9 mb-4 ">
                             <div>
-                                <label className="w-60 h-7 text-1xl text-black  font-semibold">
+                                <label className="w-60 h-7 text-xl text-black  font-semibold">
                                     Email akun
                                 </label>
                             </div>
                             <div>
                                 <input
-                                    className="w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal"
+                                    className="w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-xl font-normal"
                                     id="emailakun"
                                     placeholder="  Masukkan email"
                                     required
                                     type="email"
                                 />
                             </div>
-                            <div>
-                                <label className="w-full h-[29px] text-1xl  text-black  font-semibold ">
+                            <div className='mt-[7px]'>
+                                <label className="w-full h-[29px] text-xl  text-black  font-semibold ">
                                     Password saat ini
                                 </label>
                             </div>
                             <div>
                                 <input
-                                    className="w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal"
+                                    className="w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-xl font-normal"
                                     id="oldpassword"
                                     placeholder="  Masukkan password saat ini"
                                     required
                                     type="password"
                                 />
                             </div>
-                            <div>
-                                <label className="w-60 h-7 text-1xl text-black  font-semibold ">
+                            <div className='mt-[7px]'>
+                                <label className="w-60 h-7 text-xl text-black  font-semibold ">
                                     Password baru
                                 </label>
                             </div>
                             <div>
                                 <input
-                                    className='w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal '
+                                    className='w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-xl font-normal '
 
                                     id="newpassword"
                                     placeholder="  Masukkan password baru"
@@ -75,19 +75,19 @@ function UbahPassword() {
 
                                 />
                             </div>
-                            <div>
-                                <label className="w-60 h-7 text-1xl text-black  font-semibold ">
+                            <div className='mt-[7px]'>
+                                <label className="w-60 h-7 text-xl text-black  font-semibold ">
                                     Konfirmasi password baru
 
                                 </label>
 
-                                {!passwordMatch && <label className='text-red-600 font-semibold text-1xl ml-[150px]'> Password tidak cocok </label>}
+                                {!passwordMatch && <label className='text-red-600 font-semibold text-xl ml-[140px]'> Password tidak cocok </label>}
 
 
                             </div>
                             <div>
                                 <input
-                                    className={`... ${!passwordMatch ? 'w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal  border border-red-500' : 'w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal'} ...`}
+                                    className={`... ${!passwordMatch ? 'w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-xl font-normal  border border-red-500' : 'w-full h-[29px] bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-1xl font-normal'} ...`}
 
                                     id="confirmoldpassword"
                                     placeholder="  Masukkan password baru"
@@ -98,11 +98,11 @@ function UbahPassword() {
                                 />
 
                             </div>
-                            <button type="submit" className='bg-amber-400 text-white font-bold w-36 h-7 mt-[10px]  rounded-md focus:outline-none focus:shadow-outline"'>
+                            <button type="submit" className=' bg-amber-400 text-white font-normal w-[170px] h-8 mt-[14px] text-xl rounded-md focus:outline-none focus:shadow-outline"'>
                                 Ubah Password
                             </button>
                             <Link href='/detailAkun/editprofile'>
-                                <button className="w-16 h-7 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 text-base font-medium ">
+                                <button className="w-16 h-8 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 text-xl font-medium ">
                                     Batal
                                 </button>
                             </Link>
