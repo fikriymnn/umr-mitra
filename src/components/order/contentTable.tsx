@@ -19,7 +19,7 @@ function ContentTableOrder({ no, name, jumlah, paket }: { no: any, name: any, ju
 
                         </div>
                         <div className='bg-white w-full'>
-                            <a href="">
+                            <a href="/order/detail">
                                 <button className='w-full flex justify-center items-center bg-blue-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>Detail</button>
                             </a>
                         </div>
