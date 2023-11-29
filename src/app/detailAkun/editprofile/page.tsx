@@ -35,27 +35,27 @@ function EditProfile() {
                             Edit Detail Profile
                         </label>
                         <div className='flex '>
-                            <div className='flex flex-col bg-white w-[650px] h-[720px] shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]'>
-                                <div className="flex flex-wrap ml-[34px]">
+                            <div className='flex flex-col bg-white w-2/4 h-[730px] shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]'>
+                                <div className="flex flex-wrap ">
                                     {!imagePreview && <><img
                                         alt="logo1"
                                         src={'/profil.jpeg'}
                                         height={128}
                                         width={128}
-                                        className=" w-32 h-32 bg-zinc-300 rounded-full" /></>
+                                        className="w-32 h-32 bg-zinc-300 rounded-full" /></>
                                     }
                                     {imagePreview && <><img
                                         alt="logo1"
                                         src={imagePreview}
                                         height={128}
                                         width={128}
-                                        className=" w-32 h-32 bg-zinc-300 rounded-full" /></>
+                                        className="w-32 h-32 bg-zinc-300 rounded-full" /></>
                                     }
                                     <input
-
+                                        accept='image/*'
                                         type="file"
                                         onChange={imageChange}
-                                        className="w-28 file:bg-amber-400 ml-[36px] mt-[58px] text file:text-white"
+                                        className="w-28 file:bg-amber-400 ml-[26px] mt-[58px] text file:text-white"
                                     />
                                 </div>
 
@@ -66,11 +66,12 @@ function EditProfile() {
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
+                                        className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
                                         id="namamitra"
-                                        placeholder="  Masukan Nama Mitra"
+                                        placeholder="Masukkan Nama Mitra"
                                         required
                                         type="text"
+                                        style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
                                 <div className='mt-[7px]'>
@@ -80,11 +81,12 @@ function EditProfile() {
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
+                                        className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
                                         id="namaperusahaan"
-                                        placeholder="  Masukan Nama Perusahaan"
+                                        placeholder="Masukkan Nama Perusahaan"
                                         required
                                         type="text"
+                                        style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
 
@@ -95,11 +97,12 @@ function EditProfile() {
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
+                                        className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
                                         id="lokasimitra"
-                                        placeholder="  Masukan Lokasi"
+                                        placeholder="Masukkan Lokasi"
                                         required
                                         type="text"
+                                        style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
                                 <div className='mt-[7px]'>
@@ -109,11 +112,12 @@ function EditProfile() {
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
+                                        className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
                                         id="emailmitra"
-                                        placeholder="  Masukan Email"
+                                        placeholder="Masukkan Email"
                                         required
-                                        type="text"
+                                        type="email"
+                                        style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
                                 <div className='mt-[7px]'>
@@ -123,19 +127,20 @@ function EditProfile() {
                                 </div>
                                 <div>
                                     <input
-                                        className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-xl font-normal "
+                                        className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px] font-normal "
                                         id="websitemitra"
-                                        placeholder="  Masukan website"
+                                        placeholder="Masukkan Website"
                                         required
                                         type="text"
+                                        style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
                                 <div>
-                                    <button className='w-[115px] h-8 bg-amber-400 rounded-md text-white text-xl font-normal mt-[24px]'>
+                                    <button className='w-[125px] h-8 bg-amber-400 rounded-md text-white  font-normal mt-[24px]'>
                                         Konfirmasi
                                     </button>
                                     <Link href='/detailAkun'>
-                                        <button className="w-[80px] h-8 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 text-xl font-medium ">
+                                        <button className="w-[80px] h-8 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400  font-medium ">
                                             Batal
                                         </button>
                                     </Link>
@@ -153,7 +158,7 @@ function EditProfile() {
                                 </div>
                                 <div>
                                     <Link href='/detailAkun/ubahpassword'>
-                                        <button className='w-[170px] h-8 bg-amber-400 rounded-md text-white text-xl font-normal mt-[24px]'>
+                                        <button className='w-[170px] h-8 bg-amber-400 rounded-md text-white  font-normal mt-[24px]'>
                                             Ubah Password
                                         </button>
                                     </Link>
