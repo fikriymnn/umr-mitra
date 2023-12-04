@@ -41,19 +41,17 @@ function DetailAkun() {
                                     Nama Mitra
                                 </label>
                                 <div className='grid justify-end'>
-                                    <button className="w-44 h-8 justify-items-end bg-amber-400 rounded-md text-center text-white font-normal">
+                                    <button className="w-44 h-10 justify-items-end bg-amber-400 rounded-md text-center text-base text-white font-medium">
                                         <Link href='/detailAkun/editprofile'>
                                             Perbarui Data
                                         </Link>
                                     </button>
                                 </div>
-
                             </div>
                             <div>
                                 <label className="w-60 h-7 text-xl text-black  font-semibold">
                                     Travel Keren Dongs
                                 </label>
-
                             </div>
 
                             <div className='mt-[28px]'>

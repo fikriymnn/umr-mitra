@@ -22,9 +22,7 @@ function page() {
                         </label>
                     </div>
                     <div className='flex mt-[28px] ml-[154px] mr-[881px]'>
-
                         <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
-
                             <div>
                                 <div className=" ">
                                     <label className="w-80 text-black text-1xl font-semibold ">
@@ -37,7 +35,6 @@ function page() {
                                     placeholder="  Masukan Nama Mitra"
                                     required
                                     type="text"
-
                                 />
                             </div>
                             <div>
@@ -73,18 +70,11 @@ function page() {
                             <button type="submit" className='bg-amber-400  text-white font-bold w-full mt-3 h-[48px] rounded-lg focus:outline-none focus:shadow-outline"'>
                                 Masuk
                             </button>
-
                         </form>
-
                     </div>
-
                 </div>
             </div >
-
-
-
         </>
-
     )
 }
 
