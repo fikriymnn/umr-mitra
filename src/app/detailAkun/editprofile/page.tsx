@@ -51,12 +51,16 @@ function EditProfile() {
                                         width={128}
                                         className="w-32 h-32 bg-zinc-300 rounded-full" /></>
                                     }
-                                    <input
-                                        accept='image/*'
-                                        type="file"
-                                        onChange={imageChange}
-                                        className="w-28 file:bg-amber-400 ml-[26px] mt-[58px] text file:text-white"
-                                    />
+                                    <label className='w-24 h-7 bg-amber-400 rounded-sm ml-[26px] mt-[58px] cursor-pointer pt-[2px]'>
+                                        <span className='ml-[10px] text-white  font-normal text-center'>Pilih Foto</span>
+                                        <input
+                                            accept='image/*'
+                                            type="file"
+                                            onChange={imageChange}
+                                            className="hidden"
+                                        />
+                                    </label>
+
                                 </div>
 
                                 <div className='mt-[20px]'>
