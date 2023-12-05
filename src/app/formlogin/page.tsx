@@ -1,6 +1,25 @@
-import React from 'react'
+"use client"
+import axios from 'axios'
+import React, { useEffect, useRef, useState } from 'react'
 
-function page() {
+function Page() {
+
+    const [Email, setEmail] = useState("");
+    const [Password, setPassword] = useState("");
+    const url = 'http://localhost:5000/api/login_mitra'
+
+
+    async function submitLogin(e: any) {
+        e.preventDefault();
+        try {
+            const response = await axios.post(url,
+                { email: Email, password: Password },);
+            alert("login success")
+            console.log(JSON.stringify(response.data.status_code));
+        } catch (error: any) {
+            alert(error.response.data.message);
+        }
+    }
     return (
         <>
             <div className='w-screen h-screen'>
@@ -22,7 +41,7 @@ function page() {
                         </label>
                     </div>
                     <div className='flex mt-[28px] ml-[154px] mr-[881px]'>
-                        <form className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
+                        <form onSubmit={submitLogin} className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4">
                             <div>
                                 <div className=" ">
                                     <label className="w-80 text-black text-1xl font-semibold ">
@@ -32,6 +51,7 @@ function page() {
                                 <input
                                     className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal "
                                     id="namamitra"
+
                                     placeholder="  Masukan Nama Mitra"
                                     required
                                     type="text"
@@ -45,8 +65,9 @@ function page() {
                                 </div>
                                 <input
                                     className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal"
-                                    id="emailmitra"
-                                    placeholder="  Masukan Email Mitra"
+                                    id="email"
+                                    onChange={(e) => setEmail(e.target.value)}
+                                    placeholder="Masukan Email Mitra"
                                     required
                                     type="email"
                                 />
@@ -59,7 +80,7 @@ function page() {
                                 </div>
                                 <input
                                     className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal "
-
+                                    onChange={(e) => setPassword(e.target.value)}
                                     id="password1"
                                     placeholder='  Masukan Password '
                                     required
@@ -78,4 +99,4 @@ function page() {
     )
 }
 
-export default page
+export default Page
