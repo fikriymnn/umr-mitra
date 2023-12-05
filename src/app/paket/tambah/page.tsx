@@ -1,10 +1,36 @@
 "use client"
 import React, { useState } from 'react'
 import SideBar from '@/components/sideBar'
+import axios from 'axios';
 
 function DetailPaket() {
+    //State value
+    const [title, setTitle] = useState("");
+    const [description, setDescription] = useState("");
+    const [pilihanKamar, setPilihanKamar] = useState("");
+    const [jadwalKeberangkatan, setJadwalKeberangkatan] = useState({
+        jam: "",
+        tanggal: "",
+        bulan: "",
+        tahun: "",
+    });
+    const [maskapai, setMaskapai] = useState("");
+    const [kotaKeberangkatan, setKotaKeberangkatan] = useState("");
+    const [durasi, setDurasi] = useState("");
+    const [kelasHotel, setKelasHotel] = useState(0);
+    const [fasillitas, setFasillitas] = useState("");
+    const [syarat, setSyarat] = useState("");
+    const [harga, setHarga] = useState(0);
+    const [kuota, setKuota] = useState(0);
     const [hotel, setHotel] = useState([
-        { kota: "", fasilitas: [], hotel: "", img: "" },
+        {
+            city: "", fasilitas: {
+                FreeWiFi: false,
+                TempatMakan: false,
+                PelayananKamar: false,
+                Disabilitas: false
+            }, name: "", content: []
+        },
     ]);
 
     const [jadwal, setJadwal] = useState([
@@ -12,23 +38,54 @@ function DetailPaket() {
 
 
 
+    //handle dinamis
+
+    //dinamis hotel
     const handleClickHotel = () => {
         setHotel([
             ...hotel,
-            { kota: "", fasilitas: [], hotel: "", img: "" },
+            {
+                city: "", fasilitas: {
+                    FreeWiFi: false,
+                    TempatMakan: false,
+                    PelayananKamar: false,
+                    Disabilitas: false
+                }, name: "", content: []
+            },
         ]);
     };
-    //   const handleChangeHotel = (e, i) => {
-    //     const { name, value } = e.target;
-    //     const onchangeVal = [...hotel];
-    //     onchangeVal[i][name] = value;
-    //     setHotel(onchangeVal);
-    //   };
+    const handleChangeHotel = (e: any, i: number) => {
+        const { name, value } = e.target;
+        const onchangeVal: any = [...hotel];
+        onchangeVal[i][name] = value;
+        setHotel(onchangeVal);
+    };
+    const handleChangeHotelFasilitas = (e: any, i: number, fasilitass: any) => {
+        const fs = fasilitass;
+        const onchangeVal: any = [...hotel];
+        if (fs == "FreeWiFi") {
+            onchangeVal[i]["fasilitas"].FreeWiFi = e;
+            setHotel(onchangeVal);
+        } else if (fs == "Disabilitas") {
+            onchangeVal[i]["fasilitas"].Disabilitas = e;
+            setHotel(onchangeVal);
+        } else if (fs == "TempatMakan") {
+            onchangeVal[i]["fasilitas"].TempatMakan = e;
+            setHotel(onchangeVal);
+        } else if (fs == "PelayananKamar") {
+            onchangeVal[i]["fasilitas"].PelayananKamar = e;
+            setHotel(onchangeVal);
+        }
+
+    };
     const handleDeleteHotel = (i: number) => {
-        const deleteVal = [...hotel];
+        const deleteVal: any = [...hotel];
         deleteVal.splice(i, 1);
         setHotel(deleteVal);
     };
+
+
+    //dinamis jadwal
 
     const handleClickJadwal = () => {
         setJadwal([
@@ -47,6 +104,26 @@ function DetailPaket() {
         deleteVal.splice(i, 1);
         setJadwal(deleteVal);
     };
+
+
+
+
+
+
+    // const url = 'http://localhost:5000/api/login_mitra'
+
+
+    // async function submitLogin(e: any) {
+    //     e.preventDefault();
+    //     try {
+    //         const response = await axios.post(url,
+    //             { email: Email, password: Password },);
+    //         alert("login success")
+    //         console.log(JSON.stringify(response.data.status_code));
+    //     } catch (error: any) {
+    //         alert(error.response.data.message);
+    //     }
+    // }
     return (
         <div className='flex '>
             <SideBar paket=" text-white bg-[#E3B02B]" />
@@ -186,9 +263,9 @@ function DetailPaket() {
                     {/* Array Form */}
 
                     {
-                        hotel.map((val, i) => {
+                        hotel.map((val: any, i) => {
                             return (
-                                <div>
+                                <div key={i}>
                                     <p className='pt-2 text-[41px] font-semibold'>{i + 1}</p>
                                     <div className='flex w-full gap-10'>
                                         <div className=' w-3/6'>
@@ -197,6 +274,9 @@ function DetailPaket() {
                                                 <div className="relative w-full">
                                                     <input
                                                         type="text"
+                                                        name='city'
+                                                        value={val.city}
+                                                        onChange={(e) => handleChangeHotel(e, i)}
                                                         className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                                                         placeholder="Masukkan Nama Kota"
                                                     />
@@ -207,6 +287,9 @@ function DetailPaket() {
                                                     <div className="relative w-full">
                                                         <input
                                                             type="text"
+                                                            name='name'
+                                                            value={val.name}
+                                                            onChange={(e) => handleChangeHotel(e, i)}
                                                             className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                                                             placeholder="Masukkan Nama Hotel"
                                                         />
@@ -220,14 +303,16 @@ function DetailPaket() {
                                                             <div className=' w-3/6 flex justify-start'>
                                                                 <div className='flex items-center justify-center gap-2'>
 
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                    <input checked={val.fasilitas.FreeWiFi} onChange={(e) => handleChangeHotelFasilitas(!hotel[i]["fasilitas"].FreeWiFi, i, "FreeWiFi")} type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
                                                                     <span className="text-black font-medium">Free WiFi</span>
                                                                 </div>
                                                             </div>
                                                             <div className=' w-3/6 flex justify-start'>
                                                                 <div className='flex items-center justify-center gap-2'>
-
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                    <input
+                                                                        checked={val.fasilitas.Disabilitas}
+                                                                        onChange={(e) => handleChangeHotelFasilitas(!hotel[i]["fasilitas"].Disabilitas, i, "Disabilitas")}
+                                                                        type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
                                                                     <span className="text-black font-medium">Disabilitas</span>
                                                                 </div>
                                                             </div>
@@ -236,7 +321,10 @@ function DetailPaket() {
                                                             <div className=' w-3/6 flex justify-start'>
                                                                 <div className='flex items-center justify-center gap-2'>
 
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                    <input
+                                                                        checked={val.fasilitas.TempatMakan}
+                                                                        onChange={(e) => handleChangeHotelFasilitas(!hotel[i]["fasilitas"].TempatMakan, i, "TempatMakan")}
+                                                                        type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
                                                                     <span className="text-black font-medium">Tempat Makan</span>
                                                                 </div>
                                                             </div>
@@ -246,7 +334,10 @@ function DetailPaket() {
                                                             <div className=' w-3/6 flex justify-start'>
                                                                 <div className='flex items-center justify-center gap-2'>
 
-                                                                    <input type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
+                                                                    <input
+                                                                        checked={val.fasilitas.PelayananKamar}
+                                                                        onChange={(e) => handleChangeHotelFasilitas(!hotel[i]["fasilitas"].PelayananKamar, i, "PelayananKamar")}
+                                                                        type="checkbox" id="myCheckbox" className="text-blue-500 w-6 h-6" />
                                                                     <span className="text-black font-medium">Pelayanan Kamar</span>
                                                                 </div>
                                                             </div>
@@ -283,6 +374,7 @@ function DetailPaket() {
                             )
                         })
                     }
+                    <div>{JSON.stringify(hotel)}</div>
 
                     {/* End of Array Form */}
 
@@ -301,7 +393,7 @@ function DetailPaket() {
                             {
                                 jadwal.map((val, i) => {
                                     return (
-                                        <div>
+                                        <div key={i}>
                                             <p className='text-[16px] font-medium'>Hari {i + 1}</p>
                                             <div className="relative w-full">
                                                 <input
