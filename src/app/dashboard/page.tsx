@@ -1,11 +1,31 @@
 "use client"
 
 import SideBar from '@/components/sideBar'
+import axios from 'axios'
 import Image from 'next/image'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
+
+
 
 
 function Dashboard() {
+    const [dataMitra, setDataMitra] = useState([]);
+    let id: any = "";
+    useEffect(() => {
+        getuser();
+    });
+
+    async function getuser() {
+        try {
+            const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+            if (res.data.success == true) {
+                console.log(res.data.data._id)
+            }
+            id = res.data.data._id;
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
     return (
         <div className='flex h-screen'>
             <SideBar dashboard="ps-3 text-white bg-[#E3B02B]" />
