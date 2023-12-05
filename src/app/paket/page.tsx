@@ -19,7 +19,7 @@ function Paket() {
                                 <div className='w-full text-[20px] font-semibold '></div>
                                 <div className='w-full  text-[20px] font-semibold '></div>
                                 <div className='w-[450px] flex gap-3'>
-                                    <button className='hover:scale-110 duration-100 bg-blue-600 w-full text-white px-5 py-1 rounded-md'>Paket Baru</button>
+                                    <a href='/paket/tambah' className='hover:scale-110 duration-100 bg-blue-600 w-full text-white px-5 py-1 rounded-md'>Paket Baru</a>
                                 </div>
                             </div>
                         </div>
