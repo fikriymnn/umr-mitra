@@ -21,16 +21,12 @@ function DetailAkun() {
                                     width={176}
                                     className="shadow w-44 h-44 bg-zinc-300 rounded-full"
                                 />
-
-
                             </div>
                             <div>
                                 <label className="flex justify-items-center justify-center mt-[20px] text-black text-xl font-semibold  ">
                                     Travel Keren Dongs
                                 </label>
-
                             </div>
-
                         </div>
 
                         <div className='flex flex-col bg-white w-full h-[660px] shadow-xl rounded-lg px-20 pt-12 pb-12 mt-[20px] ml-[29px]'>
@@ -115,10 +111,8 @@ function DetailAkun() {
                                     5/5
                                 </label>
                             </div>
-
                         </div>
                     </div>
-
                 </div>
             </div>
         </div>
