@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Image from "next/image";
 
 import { useRouter } from "next/navigation";
+import axios from "axios";
 
 
 export default function SideBar({ dashboard, detailAkun, order, paket }: { dashboard?: any, detailAkun?: any, order?: any, paket?: any }
@@ -14,6 +15,18 @@ export default function SideBar({ dashboard, detailAkun, order, paket }: { dashb
         setBar((prevBar) => (prevBar === 1 ? 0 : 1));
     };
     const { push } = useRouter();
+
+    async function submitLogout(e: any) {
+        e.preventDefault();
+        try {
+            const response = await axios.post("http://localhost:5000/api/logout", { withCredentials: true }
+            );
+            alert("login success")
+            console.log(JSON.stringify(response.data.status_code));
+        } catch (error: any) {
+            alert(error.response.data.message);
+        }
+    }
     return (
         <div className="z-40 ">
             <div
@@ -223,7 +236,7 @@ export default function SideBar({ dashboard, detailAkun, order, paket }: { dashb
                                     </svg>
                                 </div>
                                 <div className="flex items-center justify-center font-semibold">
-                                    <p>Log Out</p>
+                                    Log Out
                                 </div>
                             </div>
                         )}
