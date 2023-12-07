@@ -6,7 +6,7 @@ function Detail() {
   return (
     <>
       <div className="flex ">
-        <SideBar order=" text-white bg-[#E3B02B]" />
+        <SideBar order=" text-w ite bg-[#E3B02B]" />
         <div className="h-screen w-screen yellow px-[28px] py-[20px] overflow-y-scroll">
           <div className="bg-white rounded-[10px] w-full mt-[20px] p-5 pb-40">
             {" "}
@@ -104,6 +104,12 @@ function Detail() {
               </p>
               <div className="w-full bg-neutral-200 p-2 rounded-md">
                 <p className="text-[19px]">Acep Wahyu Kurna</p>
+              </div>
+            </div>
+            <div className="mt-3 ">
+              <p className="ml-3 text-base font-semibold">Bukti Pembayaran</p>
+              <div className="w-[400px] h-[400px] bg-neutral-200 p-2 rounded-md flex justify-center items-center">
+                <p>Bukti Belum Diunggah</p>
               </div>
             </div>
             <p className="ml-3 text-base font-semibold mt-5">
