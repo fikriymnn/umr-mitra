@@ -15,7 +15,7 @@ function Page() {
             const response = await axios.post(url,
                 { email: Email, password: Password },);
             alert("login success")
-            console.log(JSON.stringify(response.data.status_code));
+            console.log(response.data);
         } catch (error: any) {
             alert(error.response.data.message);
         }
