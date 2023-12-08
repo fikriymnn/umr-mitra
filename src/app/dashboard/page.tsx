@@ -49,12 +49,12 @@ function Dashboard() {
         </div>
         {/* grid content */}
         <GridWrapper>
-          <DashCardDoubleRow title={"Paket Saya"} value={"9"} />
           <DashCardTripleRow
             title={"Rating"}
             ratings={3.8}
             desc={"40 Penilaian"}
           />
+          <DashCardDoubleRow title={"Paket Saya"} value={"9"} />
           <DashCardDoubleRow title={"Order Berjalan"} value={"150"} />
           <DashCardDoubleRow title={"Order Selesai"} value={"34"} />
           <DashCardDoubleRow title={"Order Gagal"} value={"1"} />
