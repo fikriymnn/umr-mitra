@@ -1,8 +1,41 @@
+"use client"
 import SideBar from '@/components/sideBar'
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image";
+import axios from 'axios';
+
+
 function DetailAkun() {
+    const [dataMitra, setDataMitra] = useState([]);
+    let id: any = "";
+    useEffect(() => {
+        getuser();
+    });
+
+    async function getuser() {
+        try {
+            const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+            if (res.data.success == true) {
+                console.log(res.data.data._id)
+                getdetailuser(res.data.data._id)
+            }
+            id = res.data.data._id;
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
+    async function getdetailuser(id: any) {
+        try {
+            const res = await axios.get(`http://localhost:5000/api/mitra/${id}`);
+            if (res.data.success == true) {
+                console.log(res.data.data)
+            }
+            id = res.data.data._id;
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
     return (
         <div className='flex'>
             <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
