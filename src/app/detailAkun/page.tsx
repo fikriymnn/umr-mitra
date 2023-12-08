@@ -17,7 +17,6 @@ function DetailAkun() {
         try {
             const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
             if (res.data.success == true) {
-                console.log(res.data.data._id)
                 getdetailuser(res.data.data._id)
             }
             id = res.data.data._id;
@@ -29,13 +28,14 @@ function DetailAkun() {
         try {
             const res = await axios.get(`http://localhost:5000/api/mitra/${id}`);
             if (res.data.success == true) {
-                console.log(res.data.data)
+                setDataMitra(res.data.data)
             }
             id = res.data.data._id;
         } catch (error: any) {
             console.log(error.response);
         }
     }
+
     return (
         <div className='flex'>
             <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
@@ -46,10 +46,11 @@ function DetailAkun() {
                     </label>
                     <div className='flex '>
                         <div className='flex flex-col bg-white w-2/6 h-[660px] shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4 mt-[20px]'>
+
                             <div className="flex flex-wrap justify-items-center justify-center">
                                 <Image
                                     alt="logo1"
-                                    src={"/profil.jpeg"}
+                                    src={dataMitra.foto_profile}
                                     height={176}
                                     width={176}
                                     className="shadow w-44 h-44 bg-zinc-300 rounded-full"
@@ -57,7 +58,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="flex justify-items-center justify-center mt-[20px] text-black text-xl font-semibold  ">
-                                    Travel Keren Dongs
+                                    {dataMitra.nama_mitra}
                                 </label>
                             </div>
                         </div>
@@ -79,7 +80,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-60 h-7 text-xl text-black  font-semibold">
-                                    Travel Keren Dongs
+                                    {dataMitra.nama_mitra}
                                 </label>
                             </div>
 
@@ -90,7 +91,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    PT. Travel Keren Dongs
+                                    {dataMitra.nama_pt}
                                 </label>
                             </div>
 
@@ -101,7 +102,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    87687676672678
+                                    {dataMitra.no_izin_umroh}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -111,7 +112,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    Bandung
+                                    {dataMitra.location}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -121,7 +122,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    Traveldongs01@gmail.com
+                                    {dataMitra.email}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -131,7 +132,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    www.traveldongs.com
+                                    {dataMitra.website}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -141,7 +142,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    5/5
+                                    {dataMitra.rating}/5
                                 </label>
                             </div>
                         </div>
