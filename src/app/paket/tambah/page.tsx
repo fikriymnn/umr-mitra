@@ -4,6 +4,29 @@ import SideBar from "@/components/sideBar";
 import axios from "axios";
 
 function DetailPaket() {
+  async function changeImageContent(e: any, event: any, i?: any, ii?: any) {
+    e.preventDefault();
+    // get the selected file from the input
+    const file = event.target.files[0];
+    // create a new FormData object and append the file to it
+    const formData = new FormData();
+    formData.append("content", file);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+    } catch (error: any) {
+      alert(error.response.data.message);
+    }
+  }
+
   async function changeImage(e: any, event: any, i: any, ii: any) {
     e.preventDefault();
     // get the selected file from the input
@@ -29,17 +52,12 @@ function DetailPaket() {
 
   //State value
   const [title, setTitle] = useState("");
+  const [content, setContent] = useState([{ img: "" }])
   const [category, setCategory] = useState("");
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
   const [pilihanKamar, setPilihanKamar] = useState("");
   const [waktuKeberangkatan, setWaktuKeberangkatan] = useState<Date>();
-  const [jadwalKeberangkatan, setJadwalKeberangkatan] = useState({
-    jam: "",
-    tanggal: "",
-    bulan: "",
-    tahun: "",
-  });
   const [maskapai, setMaskapai] = useState("");
   const [kotaKeberangkatan, setKotaKeberangkatan] = useState("");
   const [durasi, setDurasi] = useState("");
@@ -78,6 +96,18 @@ function DetailPaket() {
     setWaktuKeberangkatan(date);
 
     // setParsedDateFrom(day + " " + year);
+  };
+
+  const handleClickContent = () => {
+    //setData([data[i].img.push("")]);
+    const onchangeVal = [...content];
+    onchangeVal.push({ img: "" });
+    setContent(onchangeVal);
+  };
+  const handleDeleteContent = (ii: any) => {
+    const deleteVal = [...content];
+    deleteVal.splice(ii, 1);
+    setContent(deleteVal);
   };
 
   const handleClickHotel = () => {
@@ -273,21 +303,58 @@ function DetailPaket() {
               </div>
               <div className="w-3/6">
                 <p className="text-[16px] font-medium">Gambar Sampul</p>
-                <div className="w-full my-2 bg-slate-200 ">
-                  <img src={"/kaaba.jpg"} className="w-full" alt="" />
-                </div>
+
+
+                {/* IMAGE PICKER */}
+
+                {content.map((val: any, ii: number) => {
+                  return val.img == "" ? (
+                    <div className="flex flex-col">
+                      <div className="w-20 border border-black hover:bg-slate-200">
+                        <label className="w-20 h-28 flex flex-col justify-center items-center">
+                          <input
+                            type="file"
+                            className="bg-black w-full h-full hidden"
+                            onChange={(e) => changeImageContent(e, e,)}
+                          />
+                          <p className="font-semibold text-4xl">+</p>
+                          <p className="font-semibold">Tambah Gambar</p>
+                        </label>
+                      </div>
+                      <button
+                        type="button"
+                        onClick={() => handleDeleteContent(ii)}
+                      >
+                        delete
+                      </button>
+                    </div>
+                  ) : (
+                    <div key={ii}>
+                      <img
+                        src={val.img}
+                        className="h-28 w-28"
+                        alt={`Image ${ii + 1}`}
+                      />
+                    </div>
+                  );
+                })}
+
 
                 {/* IMAGE PICKER */}
                 <div className="w-full border border-black hover:bg-slate-200">
                   <label className="w-full h-28 flex flex-col justify-center items-center">
-                    <input
-                      type="file"
+                    <button
+                      type="button"
                       className="bg-black w-full h-full hidden"
-                    />
+                      onClick={() => handleClickContent()}
+                    >
+                      click
+                    </button>
                     <p className="font-semibold text-4xl">+</p>
                     <p className="font-semibold">Tambah Gambar</p>
                   </label>
                 </div>
+
                 {/* END OF IMAGE PICKER */}
               </div>
             </div>

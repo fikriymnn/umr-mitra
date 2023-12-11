@@ -17,20 +17,22 @@ export default function SideBar({
   order?: any;
   paket?: any;
 }) {
+  const { push } = useRouter();
   const [bar, setBar] = useState(1);
   const toggleBar = () => {
     setBar((prevBar) => (prevBar === 1 ? 0 : 1));
   };
-  const { push } = useRouter();
+
 
   async function submitLogout(e: any) {
     e.preventDefault();
     try {
       const response = await axios.post("http://localhost:5000/api/logout", {
         withCredentials: true,
+        headers: { "Content-Type": "application/json" },
       });
-      alert("login success");
-      console.log(JSON.stringify(response.data.status_code));
+      alert("logout success");
+      push("/login")
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -38,9 +40,8 @@ export default function SideBar({
   return (
     <div className="z-40 ">
       <div
-        className={`${
-          bar == 1 ? " w-[252px] " : " w-[80px] "
-        } h-full  flex-col text-black bg-white`}
+        className={`${bar == 1 ? " w-[252px] " : " w-[80px] "
+          } h-full  flex-col text-black bg-white`}
       >
         <div className={`w-full pt-[38px] pb-[33px] px-[16px]`}>
           <button className="w-full h-full" onClick={toggleBar}>
@@ -65,11 +66,10 @@ export default function SideBar({
           <div className="pl-[18px]">
             <a href="/dashboard">
               <button
-                className={`${
-                  bar == 1
-                    ? "justify-start items-center"
-                    : " justify-center items-center"
-                } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
+                className={`${bar == 1
+                  ? "justify-start items-center"
+                  : " justify-center items-center"
+                  } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${dashboard}`}
               >
                 {bar === 0 ? (
@@ -112,11 +112,10 @@ export default function SideBar({
             </a>
             <a href="/detailAkun">
               <button
-                className={`${
-                  bar == 1
-                    ? "justify-start items-center"
-                    : "justify-center items-center"
-                } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
+                className={`${bar == 1
+                  ? "justify-start items-center"
+                  : "justify-center items-center"
+                  } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${detailAkun}`}
               >
                 {bar === 0 ? (
@@ -159,11 +158,10 @@ export default function SideBar({
             </a>
             <a href="/paket">
               <button
-                className={`${
-                  bar == 1
-                    ? " justify-start items-center"
-                    : " justify-center items-center"
-                } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
+                className={`${bar == 1
+                  ? " justify-start items-center"
+                  : " justify-center items-center"
+                  } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}
               >
                 {bar === 0 ? (
@@ -206,11 +204,10 @@ export default function SideBar({
             </a>
             <a href="/order">
               <button
-                className={`${
-                  bar == 1
-                    ? " justify-start items-center"
-                    : " justify-center items-center"
-                } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
+                className={`${bar == 1
+                  ? " justify-start items-center"
+                  : " justify-center items-center"
+                  } w-full  h-[58px] flex my-3  mb-[24px] hover:ps-3
                             rounded-[10px_0px_0px_10px] hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${order}`}
               >
                 {bar === 0 ? (
@@ -253,12 +250,11 @@ export default function SideBar({
             </a>
           </div>
           <button
-            className={`${
-              bar == 1
-                ? "ms-5 justify-start items-center"
-                : "ms-2 justify-center items-center"
-            } w-[175px] h-[58px] duration-100 hover:translate-y-[-10px]  `}
-            onClick={() => {}}
+            className={`${bar == 1
+              ? "ms-5 justify-start items-center"
+              : "ms-2 justify-center items-center"
+              } w-[175px] h-[58px] duration-100 hover:translate-y-[-10px]  `}
+            onClick={submitLogout}
           >
             {bar === 0 ? (
               <div className=" w-16  h-[58px] bg-red-600 text-white p-2 pe-3 shrink-0 rounded-[10px] flex gap-2 items-center justify-center">
