@@ -7,7 +7,8 @@ import axios from 'axios';
 
 
 function DetailAkun() {
-    const [dataMitra, setDataMitra] = useState([]);
+
+    const [dataMitra, setDataMitra] = useState<any>([]);
     let id: any = "";
     useEffect(() => {
         getuser();
