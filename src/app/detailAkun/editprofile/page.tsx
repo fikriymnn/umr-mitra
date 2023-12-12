@@ -1,8 +1,9 @@
 'use client';
 
 import SideBar from '@/components/sideBar'
+import axios from 'axios';
 import Link from 'next/link'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useState } from "react";
 
 function EditProfile() {
@@ -23,7 +24,34 @@ function EditProfile() {
             reader.readAsDataURL(file);
         }
     };
+    const [dataMitra, setDataMitra] = useState<any>([]);
+    let id: any = "";
+    useEffect(() => {
+        getuser();
+    });
 
+    async function getuser() {
+        try {
+            const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+            if (res.data.success == true) {
+                getdetailuser(res.data.data._id)
+            }
+            id = res.data.data._id;
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
+    async function getdetailuser(id: any) {
+        try {
+            const res = await axios.get(`http://localhost:5000/api/mitra/${id}`);
+            if (res.data.success == true) {
+                setDataMitra(res.data.data)
+            }
+            id = res.data.data._id;
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
 
     return (
         <div>
@@ -39,7 +67,7 @@ function EditProfile() {
                                 <div className="flex flex-wrap ">
                                     {!imagePreview && <><img
                                         alt="logo1"
-                                        src={'/profil.jpeg'}
+                                        src={dataMitra.foto_profile}
                                         height={128}
                                         width={128}
                                         className="w-32 h-32 bg-zinc-300 rounded-full" /></>
@@ -75,6 +103,7 @@ function EditProfile() {
                                         placeholder="Masukkan Nama Mitra"
                                         required
                                         type="text"
+                                        value={dataMitra.nama_mitra}
                                         style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
@@ -90,6 +119,7 @@ function EditProfile() {
                                         placeholder="Masukkan Nama Perusahaan"
                                         required
                                         type="text"
+                                        value={dataMitra.nama_pt}
                                         style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
@@ -106,6 +136,7 @@ function EditProfile() {
                                         placeholder="Masukkan Lokasi"
                                         required
                                         type="text"
+                                        value={dataMitra.location}
                                         style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
@@ -121,6 +152,7 @@ function EditProfile() {
                                         placeholder="Masukkan Email"
                                         required
                                         type="email"
+                                        value={dataMitra.email}
                                         style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
@@ -136,6 +168,7 @@ function EditProfile() {
                                         placeholder="Masukkan Website"
                                         required
                                         type="text"
+                                        value={dataMitra.website}
                                         style={{ paddingLeft: '10px' }}
                                     />
                                 </div>
@@ -157,7 +190,7 @@ function EditProfile() {
                                 </div>
                                 <div>
                                     <label className="w-60 h-8 text-xl text-black  font-normal">
-                                        traveldongsadmin@gmail.com
+                                        {dataMitra.email}
                                     </label>
                                 </div>
                                 <div>

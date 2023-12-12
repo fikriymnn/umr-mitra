@@ -56,6 +56,7 @@ function Page() {
                   placeholder="  Masukan Nama Mitra"
                   required
                   type="text"
+                  style={{ paddingLeft: '10px' }}
                 />
               </div>
               <div>
@@ -71,6 +72,7 @@ function Page() {
                   placeholder="Masukan Email Mitra"
                   required
                   type="email"
+                  style={{ paddingLeft: '10px' }}
                 />
               </div>
               <div>
@@ -86,6 +88,7 @@ function Page() {
                   placeholder="  Masukan Password "
                   required
                   type="password"
+                  style={{ paddingLeft: '10px' }}
                 />
               </div>
 
