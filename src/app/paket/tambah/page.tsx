@@ -4,52 +4,8 @@ import SideBar from "@/components/sideBar";
 import axios from "axios";
 
 function DetailPaket() {
-  async function changeImageContent(e: any, event: any, i?: any, ii?: any) {
-    e.preventDefault();
-    // get the selected file from the input
-    const file = event.target.files[0];
-    // create a new FormData object and append the file to it
-    const formData = new FormData();
-    formData.append("content", file);
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response);
-    } catch (error: any) {
-      alert(error.response.data.message);
-    }
-  }
 
-  async function changeImage(e: any, event: any, i: any, ii: any) {
-    e.preventDefault();
-    // get the selected file from the input
-    const file = event.target.files[0];
-    // create a new FormData object and append the file to it
-    const formData = new FormData();
-    formData.append("content", file);
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
-        }
-      );
-      console.log(response);
-    } catch (error: any) {
-      alert(error.response.data.message);
-    }
-  }
-
+  const url = "http://localhost:5000/api/paket";
   //State value
   const [title, setTitle] = useState("");
   const [content, setContent] = useState([{ img: "" }])
@@ -66,6 +22,7 @@ function DetailPaket() {
   const [syarat, setSyarat] = useState("");
   const [harga, setHarga] = useState(0);
   const [kuota, setKuota] = useState(0);
+  const [jadwal, setJadwal] = useState([{ hari: "Hari 1", agenda: "" }]);
   const [hotel, setHotel] = useState([
     {
       city: "",
@@ -80,36 +37,114 @@ function DetailPaket() {
     },
   ]);
 
-  const [jadwal, setJadwal] = useState([{ hari: "Hari 1", agenda: "" }]);
 
-  //handle dinamis
 
-  //dinamis hotel
-  const Keberangkatan = (e: any) => {
-    const dateValue = e.target.value;
+  //handle image upload content carousel
+  async function changeImageContent(e: any, event: any, i: any,) {
+    e.preventDefault();
+    const onchangeVal = [...content];
+    // get the selected file from the input
+    const file = event.target.files[0];
+    // create a new FormData object and append the file to it
+    const formData = new FormData();
+    formData.append("content", file);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+      const id = response.data.data;
+      onchangeVal[i]["img"] = id;
+      setContent(onchangeVal);
+    } catch (error: any) {
+      alert(error.response.data.message);
+    }
+  }
 
-    // Parsing tanggal menggunakan Date Object
-    const date = new Date(dateValue);
-    // const year = format(date, "MMMM yyyy");
-    // // Bulan dimulai dari 0, jadi tambahkan 1
-    // const day = date.getDate();
-    setWaktuKeberangkatan(date);
+  //handle image delete content carousel
+  async function deleteContent(e: any, event: any, i: any, id: any) {
+    e.preventDefault();
+    const onchangeVal = [...content];
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/upload/${id}`,
 
-    // setParsedDateFrom(day + " " + year);
-  };
+      );
+      console.log(response);
+      onchangeVal[i]["img"] = "";
+      setContent(onchangeVal);
+    } catch (error: any) {
+      alert(error.response.data.message);
+    }
+  }
 
+
+  //handle image upload content hotel
+  async function changeImage(e: any, event: any, i: any, ii: any) {
+    e.preventDefault();
+    const onchangeVal = [...hotel];
+    const file = event.target.files[0];
+    const formData = new FormData();
+    formData.append("content", file);
+    try {
+      const response = await axios.post(
+        "http://localhost:5000/api/upload",
+        formData,
+        {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        }
+      );
+      console.log(response);
+      const id = response.data.data;
+      onchangeVal[i]["content"][ii]["img"] = id;
+      setHotel(onchangeVal);
+    } catch (error: any) {
+      alert(error.response.data.message);
+    }
+  }
+
+  //handle image delete content hotel
+  async function deleteImage(e: any, event: any, i: any, ii: any, id: any) {
+    e.preventDefault();
+    const onchangeVal = [...hotel];
+    try {
+      const response = await axios.delete(
+        `http://localhost:5000/api/upload/${id}`,
+
+      );
+      console.log(response);
+      onchangeVal[i]["content"][ii]["img"] = "";
+      setHotel(onchangeVal);
+    } catch (error: any) {
+      alert(error.response.data.message);
+    }
+  }
+
+  //add content carousel
   const handleClickContent = () => {
-    //setData([data[i].img.push("")]);
     const onchangeVal = [...content];
     onchangeVal.push({ img: "" });
     setContent(onchangeVal);
   };
+  //delete content carousel
   const handleDeleteContent = (ii: any) => {
     const deleteVal = [...content];
     deleteVal.splice(ii, 1);
     setContent(deleteVal);
   };
 
+
+
+  //dinamis hotel
+  //add hotel
   const handleClickHotel = () => {
     setHotel([
       ...hotel,
@@ -126,12 +161,14 @@ function DetailPaket() {
       },
     ]);
   };
+  //change value hotel
   const handleChangeHotel = (e: any, i: number) => {
     const { name, value } = e.target;
     const onchangeVal: any = [...hotel];
     onchangeVal[i][name] = value;
     setHotel(onchangeVal);
   };
+  //chage value hotel fasilitas
   const handleChangeHotelFasilitas = (e: any, i: number, fasilitass: any) => {
     const fs = fasilitass;
     const onchangeVal: any = [...hotel];
@@ -149,19 +186,20 @@ function DetailPaket() {
       setHotel(onchangeVal);
     }
   };
+  //delete hotel
   const handleDeleteHotel = (i: number) => {
     const deleteVal: any = [...hotel];
     deleteVal.splice(i, 1);
     setHotel(deleteVal);
   };
-
+  //add image in hotel dinamis
   const handleClickImg = (i: any) => {
-    //setData([data[i].img.push("")]);
     const onchangeVal = [...hotel];
     onchangeVal[i]["content"].push({ img: "" });
     setHotel(onchangeVal);
   };
 
+  //delete image in hotel dinamis
   const handleDeleteImg = (i: any, ii: any) => {
     const deleteVal = [...hotel];
     deleteVal[i]["content"].splice(ii, 1);
@@ -169,27 +207,36 @@ function DetailPaket() {
   };
 
   //dinamis jadwal
-
+  //add jadwal
   const handleClickJadwal = (hari: any) => {
     setJadwal([...jadwal, { hari: `Hari ${hari}`, agenda: "" }]);
   };
+  //change value jadwal
   const handleChangeJadwal = (e: any, i: any) => {
     const { name, value } = e.target;
     const onchangeVal: any = [...jadwal];
     onchangeVal[i][name] = value;
     setJadwal(onchangeVal);
   };
+  //delete jadwal
   const handleDeleteJadwal = (i: number) => {
     const deleteVal = [...jadwal];
     deleteVal.splice(i, 1);
     setJadwal(deleteVal);
   };
 
+  //date format
+  const Keberangkatan = (e: any) => {
+    const dateValue = e.target.value;
+    const date = new Date(dateValue);
+    setWaktuKeberangkatan(date);
+  };
+
   let id: any = "";
   useEffect(() => {
     getuser();
   });
-
+  // get user using cookie
   async function getuser() {
     try {
       const res = await axios.get("http://localhost:5000/api/user", {
@@ -204,8 +251,8 @@ function DetailPaket() {
     }
   }
 
-  const url = "http://localhost:5000/api/paket";
 
+  // submit form paket to url
   async function submitPaket(e: any) {
     e.preventDefault();
     try {
@@ -216,7 +263,7 @@ function DetailPaket() {
           title: title,
           description: description,
           category_paket: category,
-          content_carousel: "",
+          content_carousel: content,
           price: harga,
           kuota: kuota,
           kota_keberangkatan: kotaKeberangkatan,
@@ -309,13 +356,14 @@ function DetailPaket() {
 
                 {content.map((val: any, ii: number) => {
                   return val.img == "" ? (
-                    <div className="flex flex-col">
+                    <div key={ii} className="flex flex-col">
                       <div className="w-20 border border-black hover:bg-slate-200">
                         <label className="w-20 h-28 flex flex-col justify-center items-center">
                           <input
                             type="file"
+                            required
                             className="bg-black w-full h-full hidden"
-                            onChange={(e) => changeImageContent(e, e,)}
+                            onChange={(e) => changeImageContent(e, e, ii)}
                           />
                           <p className="font-semibold text-4xl">+</p>
                           <p className="font-semibold">Tambah Gambar</p>
@@ -331,10 +379,16 @@ function DetailPaket() {
                   ) : (
                     <div key={ii}>
                       <img
-                        src={val.img}
+                        src={`http://localhost:5000/images/${val.img}`}
                         className="h-28 w-28"
                         alt={`Image ${ii + 1}`}
                       />
+                      <button
+                        type="button"
+                        onClick={(e) => deleteContent(e, e, ii, val.img)}
+                      >
+                        delete
+                      </button>
                     </div>
                   );
                 })}
@@ -593,11 +647,12 @@ function DetailPaket() {
                       <div className="w-full py-2 grid grid-cols-4 gap-2 ">
                         {val.content.map((val: any, ii: number) => {
                           return val.img == "" ? (
-                            <div className="flex flex-col">
+                            <div key={ii} className="flex flex-col">
                               <div className="w-20 border border-black hover:bg-slate-200">
                                 <label className="w-20 h-28 flex flex-col justify-center items-center">
                                   <input
                                     type="file"
+                                    required
                                     className="bg-black w-full h-full hidden"
                                     onChange={(e) => changeImage(e, e, i, ii)}
                                   />
@@ -615,10 +670,16 @@ function DetailPaket() {
                           ) : (
                             <div key={ii}>
                               <img
-                                src={val.img}
+                                src={`http://localhost:5000/images/${val.img}`}
                                 className="h-28 w-28"
                                 alt={`Image ${ii + 1}`}
                               />
+                              <button
+                                type="button"
+                                onClick={(e) => deleteImage(e, e, i, ii, val.img)}
+                              >
+                                delete
+                              </button>
                             </div>
                           );
                         })}
@@ -655,7 +716,7 @@ function DetailPaket() {
                 </div>
               );
             })}
-            <div>{JSON.stringify(hotel)}</div>
+
 
             {/* End of Array Form */}
 
@@ -717,7 +778,7 @@ function DetailPaket() {
                     Tambah Jadwal
                   </button>
                 </div>
-                <div>{JSON.stringify(jadwal)}</div>
+
                 {/* End Of Agenda Button */}
               </div>
               <div className="w-3/6"></div>
@@ -734,6 +795,7 @@ function DetailPaket() {
                   <div className="relative w-full">
                     <textarea
                       rows={5}
+                      required
                       onChange={(e) => setSyarat(e.target.value)}
                       className="border-[1px] border-black p-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Detail Syarat dan Ketentuan"
@@ -752,6 +814,7 @@ function DetailPaket() {
                   <div className="relative w-full">
                     <input
                       type="number"
+                      required
                       onChange={(e) => setHarga(Number(e.target.value))}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Harga Paket"
@@ -764,6 +827,7 @@ function DetailPaket() {
                   <div className="relative w-full ">
                     <input
                       type="number"
+                      required
                       onChange={(e) => setKuota(Number(e.target.value))}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Jumlah Kuota"
