@@ -6,8 +6,8 @@ function Detail() {
   return (
     <>
       <div className="flex ">
-        <SideBar order=" text-w ite bg-[#E3B02B]" />
-        <div className="h-screen w-screen yellow px-[28px] py-[20px] overflow-y-scroll">
+        <SideBar order=" text-white bg-[#E3B02B]" />
+        <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
           <div className="bg-white rounded-[10px] w-full mt-[20px] p-5 pb-40">
             {" "}
             <p className=" text-xl font-semibold">Detail Pesanan Jemaah</p>
@@ -110,65 +110,6 @@ function Detail() {
               <p className="ml-3 text-base font-semibold">Bukti Pembayaran</p>
               <div className="w-[400px] h-[400px] bg-neutral-200 p-2 rounded-md flex justify-center items-center">
                 <p>Bukti Belum Diunggah</p>
-              </div>
-            </div>
-            <p className="ml-3 text-base font-semibold mt-5">
-              Tahap Pembayaran
-            </p>
-            <div className=" border-2 bg-neutral-200 border-black rounded-lg">
-              <div className="flex  ">
-                <div className="flex flex-col  w-[25%]">
-                  <p className="p-3 font-semibold  border-b-2 border-black md:text-base sm:text-sm text-xs ">
-                    Tahap
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    Uang Muka
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    Bayar ke-2
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    Bayar ke-3
-                  </p>
-                </div>
-                <div className="flex flex-col  border-black border-x-2 w-[30%]">
-                  <p className="p-3 font-semibold  border-b-2 border-black md:text-base sm:text-sm text-xs ">
-                    Pembayaran
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    17 September 2023
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    17 September 2023
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    17 September 2023
-                  </p>
-                </div>
-                <div className="flex flex-col  w-[25%] ">
-                  <p className="p-3 font-semibold  border-b-2 border-black md:text-base sm:text-sm text-xs ">
-                    Jumlah
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    Rp 6.000.000
-                  </p>
-                  <div className="">
-                    <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                      Rp 6.000.000
-                    </p>
-                  </div>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    Rp 6.000.000
-                  </p>
-                </div>
-                <div className="flex flex-col w-[20%] border-black border-x-2  ">
-                  <p className="p-3 font-semibold  border-b-2 border-black md:text-base sm:text-sm text-xs ">
-                    Status
-                  </p>
-                  <p className="p-3 font-semibold md:text-base sm:text-sm text-xs">
-                    Dibayar
-                  </p>
-                </div>
               </div>
             </div>
             <div className="flex mt-10 gap-4 ml-3">
