@@ -291,7 +291,7 @@ function DetailPaket() {
   return (
     <div className="flex ">
       <SideBar paket=" text-white bg-[#E3B02B]" />
-      <div className="h-screen w-screen yellow px-[28px] py-[20px] overflow-y-scroll">
+      <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
         <p className="font-semibold text-[28px]">Tambah Paket Baru</p>
         <form onSubmit={submitPaket}>
           <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
