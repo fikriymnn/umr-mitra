@@ -2,13 +2,13 @@
 import React, { useState, ChangeEvent, useEffect } from "react";
 import SideBar from "@/components/sideBar";
 import axios from "axios";
+import Image from "next/image";
 
 function DetailPaket() {
-
   const url = "http://localhost:5000/api/paket";
   //State value
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState([{ img: "" }])
+  const [content, setContent] = useState([{ img: "" }]);
   const [category, setCategory] = useState("");
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
@@ -37,10 +37,8 @@ function DetailPaket() {
     },
   ]);
 
-
-
   //handle image upload content carousel
-  async function changeImageContent(e: any, event: any, i: any,) {
+  async function changeImageContent(e: any, event: any, i: any) {
     e.preventDefault();
     const onchangeVal = [...content];
     // get the selected file from the input
@@ -73,8 +71,7 @@ function DetailPaket() {
     const onchangeVal = [...content];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`,
-
+        `http://localhost:5000/api/upload/${id}`
       );
       console.log(response);
       onchangeVal[i]["img"] = "";
@@ -83,7 +80,6 @@ function DetailPaket() {
       alert(error.response.data.message);
     }
   }
-
 
   //handle image upload content hotel
   async function changeImage(e: any, event: any, i: any, ii: any) {
@@ -117,8 +113,7 @@ function DetailPaket() {
     const onchangeVal = [...hotel];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`,
-
+        `http://localhost:5000/api/upload/${id}`
       );
       console.log(response);
       onchangeVal[i]["content"][ii]["img"] = "";
@@ -140,8 +135,6 @@ function DetailPaket() {
     deleteVal.splice(ii, 1);
     setContent(deleteVal);
   };
-
-
 
   //dinamis hotel
   //add hotel
@@ -251,7 +244,6 @@ function DetailPaket() {
     }
   }
 
-
   // submit form paket to url
   async function submitPaket(e: any) {
     e.preventDefault();
@@ -298,7 +290,7 @@ function DetailPaket() {
             <p className="font-semibold text-[20px]">Detail</p>
             <div className="flex w-full gap-10">
               <div className="py-3 w-3/6">
-                <div>
+                <div className="pb-3">
                   <p className="text-[16px] font-medium">Nama Paket</p>
                   <div className="relative w-full">
                     <input
@@ -310,7 +302,7 @@ function DetailPaket() {
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
                 </div>
-                <div>
+                <div className=" py-3">
                   <p className="text-[16px] font-medium">Kategori Paket</p>
                   <div className="relative w-full">
                     <input
@@ -322,7 +314,7 @@ function DetailPaket() {
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
                 </div>
-                <div>
+                <div className="pt-3">
                   <p className="text-[16px] font-medium">Jenis Keberangkatan</p>
                   <div className="relative w-full">
                     <input
@@ -351,63 +343,72 @@ function DetailPaket() {
               <div className="w-3/6">
                 <p className="text-[16px] font-medium">Gambar Sampul</p>
 
-
                 {/* IMAGE PICKER */}
 
-                {content.map((val: any, ii: number) => {
-                  return val.img == "" ? (
-                    <div key={ii} className="flex flex-col">
-                      <div className="w-20 border border-black hover:bg-slate-200">
-                        <label className="w-20 h-28 flex flex-col justify-center items-center">
-                          <input
-                            type="file"
-                            required
-                            className="bg-black w-full h-full hidden"
-                            onChange={(e) => changeImageContent(e, e, ii)}
-                          />
-                          <p className="font-semibold text-4xl">+</p>
-                          <p className="font-semibold">Tambah Gambar</p>
-                        </label>
+                <div className="w-full py-2 grid grid-cols-4 gap-2 ">
+                  {content.map((val: any, ii: number) => {
+                    return val.img == "" ? (
+                      <div key={ii} className="flex flex-col">
+                        <div className=" border border-black hover:bg-slate-200">
+                          <label className="w-full h-24 flex flex-col justify-center items-center">
+                            <input
+                              type="file"
+                              required
+                              className="bg-black w-full h-full hidden"
+                              onChange={(e) => changeImageContent(e, e, ii)}
+                            />
+                            <Image
+                              alt="error"
+                              src={"/upload.svg"}
+                              width={15}
+                              height={15}
+                            />
+                            <p className="text-center font-semibold text-base mt-3">
+                              Pilih Gambar
+                            </p>
+                          </label>
+                        </div>
+                        <button
+                          type="button"
+                          onClick={() => handleDeleteContent(ii)}
+                        >
+                          <div className="border-[1px] border-t-0 bg-red-600 font-semibold text-white border-black">
+                            Hapus
+                          </div>
+                        </button>
                       </div>
+                    ) : (
+                      <div key={ii}>
+                        <img
+                          src={`http://localhost:5000/images/${val.img}`}
+                          className="h-28 w-28"
+                          alt={`Image ${ii + 1}`}
+                        />
+                        <button
+                          type="button"
+                          onClick={(e) => deleteContent(e, e, ii, val.img)}
+                        >
+                          delete
+                        </button>
+                      </div>
+                    );
+                  })}
+                  <div className="w-full border border-black hover:bg-slate-200">
+                    <label className="w-full h-28 flex flex-col justify-center items-center">
                       <button
                         type="button"
-                        onClick={() => handleDeleteContent(ii)}
+                        className="bg-black w-full h-full hidden"
+                        onClick={() => handleClickContent()}
                       >
-                        delete
+                        click
                       </button>
-                    </div>
-                  ) : (
-                    <div key={ii}>
-                      <img
-                        src={`http://localhost:5000/images/${val.img}`}
-                        className="h-28 w-28"
-                        alt={`Image ${ii + 1}`}
-                      />
-                      <button
-                        type="button"
-                        onClick={(e) => deleteContent(e, e, ii, val.img)}
-                      >
-                        delete
-                      </button>
-                    </div>
-                  );
-                })}
-
+                      <p className="font-semibold text-4xl">+</p>
+                      <p className="font-semibold text-center">Tambah Gambar</p>
+                    </label>
+                  </div>
+                </div>
 
                 {/* IMAGE PICKER */}
-                <div className="w-full border border-black hover:bg-slate-200">
-                  <label className="w-full h-28 flex flex-col justify-center items-center">
-                    <button
-                      type="button"
-                      className="bg-black w-full h-full hidden"
-                      onClick={() => handleClickContent()}
-                    >
-                      click
-                    </button>
-                    <p className="font-semibold text-4xl">+</p>
-                    <p className="font-semibold">Tambah Gambar</p>
-                  </label>
-                </div>
 
                 {/* END OF IMAGE PICKER */}
               </div>
@@ -644,27 +645,37 @@ function DetailPaket() {
 
                     <div className="py-3 w-3/6">
                       <p className="text-[16px] font-medium">Gambar Hotel</p>
+
                       <div className="w-full py-2 grid grid-cols-4 gap-2 ">
                         {val.content.map((val: any, ii: number) => {
                           return val.img == "" ? (
                             <div key={ii} className="flex flex-col">
-                              <div className="w-20 border border-black hover:bg-slate-200">
-                                <label className="w-20 h-28 flex flex-col justify-center items-center">
+                              <div className=" border border-black hover:bg-slate-200">
+                                <label className="w-full h-24 flex flex-col justify-center items-center">
                                   <input
                                     type="file"
                                     required
                                     className="bg-black w-full h-full hidden"
                                     onChange={(e) => changeImage(e, e, i, ii)}
                                   />
-                                  <p className="font-semibold text-4xl">+</p>
-                                  <p className="font-semibold">Tambah Gambar</p>
+                                  <Image
+                                    alt="error"
+                                    src={"/upload.svg"}
+                                    width={15}
+                                    height={15}
+                                  />
+                                  <p className="text-center font-semibold text-base mt-3">
+                                    Pilih Gambar
+                                  </p>
                                 </label>
                               </div>
                               <button
                                 type="button"
                                 onClick={() => handleDeleteImg(i, ii)}
                               >
-                                delete
+                                <div className="border-[1px] border-t-0 bg-red-600 font-semibold text-white border-black">
+                                  Hapus
+                                </div>
                               </button>
                             </div>
                           ) : (
@@ -676,29 +687,33 @@ function DetailPaket() {
                               />
                               <button
                                 type="button"
-                                onClick={(e) => deleteImage(e, e, i, ii, val.img)}
+                                onClick={(e) =>
+                                  deleteImage(e, e, i, ii, val.img)
+                                }
                               >
                                 delete
                               </button>
                             </div>
                           );
                         })}
+                        <div className="w-full border border-black hover:bg-slate-200">
+                          <label className="w-full h-28 flex flex-col justify-center items-center">
+                            <button
+                              type="button"
+                              className="bg-black w-full h-full hidden"
+                              onClick={() => handleClickImg(i)}
+                            >
+                              click
+                            </button>
+                            <p className="font-semibold text-4xl">+</p>
+                            <p className="font-semibold text-center">
+                              Tambah Gambar
+                            </p>
+                          </label>
+                        </div>
                       </div>
 
                       {/* IMAGE PICKER */}
-                      <div className="w-full border border-black hover:bg-slate-200">
-                        <label className="w-full h-28 flex flex-col justify-center items-center">
-                          <button
-                            type="button"
-                            className="bg-black w-full h-full hidden"
-                            onClick={() => handleClickImg(i)}
-                          >
-                            click
-                          </button>
-                          <p className="font-semibold text-4xl">+</p>
-                          <p className="font-semibold">Tambah Gambar</p>
-                        </label>
-                      </div>
                       {/* END OF IMAGE PICKER */}
                     </div>
                   </div>
@@ -716,7 +731,6 @@ function DetailPaket() {
                 </div>
               );
             })}
-
 
             {/* End of Array Form */}
 
