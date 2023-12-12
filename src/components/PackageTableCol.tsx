@@ -1,6 +1,6 @@
 import React from 'react'
 
-function PackageTableCol({ no, title, price, stock }: { no?: any, title?: any, price?: any, stock?: any }) {
+function PackageTableCol({ no, title, price, stock, id }: { no?: any, title?: any, price?: any, stock?: any, id: any }) {
     return (
         <div>
             <div className='min-w-full flex gap-3 border-b-2 border-slate-400 mb-2 pb-2'>
