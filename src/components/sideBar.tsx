@@ -23,16 +23,14 @@ export default function SideBar({
     setBar((prevBar) => (prevBar === 1 ? 0 : 1));
   };
 
-
   async function submitLogout(e: any) {
     e.preventDefault();
     try {
       const response = await axios.get("http://localhost:5000/api/logout", {
         withCredentials: true,
-
       });
       alert("logout success");
-      push("/login")
+      push("/login");
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -40,10 +38,10 @@ export default function SideBar({
   return (
     <div className="z-40 ">
       <div
-        className={`${bar == 1 ? " w-[252px] " : " w-[80px] "
-          } h-full flex flex-col text-black bg-white `}
+        className={`${
+          bar == 1 ? " w-[252px] " : " w-[80px] "
+        } h-full flex flex-col text-black bg-white `}
       >
-
         <div className={`w-full pt-5 pb-14 px-[16px]`}>
           <button className="w-full h-full" onClick={toggleBar}>
             {bar === 0 ? (
@@ -64,15 +62,16 @@ export default function SideBar({
         </div>
 
         <div className="h-full pb-5 flex flex-col justify-between ">
-          <div className="ps-[18px]">
+          <div className="px-[18px]">
             <div className="flex">
               <div className="w-full">
                 <a href="/dashboard">
                   <button
-                    className={`${bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${
+                      bar == 1
+                        ? "justify-start items-center"
+                        : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${dashboard}`}
                   >
                     {bar === 0 ? (
@@ -114,17 +113,16 @@ export default function SideBar({
                   </button>
                 </a>
               </div>
-
-              <div className={`h-[40px] my-1 ms-2 w-1 rounded-s-md ${dashboard}`}></div>
             </div>
             <div className="flex">
               <div className="w-full">
                 <a href="/detailAkun">
                   <button
-                    className={`${bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${
+                      bar == 1
+                        ? "justify-start items-center"
+                        : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${detailAkun}`}
                   >
                     {bar === 0 ? (
@@ -165,20 +163,17 @@ export default function SideBar({
                     )}
                   </button>
                 </a>
-
-
               </div>
-              <div className={`h-[40px] my-1 ms-2 w-1 rounded-s-md ${detailAkun}`}></div>
             </div>
             <div className="flex">
-
               <div className="w-full">
                 <a href="/paket">
                   <button
-                    className={`${bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${
+                      bar == 1
+                        ? "justify-start items-center"
+                        : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}
                   >
                     {bar === 0 ? (
@@ -219,18 +214,17 @@ export default function SideBar({
                     )}
                   </button>
                 </a>
-
               </div>
-              <div className={`h-[40px] my-1 ms-2 w-1 rounded-s-md ${paket}`}></div>
             </div>
             <div className="flex">
               <div className="w-full">
                 <a href="/order">
                   <button
-                    className={`${bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${
+                      bar == 1
+                        ? "justify-start items-center"
+                        : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${order}`}
                   >
                     {bar === 0 ? (
@@ -271,18 +265,16 @@ export default function SideBar({
                     )}
                   </button>
                 </a>
-
-
               </div>
-              <div className={`h-[40px] my-1 ms-2 w-1 rounded-s-md ${order}`}></div>
             </div>
           </div>
           <div>
             <button
-              className={`${bar == 1
-                ? "ms-5 justify-start items-center"
-                : "ms-2 justify-center items-center"
-                } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
+              className={`${
+                bar == 1
+                  ? "ms-5 justify-start items-center"
+                  : "ms-2 justify-center items-center"
+              } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
               onClick={submitLogout}
             >
               {bar === 0 ? (
