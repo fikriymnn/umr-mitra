@@ -13,7 +13,7 @@ function DetailPaket() {
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
   const [pilihanKamar, setPilihanKamar] = useState("");
-  const [waktuKeberangkatan, setWaktuKeberangkatan] = useState<Date>();
+  const [waktuKeberangkatan, setWaktuKeberangkatan] = useState<String>();
   const [maskapai, setMaskapai] = useState("");
   const [kotaKeberangkatan, setKotaKeberangkatan] = useState("");
   const [durasi, setDurasi] = useState("");
@@ -225,12 +225,6 @@ function DetailPaket() {
     setJadwal(deleteVal);
   };
 
-  //date format
-  const Keberangkatan = (e: any) => {
-    const dateValue = e.target.value;
-    const date = new Date(dateValue);
-    setWaktuKeberangkatan(date);
-  };
 
   let id: any = "";
   useEffect(() => {
@@ -433,7 +427,7 @@ function DetailPaket() {
                   <div className="relative w-full">
                     <input
                       type="date"
-                      onChange={(e) => Keberangkatan(e)}
+                      onChange={(e) => setWaktuKeberangkatan(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Pilih Tanggal Keberangkatan"
                     />
