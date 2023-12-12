@@ -30,8 +30,8 @@ function Dashboard() {
   }
   return (
     <div className="flex h-screen">
-      <SideBar dashboard="ps-3 text-white bg-[#E3B02B]" />
-      <div className="min-h-screen w-screen yellow px-[28px] overflow-y-scroll">
+      <SideBar dashboard=" text-white bg-[#E3B02B]" />
+      <div className="min-h-screen w-screen grey px-[28px] overflow-y-scroll">
         {/* top content */}
         <div className="flex items-center justify-start bg-white  my-[21px] w-full h-[254px] rounded-[10px_10px_10px_10px] shadow-xl">
           <div
@@ -54,10 +54,10 @@ function Dashboard() {
             ratings={3.8}
             desc={"40 Penilaian"}
           />
-          <DashCardDoubleRow title={"Paket Saya"} value={"9"} />
           <DashCardDoubleRow title={"Order Berjalan"} value={"150"} />
           <DashCardDoubleRow title={"Order Selesai"} value={"34"} />
-          <DashCardDoubleRow title={"Order Gagal"} value={"1"} />
+          <DashCardDoubleRow title={"Paket Aktif"} value={"9"} />
+          <DashCardDoubleRow title={"Paket Selesai"} value={"15"} />
         </GridWrapper>
       </div>
     </div>
