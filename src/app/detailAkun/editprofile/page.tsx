@@ -34,7 +34,6 @@ function EditProfile() {
 
     let id: any = "";
     useEffect(() => {
-        let res: [];
         async function getuser() {
             try {
                 const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
@@ -52,11 +51,6 @@ function EditProfile() {
                 const res = await axios.get(`http://localhost:5000/api/mitra/${idd}`);
                 if (res.data.success == true) {
                     setDataMitra(res.data.data)
-                    // setnama_mitra(res.data.data.nama_mitra)
-                    // setnama_pt(res.data.data.nama_pt)
-                    // setemail(res.data.data.email)
-                    // setlocation(res.data.data.location)
-                    // setwebsite(res.data.data.website)
                 }
                 id = res.data.data._id;
 
@@ -67,8 +61,39 @@ function EditProfile() {
         getuser();
     });
 
+    useEffect(() => {
+        async function setuser() {
+            try {
+                const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+                if (res.data.success == true) {
+                    setdetailuser(res.data.data._id)
+                }
+                id = res.data.data._id;
+            } catch (error: any) {
+                console.log(error.response);
+            }
+        }
+        async function setdetailuser(idd: any) {
 
+            try {
+                const res = await axios.get(`http://localhost:5000/api/mitra/${idd}`);
+                if (res.data.success == true) {
+                    setDataMitra(res.data.data)
+                    setnama_mitra(res.data.data.nama_mitra)
+                    setnama_pt(res.data.data.nama_pt)
+                    setemail(res.data.data.email)
+                    setlocation(res.data.data.location)
+                    setwebsite(res.data.data.website)
+                    setfoto_profile(res.data.data.foto_profil)
+                }
+                id = res.data.data._id;
 
+            } catch (error: any) {
+                console.log(error.response);
+            }
+        }
+        setuser();
+    }, []);
 
 
     // const url = `http://localhost:5000/api/mitra/${id}`;
@@ -81,6 +106,7 @@ function EditProfile() {
                 email,
                 location,
                 website,
+                foto_profil,
 
             },
                 { withCredentials: true }
@@ -89,6 +115,28 @@ function EditProfile() {
         } catch (error: any) {
             alert(error.response);
             console.log(error.response);
+        }
+    }
+
+    async function uploadImage(event: any) {
+        event.preventDefault();
+        const file = event.target.files[0];
+        const formData = new FormData();
+        formData.append("content", file);
+        try {
+            const response = await axios.post(
+                "http://localhost:5000/api/upload",
+                formData,
+                {
+                    headers: {
+                        "Content-Type": "multipart/form-data",
+                    },
+                }
+            );
+            console.log(response);
+            setfoto_profile(response.data.data);
+        } catch (error: any) {
+            alert(error.response.data.message);
         }
     }
     return (
@@ -104,30 +152,19 @@ function EditProfile() {
                             <div className='flex '>
                                 <div className='flex flex-col bg-white w-2/4 h-[730px] shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]'>
                                     <div className="flex flex-wrap ">
-                                        {!imagePreview && <><img
+                                        <img
                                             alt="logo1"
-                                            src={dataMitra.foto_profile}
+                                            src={`http://localhost:5000/images/${foto_profil}`}
                                             height={128}
                                             width={128}
-                                            className="w-32 h-32 bg-zinc-300 rounded-full" /></>
-                                        }
-                                        {imagePreview && <><img
-                                            alt="logo1"
-                                            src={imagePreview}
-
-                                            height={128}
-                                            width={128}
-
-                                            className="w-32 h-32 bg-zinc-300 rounded-full" /></>
-                                        }
+                                            className="w-32 h-32 bg-zinc-300 rounded-full" />
                                         <label className='w-24 h-7 bg-amber-400 rounded-sm ml-[26px] mt-[58px] cursor-pointer pt-[2px]'>
                                             <span className='ml-[10px] text-white  font-normal text-center'>Pilih Foto</span>
                                             <input
                                                 accept='image/*'
                                                 type="file"
-                                                onChange={imageChange}
+                                                onChange={(e) => uploadImage(e)}
                                                 className="hidden"
-
                                             />
                                         </label>
 
