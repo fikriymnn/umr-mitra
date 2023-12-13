@@ -17,20 +17,22 @@ export default function SideBar({
   order?: any;
   paket?: any;
 }) {
+  const { push } = useRouter();
   const [bar, setBar] = useState(1);
   const toggleBar = () => {
     setBar((prevBar) => (prevBar === 1 ? 0 : 1));
   };
-  const { push } = useRouter();
+
 
   async function submitLogout(e: any) {
     e.preventDefault();
     try {
-      const response = await axios.post("http://localhost:5000/api/logout", {
+      const response = await axios.get("http://localhost:5000/api/logout", {
         withCredentials: true,
+
       });
-      alert("login success");
-      console.log(JSON.stringify(response.data.status_code));
+      alert("logout success");
+      push("/login")
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -281,7 +283,7 @@ export default function SideBar({
                 ? "ms-5 justify-start items-center"
                 : "ms-2 justify-center items-center"
                 } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
-              onClick={() => { }}
+              onClick={submitLogout}
             >
               {bar === 0 ? (
                 <div className=" w-16  h-[50px] bg-red-600 text-white p-2 pe-3 shrink-0 rounded-md flex gap-2 items-center justify-center">

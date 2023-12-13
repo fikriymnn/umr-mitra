@@ -1,8 +1,37 @@
+"use client"
 import PackageTableCol from '@/components/PackageTableCol'
 import SideBar from '@/components/sideBar'
-import React from 'react'
+import axios from 'axios';
+import React, { useEffect, useState } from 'react'
 
 function Paket() {
+    const [paket, setPaket] = useState([]);
+    let id: any = "";
+    useEffect(() => {
+        getuser();
+    });
+    async function getuser() {
+        try {
+            const res = await axios.get("http://localhost:5000/api/user", {
+                withCredentials: true,
+            });
+
+            id = res.data.data._id;
+            getpaket(res.data.data._id);
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
+
+    async function getpaket(id: any) {
+        try {
+            const res = await axios.get(`http://localhost:5000/api/paket?id_mitra=${id}&skip=0&limit=10`);
+
+            setPaket(res.data.data)
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
     return (
         <div className='flex '>
             <SideBar paket=" text-white bg-[#E3B02B]" />
@@ -42,90 +71,22 @@ function Paket() {
                             </div>
                         </div>
                         <div className='max-h-[500px] overflow-y-scroll border-y-2 border-black py-3'>
-                            <PackageTableCol
-                                no="1"
-                                title="Umroh Dream Exclusive Plus Kereta Cepat 10 Hari"
-                                price="39.000.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="1"
-                                title="Umroh Dream Exclusive Plus Kereta Cepat 10 Hari"
-                                price="55.555.559"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="1"
-                                title="Umroh Dream Exclusive Plus Kereta Cepat 10 Hari"
-                                price="47.096.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="2"
-                                title="Umroh Exclusive Plus Kereta Cepat 10 Hari"
-                                price="50.500.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="2"
-                                title="Umroh Exclusive Plus Kereta Cepat 10 Hari"
-                                price="50.500.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="2"
-                                title="Umroh Exclusive Plus Kereta Cepat 10 Hari"
-                                price="50.500.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="2"
-                                title="Umroh Exclusive Plus Kereta Cepat 10 Hari"
-                                price="50.500.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="2"
-                                title="Umroh Exclusive Plus Kereta Cepat 10 Hari"
-                                price="50.500.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="2"
-                                title="Umroh Exclusive Plus Kereta Cepat 10 Hari"
-                                price="50.500.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="3"
-                                title="Umroh Non Exclusive Plus Kereta Cepat 10 Hari"
-                                price="39.999.999"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="4"
-                                title="Umroh Plus 10 Hari"
-                                price="71.890.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="5"
-                                title="Umroh saja"
-                                price="47.000.000"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="1"
-                                title="Umroh Dream Exclusive Plus Kereta Cepat 10 Hari"
-                                price="55.555.559"
-                                stock="58"
-                            />
-                            <PackageTableCol
-                                no="1"
-                                title="Umroh Dream Exclusive Plus Kereta Cepat 10 Hari"
-                                price="55.555.559"
-                                stock="58"
-                            />
+                            {
+                                paket.map((data: any, i: number) => {
+                                    return (
+                                        <PackageTableCol
+                                            key={i}
+                                            id={data._id}
+                                            no={i + 1}
+                                            title={data.title}
+                                            price={data.price}
+                                            stock={data.kuota}
+                                        />
+                                    )
+                                })
+                            }
+
+
                         </div>
                     </div>
                 </div>

@@ -1,8 +1,10 @@
 "use client";
 import axios from "axios";
+import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 function Page() {
+  const { push } = useRouter();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const url = "http://localhost:5000/api/login_mitra";
@@ -19,7 +21,8 @@ function Page() {
         }
       );
       alert("login success");
-      console.log(response.data);
+      push("/dashboard");
+
     } catch (error: any) {
       alert(error.response.data.message);
     }
