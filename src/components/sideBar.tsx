@@ -19,6 +19,10 @@ export default function SideBar({
 }) {
   const { push } = useRouter();
   const [bar, setBar] = useState(1);
+  const [packagebar, setPackagebar] = useState(0);
+  const togglePackagebar = () => {
+    setPackagebar((prevValue) => (prevValue === 0 ? 1 : 0));
+  };
   const toggleBar = () => {
     setBar((prevBar) => (prevBar === 1 ? 0 : 1));
   };
@@ -38,9 +42,8 @@ export default function SideBar({
   return (
     <div className="z-40 ">
       <div
-        className={`${
-          bar == 1 ? " w-[252px] " : " w-[80px] "
-        } h-full flex flex-col text-black bg-white `}
+        className={`${bar == 1 ? " w-[252px] " : " w-[80px] "
+          } h-full flex flex-col text-black bg-white `}
       >
         <div className={`w-full pt-5 pb-14 px-[16px]`}>
           <button className="w-full h-full" onClick={toggleBar}>
@@ -67,11 +70,10 @@ export default function SideBar({
               <div className="w-full">
                 <a href="/dashboard">
                   <button
-                    className={`${
-                      bar == 1
-                        ? "justify-start items-center"
-                        : " justify-center items-center"
-                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${bar == 1
+                      ? "justify-start items-center"
+                      : " justify-center items-center"
+                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${dashboard}`}
                   >
                     {bar === 0 ? (
@@ -118,11 +120,10 @@ export default function SideBar({
               <div className="w-full">
                 <a href="/detailAkun">
                   <button
-                    className={`${
-                      bar == 1
-                        ? "justify-start items-center"
-                        : " justify-center items-center"
-                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${bar == 1
+                      ? "justify-start items-center"
+                      : " justify-center items-center"
+                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${detailAkun}`}
                   >
                     {bar === 0 ? (
@@ -167,33 +168,29 @@ export default function SideBar({
             </div>
             <div className="flex">
               <div className="w-full">
-                <a href="/paket">
-                  <button
-                    className={`${
-                      bar == 1
-                        ? "justify-start items-center"
-                        : " justify-center items-center"
-                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
-                            rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}
-                  >
-                    {bar === 0 ? (
-                      <div className="w-10">
-                        <svg
-                          width="20"
-                          height="20"
-                          viewBox="0 0 17 20"
-                          fill="none"
-                          xmlns="http://www.w3.org/2000/svg"
-                        >
-                          <path
-                            d="M16.8873 5.53119C16.8816 5.50482 16.8816 5.47755 16.8873 5.45119C16.8824 5.42811 16.8824 5.40427 16.8873 5.38119V5.29119L16.8273 5.14119C16.8029 5.10026 16.7726 5.06319 16.7373 5.03119L16.6473 4.95119H16.5973L12.6573 2.46119L8.93728 0.161189C8.85122 0.0929191 8.75274 0.0419794 8.64728 0.0111891H8.56728C8.4779 -0.00372972 8.38667 -0.00372972 8.29728 0.0111891H8.19728C8.08113 0.0368814 7.96976 0.0807551 7.86729 0.141189L0.397285 4.79119L0.307285 4.86119L0.217285 4.94119L0.117285 5.01119L0.067285 5.07119L0.00728483 5.22119V5.31119V5.37119C-0.00242828 5.4375 -0.00242828 5.50488 0.00728483 5.57119V14.3012C0.00694475 14.4711 0.049921 14.6384 0.132156 14.7871C0.214391 14.9358 0.333172 15.0611 0.477285 15.1512L7.97728 19.7912L8.12728 19.8512H8.20728C8.37647 19.9048 8.5581 19.9048 8.72728 19.8512H8.80728L8.95728 19.7912L16.3973 15.2212C16.5414 15.1311 16.6602 15.0058 16.7424 14.8571C16.8246 14.7084 16.8676 14.5411 16.8673 14.3712V5.64119C16.8673 5.64119 16.8873 5.57119 16.8873 5.53119ZM8.39728 2.18119L10.1773 3.28119L4.58728 6.74119L2.79729 5.64119L8.39728 2.18119ZM7.39728 17.1812L1.89728 13.8212V7.43119L7.39728 10.8312V17.1812ZM8.39728 9.07119L6.48729 7.92119L12.0773 4.45119L13.9973 5.64119L8.39728 9.07119ZM14.8973 13.7912L9.39728 17.2112V10.8312L14.8973 7.43119V13.7912Z"
-                            fill="currentColor"
-                          />
-                        </svg>
-                      </div>
-                    ) : (
-                      <div className="flex gap-[15px] justify-center items-center ml-[12px] ">
-                        <div className=" ">
+                <div className={`${bar == 1
+                  ? "justify-start items-center"
+                  : " justify-center items-center"
+                  } w-full  h-[40px] flex my-1  mb-[10px] ps-2
+                            rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}>
+                  <button onClick={togglePackagebar} className="w-4">
+                    <div className={`${packagebar === 1 ? 'rotate-90 translate-y-[1px]' : ''} w-full duration-100 scale-75`}>
+
+                      <svg width="11" height="14" viewBox="0 0 11 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M11 7L0.499999 13.0622L0.5 0.937822L11 7Z" fill="currentColor" />
+                      </svg>
+
+                    </div>
+                  </button>
+
+
+
+                  <a href="/paket" className="w-full">
+                    <button
+
+                    >
+                      {bar === 0 ? (
+                        <div className="w-10">
                           <svg
                             width="20"
                             height="20"
@@ -207,24 +204,59 @@ export default function SideBar({
                             />
                           </svg>
                         </div>
-                        <div className="flex items-center justify-center  font-[500] text-[20px]">
-                          <p>Paket</p>
+                      ) : (
+                        <div className="flex gap-[15px] justify-center items-center  ">
+                          <div className="flex gap-2">
+
+                            <div className=" ">
+                              <svg
+                                width="20"
+                                height="20"
+                                viewBox="0 0 17 20"
+                                fill="none"
+                                xmlns="http://www.w3.org/2000/svg"
+                              >
+                                <path
+                                  d="M16.8873 5.53119C16.8816 5.50482 16.8816 5.47755 16.8873 5.45119C16.8824 5.42811 16.8824 5.40427 16.8873 5.38119V5.29119L16.8273 5.14119C16.8029 5.10026 16.7726 5.06319 16.7373 5.03119L16.6473 4.95119H16.5973L12.6573 2.46119L8.93728 0.161189C8.85122 0.0929191 8.75274 0.0419794 8.64728 0.0111891H8.56728C8.4779 -0.00372972 8.38667 -0.00372972 8.29728 0.0111891H8.19728C8.08113 0.0368814 7.96976 0.0807551 7.86729 0.141189L0.397285 4.79119L0.307285 4.86119L0.217285 4.94119L0.117285 5.01119L0.067285 5.07119L0.00728483 5.22119V5.31119V5.37119C-0.00242828 5.4375 -0.00242828 5.50488 0.00728483 5.57119V14.3012C0.00694475 14.4711 0.049921 14.6384 0.132156 14.7871C0.214391 14.9358 0.333172 15.0611 0.477285 15.1512L7.97728 19.7912L8.12728 19.8512H8.20728C8.37647 19.9048 8.5581 19.9048 8.72728 19.8512H8.80728L8.95728 19.7912L16.3973 15.2212C16.5414 15.1311 16.6602 15.0058 16.7424 14.8571C16.8246 14.7084 16.8676 14.5411 16.8673 14.3712V5.64119C16.8673 5.64119 16.8873 5.57119 16.8873 5.53119ZM8.39728 2.18119L10.1773 3.28119L4.58728 6.74119L2.79729 5.64119L8.39728 2.18119ZM7.39728 17.1812L1.89728 13.8212V7.43119L7.39728 10.8312V17.1812ZM8.39728 9.07119L6.48729 7.92119L12.0773 4.45119L13.9973 5.64119L8.39728 9.07119ZM14.8973 13.7912L9.39728 17.2112V10.8312L14.8973 7.43119V13.7912Z"
+                                  fill="currentColor"
+                                />
+                              </svg>
+                            </div>
+                          </div>
+                          <div className="flex items-center justify-center  font-[500] text-[20px]">
+                            <p>Paket</p>
+                          </div>
                         </div>
-                      </div>
-                    )}
-                  </button>
-                </a>
+                      )}
+                    </button>
+                  </a>
+
+
+
+
+
+                </div>
+                {packagebar === 1 && (
+                  <>
+                    <div className="flex flex-col ms-5 grey rounded-md py-2 px-3 font-medium">
+                      <a className="hover:text-[#E3B02B]" href="/paket/tambah">Tambah Paket Baru</a>
+                      <a className="hover:text-[#E3B02B]" href="/paket">Paket Aktif</a>
+                      <a className="hover:text-[#E3B02B]" href="/paket/selesai">Paket Selesai</a>
+                    </div>
+
+                  </>
+                )
+                }
               </div>
             </div>
             <div className="flex">
               <div className="w-full">
                 <a href="/order">
                   <button
-                    className={`${
-                      bar == 1
-                        ? "justify-start items-center"
-                        : " justify-center items-center"
-                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${bar == 1
+                      ? "justify-start items-center"
+                      : " justify-center items-center"
+                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-[#E3B02B] shrink-0 hover:text-white duration-200 ease-in-out ${order}`}
                   >
                     {bar === 0 ? (
@@ -270,11 +302,10 @@ export default function SideBar({
           </div>
           <div>
             <button
-              className={`${
-                bar == 1
-                  ? "ms-5 justify-start items-center"
-                  : "ms-2 justify-center items-center"
-              } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
+              className={`${bar == 1
+                ? "ms-5 justify-start items-center"
+                : "ms-2 justify-center items-center"
+                } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
               onClick={submitLogout}
             >
               {bar === 0 ? (
