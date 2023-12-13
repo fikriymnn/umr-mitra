@@ -51,7 +51,7 @@ function DetailAkun() {
                             <div className="flex flex-wrap justify-items-center justify-center">
                                 <Image
                                     alt="logo1"
-                                    src={dataMitra.foto_profile}
+                                    src={`http://localhost:5000/images/${dataMitra.foto_profil}`}
                                     height={176}
                                     width={176}
                                     className="shadow w-44 h-44 bg-zinc-300 rounded-full"

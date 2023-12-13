@@ -59,6 +59,7 @@ function Page() {
                   placeholder="  Masukan Nama Mitra"
                   required
                   type="text"
+                  style={{ paddingLeft: '10px' }}
                 />
               </div>
               <div>
@@ -74,6 +75,7 @@ function Page() {
                   placeholder="Masukan Email Mitra"
                   required
                   type="email"
+                  style={{ paddingLeft: '10px' }}
                 />
               </div>
               <div>
@@ -86,9 +88,10 @@ function Page() {
                   className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal "
                   onChange={(e) => setPassword(e.target.value)}
                   id="password1"
-                  placeholder="  Masukan Password "
+                  placeholder="Masukan Password "
                   required
                   type="password"
+                  style={{ paddingLeft: '10px' }}
                 />
               </div>
 
