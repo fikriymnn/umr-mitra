@@ -3,9 +3,11 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import SideBar from "@/components/sideBar";
 import axios from "axios";
 import Image from "next/image";
+import { useSearchParams } from "next/navigation";
 
-function TambahPaket() {
-  const url = "http://localhost:5000/api/paket";
+function EditPaket() {
+  const searchParams = useSearchParams();
+  const idParams = searchParams.get("id");
   //State value
   const [title, setTitle] = useState("");
   const [content, setContent] = useState([{ img: "" }]);
@@ -13,7 +15,7 @@ function TambahPaket() {
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
   const [pilihanKamar, setPilihanKamar] = useState("");
-  const [waktuKeberangkatan, setWaktuKeberangkatan] = useState<String>();
+  const [waktuKeberangkatan, setWaktuKeberangkatan] = useState<string>();
   const [maskapai, setMaskapai] = useState("");
   const [kotaKeberangkatan, setKotaKeberangkatan] = useState("");
   const [durasi, setDurasi] = useState("");
@@ -36,6 +38,41 @@ function TambahPaket() {
       content: [{ img: "" }],
     },
   ]);
+
+  useEffect(() => {
+    getDetailPaket(idParams);
+  }, [idParams]);
+
+  async function getDetailPaket(idd: any) {
+    try {
+      const res = await axios.get(`http://localhost:5000/api/paket/${idd}`);
+      if (res.data.success == true) {
+        let data = res.data.data;
+        setTitle(data.title);
+        setContent(data.content_carousel);
+        setCategory(data.category_paket);
+        setJenisKeberangkatan(data.jenis_keberangkatan);
+        setDescription(data.description);
+        setPilihanKamar(data.pilihan_kamar);
+        setWaktuKeberangkatan(data.waktu_keberangkatan);
+        setMaskapai(data.maskapai_penerbangan);
+        setKotaKeberangkatan(data.kota_keberangkatan);
+        setDurasi(data.durasi_perjalanan);
+        setKelasHotel(data.rating_hotel);
+        setFasillitas(data.fasilitas_umroh);
+        setSyarat(data.syarat_ketentuan);
+        setHarga(data.price);
+        setKuota(data.kuota);
+        setJadwal(data.jadwal);
+        setHotel(data.hotel);
+
+      }
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
+
+
 
   //handle image upload content carousel
   async function changeImageContent(e: any, event: any, i: any) {
@@ -242,10 +279,10 @@ function TambahPaket() {
   async function submitPaket(e: any) {
     e.preventDefault();
     try {
-      const response = await axios.post(
-        url,
+      const response = await axios.put(
+        `http://localhost:5000/api/paket/${idParams}`,
         {
-          id_mitra: id,
+
           title: title,
           description: description,
           category_paket: category,
@@ -269,7 +306,7 @@ function TambahPaket() {
           withCredentials: true,
         }
       );
-      alert("upload succsess");
+      alert("Edit succsess");
       console.log(JSON.stringify(response.data));
     } catch (error: any) {
       alert(error.response.data.message);
@@ -290,6 +327,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="text"
+                      value={title}
                       onChange={(e) => setTitle(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Nama Paket"
@@ -302,6 +340,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="text"
+                      value={category}
                       onChange={(e) => setCategory(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Nama Paket"
@@ -314,6 +353,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="text"
+                      value={jenisKeberangkatan}
                       onChange={(e) => setJenisKeberangkatan(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Nama Paket"
@@ -326,6 +366,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <textarea
                       rows={5}
+                      value={description}
                       onChange={(e) => setDescription(e.target.value)}
                       className="border-[1px] border-black p-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Deskripsi Paket"
@@ -415,6 +456,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="text"
+                      value={pilihanKamar}
                       onChange={(e) => setPilihanKamar(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Pilihan Kamar"
@@ -429,6 +471,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="date"
+                      value={waktuKeberangkatan}
                       onChange={(e) => setWaktuKeberangkatan(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Pilih Tanggal Keberangkatan"
@@ -441,6 +484,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="text"
+                      value={maskapai}
                       onChange={(e) => setMaskapai(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Nama Maskapai"
@@ -453,6 +497,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="text"
+                      value={kotaKeberangkatan}
                       onChange={(e) => setKotaKeberangkatan(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Nama Kota"
@@ -465,6 +510,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <input
                       type="text"
+                      value={durasi}
                       onChange={(e) => setDurasi(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Durasi"
@@ -476,14 +522,14 @@ function TambahPaket() {
                   <p className="text-[16px] font-medium">Kelas Hotel</p>
                   <div className="relative w-full">
                     <input
-                      type="number"
-                      onChange={(e) => setKelasHotel(Number(e.target.value))}
+                      type="text"
+                      value={kelasHotel}
+                      onChange={(e) => setKelasHotel(Number(e.target.value.replace(/\D/g, '')))}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Durasi"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
-
                 </div>
               </div>
               <div className="py-3 w-3/6"></div>
@@ -496,6 +542,7 @@ function TambahPaket() {
                   <div className="relative w-full">
                     <textarea
                       rows={5}
+                      value={fasillitas}
                       onChange={(e) => setFasillitas(e.target.value)}
                       className="border-[1px] border-black p-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Detail Fasilitas"
@@ -806,6 +853,7 @@ function TambahPaket() {
                     <textarea
                       rows={5}
                       required
+                      value={syarat}
                       onChange={(e) => setSyarat(e.target.value)}
                       className="border-[1px] border-black p-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Detail Syarat dan Ketentuan"
@@ -823,9 +871,10 @@ function TambahPaket() {
                   <p className="text-[16px] font-medium">Harga Paket</p>
                   <div className="relative w-full">
                     <input
-                      type="number"
+                      type="text"
                       required
-                      onChange={(e) => setHarga(Number(e.target.value))}
+                      value={harga}
+                      onChange={(e) => setHarga(Number(e.target.value.replace(/\D/g, '')))}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Harga Paket"
                     />
@@ -836,9 +885,10 @@ function TambahPaket() {
                   </p>
                   <div className="relative w-full ">
                     <input
-                      type="number"
+                      type="text"
                       required
-                      onChange={(e) => setKuota(Number(e.target.value))}
+                      value={kuota}
+                      onChange={(e) => setKuota(Number(e.target.value.replace(/\D/g, '')))}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Jumlah Kuota"
                     />
@@ -853,7 +903,7 @@ function TambahPaket() {
                 type="submit"
                 className="w-full font-semibold text-xl rounded-md p-3 text-semibold text-white bg-[#E3B02B] hover:bg-[#b18a2a]"
               >
-                Tambahkan Paket
+                Edit Paket
               </button>
             </div>
           </div>
@@ -863,4 +913,4 @@ function TambahPaket() {
   );
 }
 
-export default TambahPaket;
+export default EditPaket;

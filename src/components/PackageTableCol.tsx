@@ -13,12 +13,12 @@ function PackageTableCol({ no, title, price, stock, id }: { no?: any, title?: an
                     <div className='w-full  text-[20px] line-clamp-1'><p>{stock}</p></div>
                     <div className='w-[450px] flex gap-3'>
                         <div className='bg-white w-full'>
-                            <a href="/paket/tambah">
+                            <a href={`/paket/detail?id=${id}`}>
                                 <button className='w-full flex justify-center items-center bg-blue-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>Detail</button>
                             </a>
                         </div>
                         <div className='bg-white w-[45px]'>
-                            <button className='w-full flex justify-center items-center bg-green-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>P</button>
+                            <a href={`/paket/edit?id=${id}`} className='w-full flex justify-center items-center bg-green-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>P</a>
                         </div>
 
                     </div>
