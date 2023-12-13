@@ -8,7 +8,7 @@ import axios from 'axios';
 
 function DetailAkun() {
 
-    const [dataMitra, setDataMitra] = useState<any>([]);
+    const [dataMitra, setDataMitra] = useState<any>(null);
     let id: any = "";
     useEffect(() => {
         getuser();
@@ -49,17 +49,23 @@ function DetailAkun() {
                         <div className='flex flex-col bg-white w-2/6 h-[660px] shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4 mt-[20px]'>
 
                             <div className="flex flex-wrap justify-items-center justify-center">
-                                <Image
-                                    alt="logo1"
-                                    src={`http://localhost:5000/images/${dataMitra.foto_profil}`}
-                                    height={176}
-                                    width={176}
-                                    className="shadow w-44 h-44 bg-zinc-300 rounded-full"
-                                />
+                                {
+                                    dataMitra == null ? <div className="shadow w-44 h-44 bg-zinc-300 rounded-full">
+
+                                    </div> :
+                                        <Image
+                                            alt="logo1"
+                                            src={`http://localhost:5000/images/${dataMitra.foto_profil}`}
+                                            height={176}
+                                            width={176}
+                                            className="shadow w-44 h-44 bg-zinc-300 rounded-full"
+                                        />
+                                }
+
                             </div>
                             <div>
                                 <label className="flex justify-items-center justify-center mt-[20px] text-black text-xl font-semibold  ">
-                                    {dataMitra.nama_mitra}
+                                    {dataMitra == null ? "" : dataMitra.nama_mitra}
                                 </label>
                             </div>
                         </div>
@@ -81,7 +87,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-60 h-7 text-xl text-black  font-semibold">
-                                    {dataMitra.nama_mitra}
+                                    {dataMitra == null ? "" : dataMitra.nama_mitra}
                                 </label>
                             </div>
 
@@ -92,7 +98,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    {dataMitra.nama_pt}
+                                    {dataMitra == null ? "" : dataMitra.nama_pt}
                                 </label>
                             </div>
 
@@ -103,7 +109,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    {dataMitra.no_izin_umroh}
+                                    {dataMitra == null ? "" : dataMitra.no_izin_umroh}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -113,7 +119,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    {dataMitra.location}
+                                    {dataMitra == null ? "" : dataMitra.location}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -123,7 +129,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    {dataMitra.email}
+                                    {dataMitra == null ? "" : dataMitra.email}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -133,7 +139,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    {dataMitra.website}
+                                    {dataMitra == null ? "" : dataMitra.website}
                                 </label>
                             </div>
                             <div className='mt-[28px]'>
@@ -143,7 +149,7 @@ function DetailAkun() {
                             </div>
                             <div>
                                 <label className="w-full h-7 text-xl text-black  font-semibold">
-                                    {dataMitra.rating}/5
+                                    {dataMitra == null ? "" : dataMitra.rating}/5
                                 </label>
                             </div>
                         </div>
