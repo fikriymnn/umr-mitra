@@ -55,7 +55,7 @@ function Paket() {
                 <div className="w-[450px] flex gap-3">
                   <a
                     href="/paket/tambah"
-                    className="hover:scale-110 duration-100 bg-blue-600 w-full text-white text-center py-1 rounded-md"
+                    className="hover:scale-110 duration-100 bg-blue-600 w-full text-white px-5 py-1 rounded-md"
                   >
                     Paket Baru
                   </a>
@@ -92,7 +92,6 @@ function Paket() {
                   />
                 );
               })}
-
             </div>
           </div>
         </div>
