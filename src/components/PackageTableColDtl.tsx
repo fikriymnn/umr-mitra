@@ -17,8 +17,6 @@ function PackageTableColDtl({ no, title, price, stock, id }: { no?: any, title?:
                                 <button className='w-full flex justify-center items-center bg-blue-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>Detail</button>
                             </a>
                         </div>
-
-
                     </div>
                 </div>
             </div>
