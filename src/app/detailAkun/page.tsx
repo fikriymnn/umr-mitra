@@ -158,7 +158,8 @@ function DetailAkun() {
                     </div>
                 </div>
             </div>
-            )
+        </div>
+    )
 }
 
-            export default DetailAkun
+export default DetailAkun
