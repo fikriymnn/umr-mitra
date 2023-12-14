@@ -40,7 +40,7 @@ function Page() {
             <label>Selamat Datang !</label>
           </div>
           <div className="flex ml-[164px] mt-[2px]  text-black text-xl font-semibold ">
-            <label>Masukan Akun Mitra Ibadahku</label>
+            <label>Masukkan Akun Mitra Ibadahku</label>
           </div>
           <div className="flex mt-[28px] ml-[154px] mr-[881px]">
             <form
@@ -56,7 +56,7 @@ function Page() {
                 <input
                   className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal "
                   id="namamitra"
-                  placeholder="  Masukan Nama Mitra"
+                  placeholder="Masukkan Nama Mitra"
                   required
                   type="text"
                   style={{ paddingLeft: '10px' }}
@@ -72,7 +72,7 @@ function Page() {
                   className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal"
                   id="email"
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Masukan Email Mitra"
+                  placeholder="Masukkan Email Mitra"
                   required
                   type="email"
                   style={{ paddingLeft: '10px' }}
@@ -88,7 +88,7 @@ function Page() {
                   className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal "
                   onChange={(e) => setPassword(e.target.value)}
                   id="password1"
-                  placeholder="Masukan Password "
+                  placeholder="Masukkan Password "
                   required
                   type="password"
                   style={{ paddingLeft: '10px' }}
