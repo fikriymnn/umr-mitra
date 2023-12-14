@@ -95,8 +95,6 @@ function EditProfile() {
         setuser();
     }, []);
 
-
-    // const url = `http://localhost:5000/api/mitra/${id}`;
     async function updatedetailuser(e: any) {
         e.preventDefault();
         try {
@@ -107,7 +105,6 @@ function EditProfile() {
                 location,
                 website,
                 foto_profil,
-
             },
                 { withCredentials: true }
             )
@@ -159,7 +156,7 @@ function EditProfile() {
                                             width={128}
                                             className="w-32 h-32 bg-zinc-300 rounded-full" />
                                         <label className='w-24 h-7 bg-amber-400 rounded-sm ml-[26px] mt-[58px] cursor-pointer pt-[2px]'>
-                                            <span className='ml-[16px] text-white  font-normal text-center'>Pilih Foto</span>
+                                            <span className='ml-[12px] text-white  font-normal text-center'>Pilih Foto</span>
                                             <input
                                                 accept='image/*'
                                                 type="file"
