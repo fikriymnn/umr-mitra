@@ -38,7 +38,7 @@ function Paket() {
     <div className="flex ">
       <SideBar paket=" text-white bg-[#E3B02B]" />
       <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
-        <p className="font-semibold text-[28px]">Daftar Paket</p>
+        <p className="font-semibold text-[28px]">Daftar Paket Aktif</p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
           <div className="flex justify-between">
             <div className=" min-w-full py-3 flex gap-3">
@@ -55,7 +55,7 @@ function Paket() {
                 <div className="w-[450px] flex gap-3">
                   <a
                     href="/paket/tambah"
-                    className="hover:scale-110 duration-100 bg-blue-600 w-full text-white px-5 py-1 rounded-md"
+                    className="hover:scale-110 duration-100 bg-blue-600 w-full text-white text-center py-1 rounded-md"
                   >
                     Paket Baru
                   </a>
@@ -92,6 +92,7 @@ function Paket() {
                   />
                 );
               })}
+
             </div>
           </div>
         </div>
