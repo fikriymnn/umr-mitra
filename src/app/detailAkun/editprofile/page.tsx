@@ -143,7 +143,7 @@ function EditProfile() {
         <div>
             <div className='flex'>
                 <SideBar detailAkun="ps-3 text-white bg-[#E3B02B]" />
-                <div className='h-screen w-screen bg-[#E3B02B] px-[28px] py-[20px]  overflow-y-scroll' >
+                <div className='h-screen w-screen grey px-[28px] py-[20px]  overflow-y-scroll' >
                     <form onSubmit={updatedetailuser}>
                         <div>
                             <label className="text-black font-semibold text-[28px]  ">
@@ -153,13 +153,13 @@ function EditProfile() {
                                 <div className='flex flex-col bg-white w-2/4 h-[730px] shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]'>
                                     <div className="flex flex-wrap ">
                                         <img
-                                            alt="logo1"
+                                            alt=""
                                             src={`http://localhost:5000/images/${foto_profil}`}
                                             height={128}
                                             width={128}
                                             className="w-32 h-32 bg-zinc-300 rounded-full" />
                                         <label className='w-24 h-7 bg-amber-400 rounded-sm ml-[26px] mt-[58px] cursor-pointer pt-[2px]'>
-                                            <span className='ml-[10px] text-white  font-normal text-center'>Pilih Foto</span>
+                                            <span className='ml-[16px] text-white  font-normal text-center'>Pilih Foto</span>
                                             <input
                                                 accept='image/*'
                                                 type="file"
