@@ -88,7 +88,7 @@ function Paket() {
                     no={i + 1}
                     title={data.title}
                     price={data.price}
-                    stock={data.kuota}
+                    stock={data.sisa_kuota}
                   />
                 );
               })}
