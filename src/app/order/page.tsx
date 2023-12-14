@@ -7,7 +7,7 @@ function Order() {
     <div className="flex ">
       <SideBar order=" text-white bg-[#E3B02B]" />
       <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
-        <p className="font-semibold text-[28px]">Daftar Order</p>
+        <p className="font-semibold text-[28px]">Daftar Order Berjalan</p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
           <div className="flex justify-between">
             <div className=" min-w-full py-3 flex gap-3">
