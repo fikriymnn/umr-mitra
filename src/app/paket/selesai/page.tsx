@@ -54,22 +54,7 @@ function selesai() {
                                 price={"data.price"}
                                 stock={"data"}
                             />
-                            <PackageTableColDtl
-                                key={"i"}
-                                id={"data._id"}
-                                no={'2'}
-                                title={"data.title"}
-                                price={"data.price"}
-                                stock={"data"}
-                            />
-                            <PackageTableColDtl
-                                key={"i"}
-                                id={"data._id"}
-                                no={'3'}
-                                title={"data.title"}
-                                price={"data.price"}
-                                stock={"data"}
-                            />
+
 
                         </div>
                     </div>
