@@ -92,22 +92,7 @@ function Paket() {
                   />
                 );
               })}
-              <PackageTableCol
-                key={"i"}
-                id={"data._id"}
-                no={'1'}
-                title={'data.title'}
-                price={'data.price'}
-                stock={'data.sisa_kuota'}
-              />
-              <PackageTableCol
-                key={"i"}
-                id={"data._id"}
-                no={'1'}
-                title={'data.title'}
-                price={'data.price'}
-                stock={'data.sisa_kuota'}
-              />
+
             </div>
           </div>
         </div>
