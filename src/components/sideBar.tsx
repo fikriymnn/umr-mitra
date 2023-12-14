@@ -437,7 +437,7 @@ export default function SideBar({
                     </svg>
                   </div>
                   <div className="flex items-center justify-center font-semibold">
-                    Log Out
+                    Keluar
                   </div>
                 </div>
               )}
