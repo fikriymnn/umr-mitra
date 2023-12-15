@@ -14,7 +14,6 @@ function UbahPassword() {
     }, [password, confpassword]);
 
     const checkpassword = () => {
-
         setPasswordmatch(password === confpassword)
     };
 
@@ -80,17 +79,12 @@ function UbahPassword() {
                             <div className='grid grid-cols-2 mt-[7px]'>
                                 <label className="w-60 h-7 text-xl text-black  font-semibold ">
                                     Konfirmasi password baru
-
                                 </label>
-
                                 {!passwordMatch && <label className='grid text-red-600 font-semibold text-xl justify-items-end justify-end'> Password tidak cocok </label>}
-
-
                             </div>
                             <div>
                                 <input
                                     className={`... ${!passwordMatch ? 'w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-[18px]  font-normal  border border-red-500' : 'w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-[18px]  font-normal'} ...`}
-
                                     id="confirmoldpassword"
                                     placeholder="Masukkan Password Baru"
                                     required
@@ -99,7 +93,6 @@ function UbahPassword() {
                                     onChange={(e) => setconfpassword(e.target.value)}
                                     style={{ paddingLeft: '10px' }}
                                 />
-
                             </div>
                             <button type="submit" className=' bg-amber-400 text-white font-normal w-[170px] h-8 mt-[14px] rounded-md focus:outline-none focus:shadow-outline"'>
                                 Ubah Password
@@ -109,9 +102,7 @@ function UbahPassword() {
                                     Batal
                                 </button>
                             </Link>
-
                         </form>
-
                     </div>
                 </div>
             </div >
