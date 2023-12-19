@@ -7,7 +7,7 @@ function orderSelesai() {
         <div className="flex ">
             <SideBar order=" text-white bg-[#E3B02B]" />
             <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
-                <p className="font-semibold text-[28px]">Daftar Order Selesai</p>
+                <p className="font-semibold text-[28px]">Daftar Order Selesai &#40; 36 &#41;</p>
                 <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
                     <div className="flex justify-between">
                         <div className=" min-w-full py-3 flex gap-3">
@@ -15,16 +15,16 @@ function orderSelesai() {
                                 <input
                                     type="text"
                                     placeholder="Cari Pemesan"
-                                    className="rounded-md border-2 border-slate-400 h-full px-2 py-1 w-full"
+                                    className="rounded-md bg-slate-200 h-full px-2 py-1 w-full"
                                 />
                             </div>
                             <div className="flex gap-3 w-7/12 justify-between">
                                 <div className="w-full text-[20px] font-semibold "></div>
                                 <div className="w-full  text-[20px] font-semibold "></div>
                                 <div className="w-[850px] flex gap-3">
-                                    <button className="hover:scale-110 duration-100 yellow w-full text-white px-5 py-1 rounded-md">
+                                    {/* <button className="hover:scale-110 duration-100 yellow w-full text-white px-5 py-1 rounded-md">
                                         Status
-                                    </button>
+                                    </button> */}
                                 </div>
                             </div>
                         </div>
@@ -47,13 +47,14 @@ function orderSelesai() {
                                 </div>
                             </div>
                         </div>
-                        <div className="max-h-[500px] overflow-y-scroll border-y-2 border-black py-3">
+                        <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
                             <ContentTableFinished
                                 no={"1"}
                                 name={"Acep wahyu Kurna"}
                                 jumlah={"4"}
                                 paket={"Paket umroh untuk kalangan atas"}
                             />
+
                         </div>
                     </div>
                 </div>
