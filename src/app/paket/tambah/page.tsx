@@ -23,6 +23,7 @@ function TambahPaket() {
   const [harga, setHarga] = useState<number>();
   const [kuota, setKuota] = useState<number>();
   const [jadwal, setJadwal] = useState([{ hari: "Hari 1", agenda: "" }]);
+  const [TahapPembayaran, setTahapPembayaran] = useState([{ tahap: "Hari 1", tanggal: "", price: 0 }]);
   const [hotel, setHotel] = useState([
     {
       city: "",
@@ -218,6 +219,29 @@ function TambahPaket() {
     setJadwal(deleteVal);
   };
 
+  //tahap pembayaran
+  const handleClickPembayaran = () => {
+    setTahapPembayaran([
+      ...TahapPembayaran,
+      { tahap: "Hari 1", tanggal: "", price: 0 }
+    ]);
+  };
+
+  //change value Pembayaran
+  const handleChangePembayaran = (e: any, i: any) => {
+    const { name, value } = e.target;
+    const onchangeVal: any = [...TahapPembayaran];
+    onchangeVal[i][name] = value;
+    setTahapPembayaran(onchangeVal);
+  };
+
+  //delete Pembayaran
+  const handleDeletePembayaran = (i: number) => {
+    const deleteVal = [...TahapPembayaran];
+    deleteVal.splice(i, 1);
+    setTahapPembayaran(deleteVal);
+  };
+
 
   let id: any = "";
   useEffect(() => {
@@ -263,7 +287,8 @@ function TambahPaket() {
           pilihan_kamar: pilihanKamar,
           fasilitas_umroh: fasillitas,
           syarat_ketentuan: syarat,
-          sisa_kuota: kuota
+          sisa_kuota: kuota,
+          status: "aktif"
         },
         {
           withCredentials: true,

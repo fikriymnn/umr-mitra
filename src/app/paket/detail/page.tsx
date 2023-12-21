@@ -24,6 +24,8 @@ function Detail() {
       console.log(error.response);
     }
   }
+
+
   const date = DetailPaket == null ? new Date() : new Date(DetailPaket.waktu_keberangkatan);
   // Format tanggal
   const WaktuKeberangkatan = format(date, "d MMM y");

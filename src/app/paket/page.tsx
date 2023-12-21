@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 
 function Paket() {
   const [paket, setPaket] = useState([]);
+
   let id: any = "";
   useEffect(() => {
     getuser();
@@ -26,10 +27,10 @@ function Paket() {
   async function getpaket(id: any) {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/paket?id_mitra=${id}&skip=0&limit=10`
+        `http://localhost:5000/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=10`
       );
 
-      setPaket(res.data.data);
+      setPaket(res.data.data.data);
     } catch (error: any) {
       console.log(error.response);
     }
@@ -80,7 +81,7 @@ function Paket() {
               </div>
             </div>
             <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
-              {paket.map((data: any, i: number) => {
+              {paket != null && paket.map((data: any, i: number) => {
                 return (
                   <PackageTableCol
                     key={i}
