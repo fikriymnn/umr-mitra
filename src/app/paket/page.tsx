@@ -38,15 +38,15 @@ function Paket() {
     <div className="flex ">
       <SideBar paket=" text-white bg-[#E3B02B]" />
       <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
-        <p className="font-semibold text-[28px]">Daftar Paket Aktif</p>
+        <p className="font-semibold text-[28px]">Daftar Paket Aktif &#40; 5 &#41;</p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
           <div className="flex justify-between">
-            <div className=" min-w-full py-3 flex gap-3">
+            <div className=" min-w-full py-3 flex gap-3 pe-2">
               <div className="flex gap-3 w-5/12 ">
                 <input
                   type="text"
                   placeholder="Cari paket"
-                  className="rounded-md border-2 border-slate-400 h-full px-2 py-1 w-full"
+                  className="rounded-md  text-black bg-slate-200 h-full px-2 py-1 w-full"
                 />
               </div>
               <div className="flex gap-3 w-7/12 justify-between">
@@ -79,7 +79,7 @@ function Paket() {
                 <div className="w-[450px]  flex gap-3"></div>
               </div>
             </div>
-            <div className="max-h-[500px] overflow-y-scroll border-y-2 border-black py-3">
+            <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
               {paket.map((data: any, i: number) => {
                 return (
                   <PackageTableCol
@@ -92,6 +92,7 @@ function Paket() {
                   />
                 );
               })}
+
             </div>
           </div>
         </div>

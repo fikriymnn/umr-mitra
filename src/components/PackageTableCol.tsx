@@ -4,7 +4,7 @@ import Image from 'next/image'
 function PackageTableCol({ no, title, price, stock, id }: { no?: any, title?: any, price?: any, stock?: any, id: any }) {
     return (
         <div>
-            <div className='min-w-full flex gap-3 border-b-2 border-slate-400 mb-2 pb-2'>
+            <div className='rounded-md min-w-full flex gap-3 bg-slate-300 mb-1 px-2 py-2'>
                 <div className='flex gap-3 w-5/12 '>
                     <div className='text-[20px] w-[60px] line-clamp-1'><p>{no}</p></div>
                     <div className='text-[20px] w-full line-clamp-1'><p>{title}</p></div>
@@ -13,12 +13,12 @@ function PackageTableCol({ no, title, price, stock, id }: { no?: any, title?: an
                     <div className='w-full text-[20px] line-clamp-1'><p>{price}</p></div>
                     <div className='w-full  text-[20px] line-clamp-1'><p>{stock}</p></div>
                     <div className='w-[450px] flex gap-3'>
-                        <div className='bg-white w-full'>
+                        <div className=' w-full'>
                             <a href={`/paket/detail?id=${id}`}>
                                 <button className='w-full flex justify-center items-center bg-blue-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>Detail</button>
                             </a>
                         </div>
-                        <div className='bg-white w-[45px]'>
+                        <div className=' w-[45px]'>
                             <a href={`/paket/edit?id=${id}`} >
                                 <div className='w-full h-full flex justify-center items-center bg-green-600 text-white  py-1 rounded-md hover:scale-110 duration-100'>
 
@@ -33,8 +33,7 @@ function PackageTableCol({ no, title, price, stock, id }: { no?: any, title?: an
                     </div>
                 </div>
             </div>
-            <div className='bg-slate-600 min-w-full'>
-            </div>
+
 
         </div>
     )
