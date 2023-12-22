@@ -23,7 +23,9 @@ function TambahPaket() {
   const [harga, setHarga] = useState<number>();
   const [kuota, setKuota] = useState<number>();
   const [jadwal, setJadwal] = useState([{ hari: "Hari 1", agenda: "" }]);
-  const [TahapPembayaran, setTahapPembayaran] = useState([{ tahap: "Hari 1", tanggal: "", price: 0 }]);
+  const [TahapPembayaran, setTahapPembayaran] = useState([
+    { tahap: "", tanggal: "", price: "" },
+  ]);
   const [hotel, setHotel] = useState([
     {
       city: "",
@@ -223,7 +225,7 @@ function TambahPaket() {
   const handleClickPembayaran = () => {
     setTahapPembayaran([
       ...TahapPembayaran,
-      { tahap: "Hari 1", tanggal: "", price: 0 }
+      { tahap: "", tanggal: "", price: "" },
     ]);
   };
 
@@ -231,7 +233,12 @@ function TambahPaket() {
   const handleChangePembayaran = (e: any, i: any) => {
     const { name, value } = e.target;
     const onchangeVal: any = [...TahapPembayaran];
-    onchangeVal[i][name] = value;
+    if (name == "price") {
+      onchangeVal[i][name] = Number(value);
+    } else {
+      onchangeVal[i][name] = value;
+    }
+
     setTahapPembayaran(onchangeVal);
   };
 
@@ -241,7 +248,13 @@ function TambahPaket() {
     deleteVal.splice(i, 1);
     setTahapPembayaran(deleteVal);
   };
-
+  const handleFocusPembayaran = (value: any, i: any) => {
+    if (value === 0) {
+      const onchangeVal: any = [...TahapPembayaran];
+      onchangeVal[i]["price"] = "";
+      setTahapPembayaran(onchangeVal);
+    }
+  };
 
   let id: any = "";
   useEffect(() => {
@@ -288,14 +301,14 @@ function TambahPaket() {
           fasilitas_umroh: fasillitas,
           syarat_ketentuan: syarat,
           sisa_kuota: kuota,
-          status: "aktif"
+          tahap_pembayaran: TahapPembayaran,
+          status: "aktif",
         },
         {
           withCredentials: true,
         }
       );
       alert("upload succsess");
-      console.log(JSON.stringify(response.data));
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -508,7 +521,6 @@ function TambahPaket() {
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
-
                 </div>
               </div>
               <div className="py-3 w-3/6"></div>
@@ -840,6 +852,88 @@ function TambahPaket() {
                 </div>
               </div>
               <div className="py-3 w-3/6"></div>
+            </div>
+            <p className="font-semibold text-[20px] mt-7">Tahap Pembayaran</p>
+            <div className="flex w-full gap-10">
+              <div className="py-3 w-3/6">
+                {/* Pembayaran Array */}
+                {TahapPembayaran.map((val, i) => {
+                  return (
+                    <div key={i}>
+                      <p className="text-[16px] font-medium">Tahap {i + 1}</p>
+                      <div className="relative w-full">
+                        <input
+                          type="text"
+                          name="tahap"
+                          value={val.tahap}
+                          onChange={(e) => handleChangePembayaran(e, i)}
+                          className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
+                          placeholder="Masukkan Tahap"
+                        />
+                        <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
+                      </div>
+                      <p className="text-[16px] font-medium mt-3">
+                        Tanggal Pembayaran
+                      </p>
+                      <div className="relative w-full">
+                        <input
+                          type="date"
+                          name="tanggal"
+                          value={val.tanggal}
+                          onChange={(e) => handleChangePembayaran(e, i)}
+                          className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
+                          placeholder="Masukkan tanggal"
+                        />
+                        <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
+                      </div>
+                      <p className="text-[16px] font-medium mt-3">
+                        Jumlah Pembayaran
+                      </p>
+                      <div className="relative w-full">
+                        <input
+                          type="number"
+                          name="price"
+                          value={val.price}
+                          onChange={(e) => handleChangePembayaran(e, i)}
+                          onFocus={(e) =>
+                            handleFocusPembayaran(Number(e.target.value), i)
+                          }
+                          className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
+                          placeholder="Masukkan Harga"
+                        />
+                        <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
+                      </div>
+                      <div className="flex flex-col gap-5 w-44 my-3">
+                        {TahapPembayaran.length !== 1 && (
+                          <button
+                            type="button"
+                            onClick={(e) => handleDeletePembayaran(i)}
+                            className="bg-red-600 text-white font-medium hover:bg-red-500 px-5 py-2 rounded-md"
+                          >
+                            Hapus Tahap Pembayaran
+                          </button>
+                        )}
+                      </div>
+                    </div>
+                  );
+                })}
+
+                {/* End Of Pembayaran Array */}
+
+                {/* Pembayaran Button */}
+                <div className="flex flex-col gap-5 w-44 mt-3">
+                  <button
+                    type="button"
+                    onClick={() => handleClickPembayaran()}
+                    className="bg-blue-600 text-white font-medium hover:bg-blue-500 px-5 py-2 rounded-md"
+                  >
+                    Tambah Tahap
+                  </button>
+                </div>
+
+                {/* End Of Pembayaran Button */}
+              </div>
+              <div className="w-3/6"></div>
             </div>
             <p className="font-semibold text-[20px] mt-5">Harga dan Kuota</p>
             <div className="flex w-full gap-10">
