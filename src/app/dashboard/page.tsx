@@ -4,30 +4,15 @@ import DashCardDoubleRow from "@/components/Dashboard/DashCardDoubleRow";
 import DashCardTripleRow from "@/components/Dashboard/DashCardTripleRow";
 import GridWrapper from "@/components/Dashboard/GridWrapper";
 import SideBar from "@/components/sideBar";
+import { useGlobalContext } from "@/context/AuthContext";
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
 
 function Dashboard() {
   const [dataMitra, setDataMitra] = useState([]);
-  let id: any = "";
-  useEffect(() => {
-    getuser();
-  });
+  const { dataUser } = useGlobalContext();
 
-  async function getuser() {
-    try {
-      const res = await axios.get("http://localhost:5000/api/user", {
-        withCredentials: true,
-      });
-      if (res.data.success == true) {
-        console.log(res.data.data._id);
-      }
-      id = res.data.data._id;
-    } catch (error: any) {
-      console.log(error.response);
-    }
-  }
   return (
     <div className="flex h-screen">
       <SideBar dashboard=" text-white bg-[#E3B02B]" />
