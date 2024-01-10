@@ -147,7 +147,7 @@ function EditProfile() {
                                 Edit Detail Profile
                             </label>
                             <div className='flex '>
-                                <div className='flex flex-col bg-white w-2/4 h-[730px] shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]'>
+                                <div className='flex flex-col bg-white w-2/4 h-full shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]'>
                                     <div className="flex flex-wrap ">
                                         <img
                                             alt=""
@@ -168,13 +168,13 @@ function EditProfile() {
                                     </div>
 
                                     <div className='mt-[20px]'>
-                                        <label className="w-60 h-7 text-xl text-black  font-normal">
+                                        <label className=" text-base text-black  font-normal">
                                             Nama Mitra
                                         </label>
                                     </div>
                                     <div>
                                         <input
-                                            className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
+                                            className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base font-normal "
                                             id="namamitra"
                                             placeholder="Masukkan Nama Mitra"
                                             required
@@ -186,13 +186,13 @@ function EditProfile() {
                                         />
                                     </div>
                                     <div className='mt-[7px]'>
-                                        <label className="w-60 h-7 text-xl text-black  font-normal">
+                                        <label className="w-60 h-7 text-base text-black  font-normal">
                                             Nama Perusahaan
                                         </label>
                                     </div>
                                     <div>
                                         <input
-                                            className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
+                                            className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base  font-normal "
                                             id="namaperusahaan"
                                             placeholder="Masukkan Nama Perusahaan"
                                             required
@@ -204,13 +204,13 @@ function EditProfile() {
                                     </div>
 
                                     <div className='mt-[7px]'>
-                                        <label className="w-60 h-7 text-xl text-black  font-normal">
+                                        <label className="w-60 h-7 text-base text-black  font-normal">
                                             Lokasi
                                         </label>
                                     </div>
                                     <div>
                                         <input
-                                            className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
+                                            className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base  font-normal "
                                             id="lokasimitra"
                                             placeholder="Masukkan Lokasi"
                                             required
@@ -221,13 +221,13 @@ function EditProfile() {
                                         />
                                     </div>
                                     <div className='mt-[7px]'>
-                                        <label className="w-60 h-7 text-xl text-black  font-normal">
+                                        <label className="text-base text-black  font-normal">
                                             Email (kontak)
                                         </label>
                                     </div>
                                     <div>
                                         <input
-                                            className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px]  font-normal "
+                                            className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base  font-normal "
                                             id="emailmitra"
                                             placeholder="Masukkan Email"
                                             required
@@ -238,13 +238,13 @@ function EditProfile() {
                                         />
                                     </div>
                                     <div className='mt-[7px]'>
-                                        <label className="w-60 h-7 text-xl text-black  font-normal">
+                                        <label className="text-base text-black  font-normal">
                                             Website
                                         </label>
                                     </div>
                                     <div>
                                         <input
-                                            className="w-full h-8 bg-zinc-300 rounded-sm text-opacity-60 text-[18px] font-normal "
+                                            className="w-full h-7 bg-zinc-300 rounded-sm text-opacity-60 text-base font-normal "
                                             id="websitemitra"
                                             placeholder="Masukkan Website"
                                             required
@@ -255,23 +255,23 @@ function EditProfile() {
                                         />
                                     </div>
                                     <div>
-                                        <button className='w-[125px] h-8 bg-amber-400 rounded-md text-white  font-normal mt-[24px]'>
+                                        <button className='w-[125px] h-7 bg-amber-400 rounded-md text-white  font-normal mt-[20px]'>
                                             Konfirmasi
                                         </button>
                                         <Link href='/detailAkun'>
-                                            <button className="w-[80px] h-8 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400  font-medium ">
+                                            <button className="w-[80px] h-7 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400  font-medium ">
                                                 Batal
                                             </button>
                                         </Link>
 
                                     </div>
                                     <div className='mt-[24px]'>
-                                        <label className="w-60 h-7 text-xl text-black  font-normal ">
+                                        <label className="w-60 h-7 text-base text-black  font-normal ">
                                             Email (Akun)
                                         </label>
                                     </div>
                                     <div>
-                                        <label className="w-60 h-8 text-xl text-black  font-normal">
+                                        <label className="w-60 h-8 text-lg text-black  font-normal">
                                             {dataMitra.email}
                                         </label>
                                     </div>
