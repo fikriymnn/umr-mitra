@@ -29,13 +29,13 @@ function UbahPassword() {
 
                         <form className="bg-white w-2/4 shadow-xl rounded-lg px-9 pt-7 pb-9 mb-4 ">
                             <div>
-                                <label className="w-60 h-7 text-xl text-black  font-semibold">
+                                <label className="w-60 h-7 text-base text-black  font-semibold">
                                     Email akun
                                 </label>
                             </div>
                             <div>
                                 <input
-                                    className="w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-[18px]  font-normal"
+                                    className="w-full h-7 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-base  font-normal"
                                     id="emailakun"
                                     placeholder="Masukkan Email"
                                     required
@@ -44,13 +44,13 @@ function UbahPassword() {
                                 />
                             </div>
                             <div className='mt-[7px]'>
-                                <label className="w-full h-7 text-xl  text-black  font-semibold ">
+                                <label className="w-full h-7 text-base  text-black  font-semibold ">
                                     Password saat ini
                                 </label>
                             </div>
                             <div>
                                 <input
-                                    className="w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-[18px]  font-normal"
+                                    className="w-full h-7 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-base  font-normal"
                                     id="oldpassword"
                                     placeholder="Masukkan Password Saat Ini"
                                     required
@@ -59,13 +59,13 @@ function UbahPassword() {
                                 />
                             </div>
                             <div className='mt-[7px]'>
-                                <label className="w-60 h-7 text-xl text-black  font-semibold ">
+                                <label className="w-60 h-7 text-base text-black  font-semibold ">
                                     Password baru
                                 </label>
                             </div>
                             <div>
                                 <input
-                                    className='w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-[18px]  font-normal '
+                                    className='w-full h-7 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-base  font-normal '
 
                                     id="newpassword"
                                     placeholder="Masukkan Password Baru"
@@ -77,14 +77,14 @@ function UbahPassword() {
                                 />
                             </div>
                             <div className='grid grid-cols-2 mt-[7px]'>
-                                <label className="w-60 h-7 text-xl text-black  font-semibold ">
+                                <label className="w-60 h-7 text-base text-black  font-semibold ">
                                     Konfirmasi password baru
                                 </label>
-                                {!passwordMatch && <label className='grid text-red-600 font-semibold text-xl justify-items-end justify-end'> Password tidak cocok </label>}
+                                {!passwordMatch && <label className='grid text-red-600 font-semibold text-base justify-items-end justify-end'> Password tidak cocok </label>}
                             </div>
                             <div>
                                 <input
-                                    className={`... ${!passwordMatch ? 'w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-[18px]  font-normal  border border-red-500' : 'w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-[18px]  font-normal'} ...`}
+                                    className={`... ${!passwordMatch ? 'w-full h-7 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-base  font-normal  border border-red-500' : 'w-full h-8 bg-zinc-300 rounded-sm mb-[7px] text-opacity-60 text-base  font-normal'} ...`}
                                     id="confirmoldpassword"
                                     placeholder="Masukkan Password Baru"
                                     required
@@ -98,7 +98,7 @@ function UbahPassword() {
                                 Ubah Password
                             </button>
                             <Link href='/detailAkun/editprofile'>
-                                <button className="w-[80px] h-8 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 font-medium ">
+                                <button className="w-[80px] h-7 ml-[22px] rounded-md border border-amber-400 text-center text-amber-400 font-medium ">
                                     Batal
                                 </button>
                             </Link>

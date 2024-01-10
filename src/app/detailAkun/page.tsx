@@ -47,7 +47,7 @@ function DetailAkun() {
                         Detail Mitra
                     </label>
                     <div className='flex '>
-                        <div className='flex flex-col bg-white w-2/6 h-[660px] shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4 mt-[20px]'>
+                        <div className='flex flex-col bg-white w-2/6 h-[600px] shadow-xl rounded-lg px-8 pt-6 pb-8 mb-4 mt-[20px]'>
 
                             <div className="flex flex-wrap justify-items-center justify-center">
                                 {
@@ -65,21 +65,21 @@ function DetailAkun() {
 
                             </div>
                             <div>
-                                <label className="flex justify-items-center justify-center mt-[20px] text-black text-xl font-semibold  ">
+                                <label className="flex justify-items-center justify-center mt-[20px] text-black text-2xl text-center font-semibold  ">
                                     {dataMitra == null ? "" : dataMitra.nama_mitra}
                                 </label>
                             </div>
                         </div>
 
-                        <div className='flex flex-col bg-white w-full h-[660px] shadow-xl rounded-lg px-20 pt-12 pb-12 mt-[20px] ml-[29px]'>
+                        <div className='flex flex-col bg-white w-full h-[600px] shadow-xl rounded-lg px-20 pt-12 pb-12 mt-[20px] ml-[29px] '>
 
                             <div className='grid grid-cols-2'>
 
-                                <label className="grid w-60 h-7 text-xl text-black  font-normal">
+                                <label className="grid w-60 h-7 text-base text-black  font-normal">
                                     Nama Mitra
                                 </label>
                                 <div className='grid justify-end'>
-                                    <button className="w-44 h-10 justify-items-end bg-amber-400 rounded-md text-center text-base text-white font-medium">
+                                    <button className="w-40 h-8 justify-items-end bg-amber-400 rounded-md text-center text-base text-white font-medium">
                                         <Link href='/detailAkun/editprofile'>
                                             Perbarui Data
                                         </Link>
@@ -87,69 +87,69 @@ function DetailAkun() {
                                 </div>
                             </div>
                             <div>
-                                <label className="w-60 h-7 text-xl text-black  font-semibold">
+                                <label className="w-60 h-7 text-lg text-black  font-semibold">
                                     {dataMitra == null ? "" : dataMitra.nama_mitra}
                                 </label>
                             </div>
 
-                            <div className='mt-[28px]'>
-                                <label className="w-full h-7 text-xl text-black  font-normal">
+                            <div className='mt-[22px]'>
+                                <label className="w-full h-7 text-base text-black  font-normal">
                                     Nama Perusahaan
                                 </label>
                             </div>
                             <div>
-                                <label className="w-full h-7 text-xl text-black  font-semibold">
+                                <label className="w-full h-7 text-lg text-black  font-semibold">
                                     {dataMitra == null ? "" : dataMitra.nama_pt}
                                 </label>
                             </div>
 
-                            <div className='mt-[28px]'>
-                                <label className="w-full h-7 text-xl text-black  font-normal">
+                            <div className='mt-[22px]'>
+                                <label className="w-full h-7 text-base text-black  font-normal">
                                     Nomor Izin
                                 </label>
                             </div>
                             <div>
-                                <label className="w-full h-7 text-xl text-black  font-semibold">
+                                <label className="w-full h-7 text-lg text-black  font-semibold">
                                     {dataMitra == null ? "" : dataMitra.no_izin_umroh}
                                 </label>
                             </div>
-                            <div className='mt-[28px]'>
-                                <label className="w-full h-7 text-xl text-black  font-normal">
+                            <div className='mt-[22px]'>
+                                <label className="w-full h-7 text-base text-black  font-normal">
                                     Lokasi
                                 </label>
                             </div>
                             <div>
-                                <label className="w-full h-7 text-xl text-black  font-semibold">
+                                <label className="w-full h-7 text-lg text-black  font-semibold">
                                     {dataMitra == null ? "" : dataMitra.location}
                                 </label>
                             </div>
-                            <div className='mt-[28px]'>
-                                <label className="w-full h-7 text-xl text-black  font-normal">
+                            <div className='mt-[22px]'>
+                                <label className="w-full h-7 text-base text-black  font-normal">
                                     Email
                                 </label>
                             </div>
                             <div>
-                                <label className="w-full h-7 text-xl text-black  font-semibold">
+                                <label className="w-full h-7 text-lg text-black  font-semibold">
                                     {dataMitra == null ? "" : dataMitra.email}
                                 </label>
                             </div>
-                            <div className='mt-[28px]'>
-                                <label className="w-full h-7 text-xl text-black  font-normal">
+                            <div className='mt-[22px]'>
+                                <label className="w-full h-7 text-base text-black  font-normal">
                                     Website
                                 </label>
                             </div>
                             <div>
-                                <label className="w-full h-7 text-xl text-black  font-semibold">
+                                <label className="w-full h-7 text-lg text-black  font-semibold">
                                     {dataMitra == null ? "" : dataMitra.website}
                                 </label>
                             </div>
-                            <div className='mt-[28px]'>
-                                <label className="w-full h-7 text-xl text-black  font-normal">
+                            <div className='mt-[22px]'>
+                                <label className="w-full h-7 text-base text-black  font-normal">
                                     Rating
                                 </label>
                             </div>
                             <div>
-                                <label className="w-full h-7 text-xl text-black  font-semibold">
+                                <label className="w-full h-7 text-lg text-black  font-semibold">
                                     {dataMitra == null ? "" : dataMitra.rating}/5
                                 </label>
                             </div>
