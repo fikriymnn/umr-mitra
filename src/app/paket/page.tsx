@@ -6,6 +6,7 @@ import React, { useEffect, useState } from "react";
 
 function Paket() {
   const [paket, setPaket] = useState([]);
+
   let id: any = "";
   useEffect(() => {
     getuser();
@@ -26,10 +27,10 @@ function Paket() {
   async function getpaket(id: any) {
     try {
       const res = await axios.get(
-        `http://localhost:5000/api/paket?id_mitra=${id}&skip=0&limit=10`
+        `http://localhost:5000/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=10`
       );
 
-      setPaket(res.data.data);
+      setPaket(res.data.data.data);
     } catch (error: any) {
       console.log(error.response);
     }
@@ -38,7 +39,9 @@ function Paket() {
     <div className="flex ">
       <SideBar paket=" text-white bg-[#E3B02B]" />
       <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
-        <p className="font-semibold text-[28px]">Daftar Paket Aktif &#40; 5 &#41;</p>
+        <p className="font-semibold text-[28px]">
+          Daftar Paket Aktif &#40; {paket.length} &#41;
+        </p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
           <div className="flex justify-between">
             <div className=" min-w-full py-3 flex gap-3 pe-2">
@@ -89,19 +92,20 @@ function Paket() {
               </div>
             </div>
             <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
-              {paket.map((data: any, i: number) => {
-                return (
-                  <PackageTableCol
-                    key={i}
-                    id={data._id}
-                    no={i + 1}
-                    title={data.title}
-                    price={data.price}
-                    stock={data.sisa_kuota}
-                  />
-                );
-              })}
-
+              {paket != null &&
+                paket.map((data: any, i: number) => {
+                  return (
+                    <PackageTableCol
+                      key={i}
+                      id={data._id}
+                      no={i + 1}
+                      title={data.title}
+                      price={data.price}
+                      stock={data.sisa_kuota}
+                      status={data.status}
+                    />
+                  );
+                })}
             </div>
           </div>
         </div>

@@ -1,10 +1,12 @@
 "use client";
+import { useGlobalContext } from "@/context/AuthContext";
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 function Page() {
   const { push } = useRouter();
+  const { setDataUser } = useGlobalContext();
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const url = "http://localhost:5000/api/login_mitra";
@@ -20,9 +22,9 @@ function Page() {
           headers: { "Content-Type": "application/json" },
         }
       );
+      setDataUser(response.data.data);
       alert("login success");
       push("/dashboard");
-
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -59,7 +61,7 @@ function Page() {
                   placeholder="Masukkan Nama Mitra"
                   required
                   type="text"
-                  style={{ paddingLeft: '10px' }}
+                  style={{ paddingLeft: "10px" }}
                 />
               </div>
               <div>
@@ -75,7 +77,7 @@ function Page() {
                   placeholder="Masukkan Email Mitra"
                   required
                   type="email"
-                  style={{ paddingLeft: '10px' }}
+                  style={{ paddingLeft: "10px" }}
                 />
               </div>
               <div>
@@ -91,7 +93,7 @@ function Page() {
                   placeholder="Masukkan Password "
                   required
                   type="password"
-                  style={{ paddingLeft: '10px' }}
+                  style={{ paddingLeft: "10px" }}
                 />
               </div>
 
