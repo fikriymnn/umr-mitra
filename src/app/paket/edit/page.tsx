@@ -335,7 +335,7 @@ function EditPaket() {
           fasilitas_umroh: fasillitas,
           syarat_ketentuan: syarat,
           sisa_kuota: kuota,
-          tahap_pembayaran: TahapPembayaran,
+          // tahap_pembayaran: TahapPembayaran,
         },
         {
           withCredentials: true,
@@ -900,11 +900,11 @@ function EditPaket() {
               </div>
               <div className="py-3 w-3/6"></div>
             </div>
-            <p className="font-semibold text-[20px] mt-7">Tahap Pembayaran</p>
-            <div className="flex w-full gap-10">
-              <div className="py-3 w-3/6">
-                {/* Pembayaran Array */}
-                {TahapPembayaran.map((val, i) => {
+            {/* <p className="font-semibold text-[20px] mt-7">Tahap Pembayaran</p> */}
+            {/* <div className="flex w-full gap-10">
+              <div className="py-3 w-3/6"> */}
+            {/* Pembayaran Array */}
+            {/* {TahapPembayaran.map((val, i) => {
                   return (
                     <div key={i}>
                       <p className="text-[16px] font-medium">Tahap {i + 1}</p>
@@ -963,12 +963,12 @@ function EditPaket() {
                       </div>
                     </div>
                   );
-                })}
+                })} */}
 
-                {/* End Of Pembayaran Array */}
+            {/* End Of Pembayaran Array */}
 
-                {/* Pembayaran Button */}
-                <div className="flex flex-col gap-5 w-44 mt-3">
+            {/* Pembayaran Button */}
+            {/* <div className="flex flex-col gap-5 w-44 mt-3">
                   <button
                     type="button"
                     onClick={() => handleClickPembayaran()}
@@ -979,9 +979,9 @@ function EditPaket() {
                 </div>
 
                 {/* End Of Pembayaran Button */}
-              </div>
+            {/* </div>
               <div className="w-3/6"></div>
-            </div>
+            </div> */}
             <p className="font-semibold text-[20px] mt-5">Harga dan Kuota</p>
             <div className="flex w-full gap-10">
               <div className="py-3 w-3/6">

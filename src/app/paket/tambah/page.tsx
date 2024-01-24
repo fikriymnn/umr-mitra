@@ -301,7 +301,7 @@ function TambahPaket() {
           fasilitas_umroh: fasillitas,
           syarat_ketentuan: syarat,
           sisa_kuota: kuota,
-          tahap_pembayaran: TahapPembayaran,
+          // tahap_pembayaran: TahapPembayaran,
           status: "aktif",
         },
         {
@@ -853,10 +853,10 @@ function TambahPaket() {
               </div>
               <div className="py-3 w-3/6"></div>
             </div>
-            <p className="font-semibold text-[20px] mt-7">Tahap Pembayaran</p>
-            <div className="flex w-full gap-10">
+            {/* <p className="font-semibold text-[20px] mt-7">Tahap Pembayaran</p> */}
+            {/* <div className="flex w-full gap-10">
               <div className="py-3 w-3/6">
-                {/* Pembayaran Array */}
+                
                 {TahapPembayaran.map((val, i) => {
                   return (
                     <div key={i}>
@@ -871,8 +871,8 @@ function TambahPaket() {
                           placeholder="Masukkan Tahap"
                         />
                         <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
-                      </div>
-                      <p className="text-[16px] font-medium mt-3">
+                      </div> */}
+            {/* <p className="text-[16px] font-medium mt-3">
                         Tanggal Pembayaran
                       </p>
                       <div className="relative w-full">
@@ -916,12 +916,12 @@ function TambahPaket() {
                       </div>
                     </div>
                   );
-                })}
+                })} */}
 
-                {/* End Of Pembayaran Array */}
+            {/* End Of Pembayaran Array */}
 
-                {/* Pembayaran Button */}
-                <div className="flex flex-col gap-5 w-44 mt-3">
+            {/* Pembayaran Button */}
+            {/* <div className="flex flex-col gap-5 w-44 mt-3">
                   <button
                     type="button"
                     onClick={() => handleClickPembayaran()}
@@ -929,12 +929,12 @@ function TambahPaket() {
                   >
                     Tambah Tahap
                   </button>
-                </div>
+                </div> */}
 
-                {/* End Of Pembayaran Button */}
-              </div>
+            {/* End Of Pembayaran Button */}
+            {/* </div>
               <div className="w-3/6"></div>
-            </div>
+            </div> */}
             <p className="font-semibold text-[20px] mt-5">Harga dan Kuota</p>
             <div className="flex w-full gap-10">
               <div className="py-3 w-3/6">
