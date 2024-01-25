@@ -1,32 +1,41 @@
-"use client";
-import SideBar from "@/components/sideBar";
-import Link from "next/link";
-import React, { useEffect, useState } from "react";
+"use client"
+import SideBar from '@/components/sideBar'
+import Link from 'next/link'
+import React, { useEffect, useState } from 'react'
 import Image from "next/image";
-import axios from "axios";
-import { useGlobalContext } from "@/context/AuthContext";
+import axios from 'axios';
+
 
 function DetailAkun() {
-  const [dataMitra, setDataMitra] = useState<any>(null);
-  const { dataUser } = useGlobalContext();
 
-  useEffect(() => {
-    getdetailuser();
-  });
+    const [dataMitra, setDataMitra] = useState<any>(null);
+    let id: any = "";
+    useEffect(() => {
+        getuser();
+    });
 
-  async function getdetailuser() {
-    const id = dataUser._id;
-    try {
-      const res = await axios.get(`http://localhost:5000/api/mitra/${id}`);
-      if (res.data.success == true) {
-        setDataMitra(res.data.data);
-      }
-    } catch (error: any) {
-      console.log(error.response);
+    async function getuser() {
+        try {
+            const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
+            if (res.data.success == true) {
+                getdetailuser(res.data.data._id)
+            }
+            id = res.data.data._id;
+        } catch (error: any) {
+            console.log(error.response);
+        }
     }
-  }
-
-  
+    async function getdetailuser(id: any) {
+        try {
+            const res = await axios.get(`http://localhost:5000/api/mitra/${id}`);
+            if (res.data.success == true) {
+                setDataMitra(res.data.data)
+            }
+            id = res.data.data._id;
+        } catch (error: any) {
+            console.log(error.response);
+        }
+    }
 
     return (
         <div className='flex'>
@@ -146,9 +155,11 @@ function DetailAkun() {
                             </div>
                         </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                
-  );
+    )
 }
 
-export default DetailAkun;
+export default DetailAkun
