@@ -1,12 +1,13 @@
 "use client";
-import { useGlobalContext } from "@/context/AuthContext";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useRef, useState,  } from "react";
+
 
 function Page() {
   const { push } = useRouter();
-  const { setDataUser } = useGlobalContext();
+
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
   const url = "http://localhost:5000/api/login_mitra";
@@ -22,7 +23,12 @@ function Page() {
           headers: { "Content-Type": "application/json" },
         }
       );
-      setDataUser(response.data.data);
+     
+
+      //enkripsi data
+      const idUser = btoa(response.data.data._id)
+      
+      sessionStorage.setItem("id_user", idUser);
       alert("login success");
       push("/dashboard");
     } catch (error: any) {

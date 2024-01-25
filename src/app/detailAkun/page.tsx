@@ -4,27 +4,36 @@ import Link from 'next/link'
 import React, { useEffect, useState } from 'react'
 import Image from "next/image";
 import axios from 'axios';
+import { useRouter } from "next/navigation";
 
 
 function DetailAkun() {
-
+    const router = useRouter();
     const [dataMitra, setDataMitra] = useState<any>(null);
-    let id: any = "";
+    let loading = false;
+
     useEffect(() => {
         getuser();
     });
 
+
     async function getuser() {
-        try {
-            const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
-            if (res.data.success == true) {
-                getdetailuser(res.data.data._id)
-            }
-            id = res.data.data._id;
-        } catch (error: any) {
-            console.log(error.response);
-        }
+        loading = true
+        const dataStorage = await sessionStorage.getItem("id_user")
+        const id = atob(`${dataStorage}`)
+
+        if (!dataStorage) {
+            loading = false
+            router.push("/login");
+          }
+
+        getdetailuser(id)
+
+         loading = false
+        return dataStorage
     }
+
+
     async function getdetailuser(id: any) {
         try {
             const res = await axios.get(`http://localhost:5000/api/mitra/${id}`);
@@ -36,6 +45,13 @@ function DetailAkun() {
             console.log(error.response);
         }
     }
+
+    if(loading = false){
+        return (
+          <div>Loading</div>
+        )
+      }
+    
 
     return (
         <div className='flex'>

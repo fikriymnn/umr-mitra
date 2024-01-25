@@ -30,7 +30,7 @@ function Paket() {
         `http://localhost:5000/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=50`
       );
 
-      setPaket(res.data.data.data);
+      setPaket(res.data.data.paket);
     } catch (error: any) {
       console.log(error.response);
     }

@@ -4,14 +4,45 @@ import DashCardDoubleRow from "@/components/Dashboard/DashCardDoubleRow";
 import DashCardTripleRow from "@/components/Dashboard/DashCardTripleRow";
 import GridWrapper from "@/components/Dashboard/GridWrapper";
 import SideBar from "@/components/sideBar";
-import { useGlobalContext } from "@/context/AuthContext";
+
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+
 
 function Dashboard() {
+  const router = useRouter();
   const [dataMitra, setDataMitra] = useState([]);
-  const { dataUser } = useGlobalContext();
+  let loading = false;
+
+
+  useEffect(() => {
+    getuser();
+});
+
+
+async function getuser() {
+  loading = true
+    const dataStorage = sessionStorage.getItem("id_user")
+    const id = atob(`${dataStorage}`)
+
+    if (!dataStorage) {
+        router.push("/login");
+        loading = false
+      }
+      loading = false
+
+    return dataStorage
+}
+
+ 
+
+  if(loading = false){
+    return (
+      <div>Loading</div>
+    )
+  }
 
   return (
     <div className="flex h-screen">
@@ -30,6 +61,7 @@ function Dashboard() {
             <p className="font-medium text-medium text-black">
               PT.Travel Keren Dongs Indonesia
             </p>
+            <button type="button" >dfg</button>
           </div>
         </div>
         {/* grid content */}

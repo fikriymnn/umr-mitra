@@ -41,6 +41,7 @@ export default function SideBar({
       const response = await axios.get("http://localhost:5000/api/logout", {
         withCredentials: true,
       });
+      sessionStorage.removeItem("id_user");
       alert("logout success");
       push("/login");
     } catch (error: any) {
