@@ -20,7 +20,8 @@ function DetailAkun() {
     async function getuser() {
         loading = true
         const dataStorage = await sessionStorage.getItem("id_user")
-        const id = atob(`${dataStorage}`)
+        const encriptData = atob(`${dataStorage}`);
+        const id = encriptData;
 
         if (!dataStorage) {
             loading = false

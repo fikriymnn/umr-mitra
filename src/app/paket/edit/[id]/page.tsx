@@ -3,11 +3,10 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import SideBar from "@/components/sideBar";
 import axios from "axios";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
 
-function EditPaket() {
-  const searchParams = useSearchParams();
-  const idParams = searchParams.get("id");
+
+function EditPaket({params}:{params:any}) {
+
   //State value
   const [title, setTitle] = useState("");
   const [content, setContent] = useState([{ img: "" }]);
@@ -43,8 +42,8 @@ function EditPaket() {
   ]);
 
   useEffect(() => {
-    getDetailPaket(idParams);
-  }, [idParams]);
+    getDetailPaket(params.id);
+  }, [params.id]);
 
   async function getDetailPaket(idd: any) {
     try {
@@ -315,7 +314,7 @@ function EditPaket() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paket/${idParams}`,
+        `http://localhost:5000/api/paket/${params.id}`,
         {
           title: title,
           description: description,

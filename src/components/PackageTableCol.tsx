@@ -36,7 +36,7 @@ function PackageTableCol({
           </div>
           <div className="w-[450px] flex gap-3">
             <div className=" w-full">
-              <a href={`/paket/detail?id=${id}`}>
+              <a href={`/paket/detail/${id}`}>
                 <button className="w-full flex justify-center items-center bg-blue-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100">
                   Detail
                 </button>
@@ -44,7 +44,7 @@ function PackageTableCol({
             </div>
             {status == "aktif" ? (
               <div className=" w-[45px]">
-                <a href={`/paket/edit?id=${id}`}>
+                <a href={`/paket/edit/${id}`}>
                   <div className="w-full h-full flex justify-center items-center bg-green-600 text-white  py-1 rounded-md hover:scale-110 duration-100">
                     <svg
                       width="15"

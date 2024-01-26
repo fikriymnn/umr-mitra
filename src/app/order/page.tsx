@@ -1,8 +1,58 @@
+"use client"
 import ContentTableOrder from "@/components/order/contentTable";
 import SideBar from "@/components/sideBar";
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function Order() {
+    const router = useRouter();
+  const [Order, setOrder] = useState([]);
+  let loading = false;
+ 
+
+  useEffect(() => {
+    getuser();
+  },[]);
+     async function getuser() {
+        loading = true
+        const dataStorage = await sessionStorage.getItem("id_user")
+        const encriptData = atob(`${dataStorage}`);
+        const id = encriptData;
+
+        if (!dataStorage) {
+            loading = false 
+            router.push("/login");
+          }
+
+        getpaket(id)
+
+         loading = false
+        return dataStorage
+    }
+
+  async function getpaket(id: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/order?id_mitra=${id}&skip=0&limit=10`
+    try {
+      const res = await axios.get(
+        url,
+        {
+          withCredentials: true,
+        }
+      );
+
+      setOrder(res.data.data);
+      console.log(res.data.data)
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
+
+    if(loading = false){
+        return (
+          <div>Loading</div>
+        )
+      }
   return (
     <div className="flex ">
       <SideBar order=" text-white bg-[#E3B02B]" />
@@ -59,12 +109,20 @@ function Order() {
               </div>
             </div>
             <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
-              <ContentTableOrder
+              {
+                Order.map((data:any, i:number)=>{
+                  return (
+                    <ContentTableOrder
+                    key={i}
                 no={"1"}
                 name={"Acep wahyu Kurna"}
                 jumlah={"4"}
                 paket={"Paket umroh untuk kalangan atas"}
               />
+                  )
+                })
+              }
+              
 
             </div>
           </div>

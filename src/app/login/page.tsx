@@ -10,7 +10,7 @@ function Page() {
 
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const url = "http://localhost:5000/api/login_mitra";
+  const url = `${process.env.NEXT_PUBLIC_URL}/api/login_mitra`;
 
   async function submitLogin(e: any) {
     e.preventDefault();
@@ -24,15 +24,16 @@ function Page() {
         }
       );
      
-
       //enkripsi data
-      const idUser = btoa(response.data.data._id)
+      const encriptData = btoa(response.data.data._id);
+       
+      const idUser = encriptData;
       
       sessionStorage.setItem("id_user", idUser);
       alert("login success");
       push("/dashboard");
     } catch (error: any) {
-      alert(error.response.data.message);
+      alert(error);
     }
   }
   return (
