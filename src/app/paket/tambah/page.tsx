@@ -8,7 +8,7 @@ function TambahPaket() {
   const url = "http://localhost:5000/api/paket";
   //State value
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState([{ img: "" }]);
+  const [content, setContent] = useState([{ img: "", name:"" }]);
   const [category, setCategory] = useState("");
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
@@ -36,7 +36,7 @@ function TambahPaket() {
         Disabilitas: false,
       },
       name: "",
-      content: [{ img: "" }],
+      content: [{ img: "", name:"" }],
     },
   ]);
 
@@ -60,8 +60,10 @@ function TambahPaket() {
         }
       );
       console.log(response);
-      const id = response.data.data;
-      onchangeVal[i]["img"] = id;
+      const link = response.data.data;
+      const name = response.data.name
+      onchangeVal[i]["img"] = link;
+      onchangeVal[i]["name"] = name;
       setContent(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
@@ -69,15 +71,16 @@ function TambahPaket() {
   }
 
   //handle image delete content carousel
-  async function deleteContent(e: any, event: any, i: any, id: any) {
+  async function deleteContent(e: any, event: any, i: any, name: any) {
     e.preventDefault();
     const onchangeVal = [...content];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`
+        `http://localhost:5000/api/upload/${name}`
       );
       console.log(response);
       onchangeVal[i]["img"] = "";
+      onchangeVal[i]["name"] = "";
       setContent(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
@@ -101,9 +104,11 @@ function TambahPaket() {
           },
         }
       );
-      console.log(response);
-      const id = response.data.data;
-      onchangeVal[i]["content"][ii]["img"] = id;
+      const link = response.data.data;
+      const name = response.data.name
+      onchangeVal[i]["content"][ii]["img"] = link;
+      onchangeVal[i]["content"][ii]["name"] = name;
+     
       setHotel(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
@@ -111,15 +116,16 @@ function TambahPaket() {
   }
 
   //handle image delete content hotel
-  async function deleteImage(e: any, event: any, i: any, ii: any, id: any) {
+  async function deleteImage(e: any, event: any, i: any, ii: any, name: any) {
     e.preventDefault();
     const onchangeVal = [...hotel];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`
+        `http://localhost:5000/api/upload/${name}`
       );
       console.log(response);
       onchangeVal[i]["content"][ii]["img"] = "";
+      onchangeVal[i]["content"][ii]["name"] = "";
       setHotel(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
@@ -129,7 +135,7 @@ function TambahPaket() {
   //add content carousel
   const handleClickContent = () => {
     const onchangeVal = [...content];
-    onchangeVal.push({ img: "" });
+    onchangeVal.push({ img: "" ,name:""});
     setContent(onchangeVal);
   };
   //delete content carousel
@@ -153,7 +159,7 @@ function TambahPaket() {
           Disabilitas: false,
         },
         name: "",
-        content: [{ img: "" }],
+        content: [{ img: "",name:"" }],
       },
     ]);
   };
@@ -191,7 +197,7 @@ function TambahPaket() {
   //add image in hotel dinamis
   const handleClickImg = (i: any) => {
     const onchangeVal = [...hotel];
-    onchangeVal[i]["content"].push({ img: "" });
+    onchangeVal[i]["content"].push({ img: "",name:"" });
     setHotel(onchangeVal);
   };
 
@@ -413,13 +419,13 @@ function TambahPaket() {
                     ) : (
                       <div key={ii}>
                         <img
-                          src={`http://localhost:5000/images/${val.img}`}
+                          src={val.img}
                           className="h-28 w-28"
                           alt={`Image ${ii + 1}`}
                         />
                         <button
                           type="button"
-                          onClick={(e) => deleteContent(e, e, ii, val.img)}
+                          onClick={(e) => deleteContent(e, e, ii, val.name)}
                         >
                           delete
                         </button>
@@ -714,14 +720,14 @@ function TambahPaket() {
                           ) : (
                             <div key={ii}>
                               <img
-                                src={`http://localhost:5000/images/${val.img}`}
+                                src={val.img}
                                 className="h-28 w-28"
                                 alt={`Image ${ii + 1}`}
                               />
                               <button
                                 type="button"
                                 onClick={(e) =>
-                                  deleteImage(e, e, i, ii, val.img)
+                                  deleteImage(e, e, i, ii, val.name)
                                 }
                               >
                                 delete

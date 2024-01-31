@@ -1,6 +1,6 @@
 import React from 'react'
 
-function ContentTableOrder({ no, name, jumlah, paket }: { no: any, name: any, jumlah: any, paket: any }) {
+function ContentTableOrder({ no, id, name, jumlah, paket, status }: { no: any,id:any, name: any, jumlah: any, paket: any, status:any }) {
     return (
         <div>
             <div className='rounded-md min-w-full flex gap-3 bg-slate-300 mb-1 px-2 py-2'>
@@ -15,11 +15,11 @@ function ContentTableOrder({ no, name, jumlah, paket }: { no: any, name: any, ju
                     <div className='w-[450px] flex gap-3'>
                         <div className=' w-full'>
 
-                            <div className='w-full flex justify-center items-center yellow text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>Status</div>
+                            <div className='w-full flex justify-center items-center yellow text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>{status}</div>
 
                         </div>
                         <div className=' w-full'>
-                            <a href="/order/detail">
+                            <a href={`/order/detail/${id}`}>
                                 <button className='w-full flex justify-center items-center bg-blue-600 text-white px-5 py-1 rounded-md hover:scale-110 duration-100'>Detail</button>
                             </a>
                         </div>

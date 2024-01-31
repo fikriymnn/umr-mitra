@@ -71,13 +71,8 @@ function DetailAkun() {
                                     dataMitra == null ? <div className="shadow w-44 h-44 bg-zinc-300 rounded-full">
 
                                     </div> :
-                                        <Image
-                                            alt="logo1"
-                                            src={`http://localhost:5000/images/${dataMitra.foto_profil}`}
-                                            height={176}
-                                            width={176}
-                                            className="shadow w-44 h-44 bg-zinc-300 rounded-full"
-                                        />
+                                    <img src={dataMitra.foto_profil} alt='Profil' className="shadow w-44 h-44 bg-zinc-300 rounded-full " />
+                                        
                                 }
 
                             </div>
@@ -97,7 +92,7 @@ function DetailAkun() {
                                 </label>
                                 <div className='grid justify-end'>
                                     <button className="w-40 h-8 justify-items-end bg-amber-400 rounded-md text-center text-base text-white font-medium">
-                                        <Link href='/detailAkun/editprofile'>
+                                        <Link href={`/detailAkun/editprofile/${dataMitra == null ? "" :dataMitra._id}`}>
                                             Perbarui Data
                                         </Link>
                                     </button>

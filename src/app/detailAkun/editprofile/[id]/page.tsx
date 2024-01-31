@@ -6,7 +6,7 @@ import Link from 'next/link'
 import React, { useEffect } from 'react'
 import { useState } from "react";
 
-function EditProfile() {
+function EditProfile({params}:{params:any}) {
     const [selectedImage, setSelectedImage] = useState(null);
     const [imagePreview, setImagePreview] = useState<any | null>(null);
     const [dataMitra, setDataMitra] = useState<any>([]);
@@ -15,7 +15,7 @@ function EditProfile() {
     const [email, setemail] = useState('');
     const [location, setlocation] = useState('');
     const [website, setwebsite] = useState('');
-    const [foto_profil, setfoto_profile] = useState(null);
+    const [foto_profil, setfoto_profile] = useState("");
 
     const imageChange = (e: any) => {
         const file = e.target.files[0];
@@ -32,51 +32,15 @@ function EditProfile() {
         }
     };
 
-    let id: any = "";
-    useEffect(() => {
-        async function getuser() {
-            try {
-                const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
-                if (res.data.success == true) {
-                    getdetailuser(res.data.data._id)
-                }
-                id = res.data.data._id;
-            } catch (error: any) {
-                console.log(error.response);
-            }
-        }
-        async function getdetailuser(idd: any) {
-
-            try {
-                const res = await axios.get(`http://localhost:5000/api/mitra/${idd}`);
-                if (res.data.success == true) {
-                    setDataMitra(res.data.data)
-                }
-                id = res.data.data._id;
-
-            } catch (error: any) {
-                console.log(error.response);
-            }
-        }
-        getuser();
-    });
+   
+  
 
     useEffect(() => {
-        async function setuser() {
-            try {
-                const res = await axios.get("http://localhost:5000/api/user", { withCredentials: true });
-                if (res.data.success == true) {
-                    setdetailuser(res.data.data._id)
-                }
-                id = res.data.data._id;
-            } catch (error: any) {
-                console.log(error.response);
-            }
-        }
-        async function setdetailuser(idd: any) {
+        
+        async function setdetailuser() {
 
             try {
-                const res = await axios.get(`http://localhost:5000/api/mitra/${idd}`);
+                const res = await axios.get(`http://localhost:5000/api/mitra/${params.id}`);
                 if (res.data.success == true) {
                     setDataMitra(res.data.data)
                     setnama_mitra(res.data.data.nama_mitra)
@@ -86,19 +50,19 @@ function EditProfile() {
                     setwebsite(res.data.data.website)
                     setfoto_profile(res.data.data.foto_profil)
                 }
-                id = res.data.data._id;
+               
 
             } catch (error: any) {
                 console.log(error.response);
             }
         }
-        setuser();
-    }, []);
+        setdetailuser();
+    }, [params.id]);
 
     async function updatedetailuser(e: any) {
         e.preventDefault();
         try {
-            const res = await axios.put(`http://localhost:5000/api/mitra/${id}`, {
+            const res = await axios.put(`http://localhost:5000/api/mitra/${params.id}`, {
                 nama_mitra,
                 nama_pt,
                 email,
@@ -151,7 +115,7 @@ function EditProfile() {
                                     <div className="flex flex-wrap ">
                                         <img
                                             alt=""
-                                            src={`http://localhost:5000/images/${foto_profil}`}
+                                            src={foto_profil}
                                             height={128}
                                             width={128}
                                             className="w-32 h-32 bg-zinc-300 rounded-full" />

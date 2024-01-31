@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import React, { useEffect, useState } from "react";
 import SideBar from "@/components/sideBar";
 
@@ -77,7 +77,7 @@ function Detail({params}:{params:any}) {
                 return (
                   <img
                     key={i}
-                    src={`http://localhost:5000/images/${data.img}`}
+                    src={data.img}
                     alt=""
                     className="bg-slate-200 h-20"
                   ></img>
@@ -205,7 +205,7 @@ function Detail({params}:{params:any}) {
                       return (
                         <img
                           key={ii}
-                          src={`http://localhost:5000/images/${data.img}`}
+                          src={data.img}
                           alt=""
                           className="bg-slate-200 h-20"
                         ></img>

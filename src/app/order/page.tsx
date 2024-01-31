@@ -114,16 +114,17 @@ function Order() {
                   return (
                     <ContentTableOrder
                     key={i}
-                no={"1"}
-                name={"Acep wahyu Kurna"}
-                jumlah={"4"}
-                paket={"Paket umroh untuk kalangan atas"}
+                    id= {data.order._id}
+                no={i+1}
+                name={data.order.nama_lengkap
+}
+                jumlah={data.order.jamaah.length}
+                paket={data.paket.title}
+                status={data.order.status}
               />
                   )
                 })
               }
-              
-
             </div>
           </div>
         </div>

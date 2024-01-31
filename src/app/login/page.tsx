@@ -10,13 +10,12 @@ function Page() {
 
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const url = `${process.env.NEXT_PUBLIC_URL}/api/login_mitra`;
 
   async function submitLogin(e: any) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        url,
+        `${process.env.NEXT_PUBLIC_URL}/api/login_mitra`,
         { email: Email, password: Password },
         {
           withCredentials: true,
