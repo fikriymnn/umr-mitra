@@ -26,12 +26,12 @@ function Page() {
       );
 
       //enkripsi data
-      const encriptData = btoa(response.data.data._id);
-      console.log(response);
+      // const encriptData = btoa(response.data.data._id);
+      // console.log(response);
 
-      const idUser = encriptData;
+      // const idUser = encriptData;
 
-      sessionStorage.setItem("id_user", idUser);
+      // sessionStorage.setItem("id_user", idUser);
       alert("login success");
       push("/dashboard");
     } catch (error: any) {
