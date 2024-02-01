@@ -16,15 +16,18 @@ function Page() {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL}/api/login_mitra`,
         { email: Email, password: Password },
+
         {
           withCredentials: true,
-
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            "Content-Type": "application/json",
+          },
         }
       );
 
       //enkripsi data
       const encriptData = btoa(response.data.data._id);
+      console.log(response);
 
       const idUser = encriptData;
 

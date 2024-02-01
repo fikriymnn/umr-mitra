@@ -269,13 +269,61 @@ function Detail({ params }: { params: any }) {
                           {data.noWhatsapp}
                         </p>
                       </div>
-                      <div className="p-2">
+                      <div className="p-2 border-b-2 border-neutral-400">
                         <p className="font-semibold md:text-base sm:text-sm text-xs">
                           Alamat Email
                         </p>
                         <p className="font-normal md:text-base sm:text-sm text-xs">
                           {data.email}
                         </p>
+                      </div>
+                      <div className="p-2 border-b-2 border-neutral-400">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          No KTP
+                        </p>
+                        <p className="font-normal md:text-base sm:text-sm text-xs">
+                          {data.no_ktp}
+                        </p>
+                      </div>
+
+                      <div className="p-2 border-b-2 border-neutral-400">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          Foto KTP
+                        </p>
+                        <Image
+                          src={data.foto_ktp}
+                          alt="foto ktp"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          className="w-[200px] h-[130px]"
+                        />
+                      </div>
+                      <div className="p-2 border-b-2 border-neutral-400">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          Foto KK
+                        </p>
+                        <Image
+                          src={data.foto_kk}
+                          alt="foto ktp"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          className="w-[200px] h-[130px]"
+                        />
+                      </div>
+                      <div className="p-2 ">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          Foto Passport
+                        </p>
+                        <Image
+                          src={data.foto_passport}
+                          alt="foto ktp"
+                          width={0}
+                          height={0}
+                          sizes="100vw"
+                          className="w-[200px] h-[130px]"
+                        />
                       </div>
                     </div>
                   </div>
