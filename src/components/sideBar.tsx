@@ -38,9 +38,12 @@ export default function SideBar({
   async function submitLogout(e: any) {
     e.preventDefault();
     try {
-      const response = await axios.get("http://localhost:5000/api/logout", {
-        withCredentials: true,
-      });
+      const response = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/logout`,
+        {
+          withCredentials: true,
+        }
+      );
       sessionStorage.removeItem("id_user");
       alert("logout success");
       push("/login");
@@ -51,8 +54,9 @@ export default function SideBar({
   return (
     <div className="z-40 ">
       <div
-        className={`${bar == 1 ? " w-[252px] " : " w-[80px] "
-          } h-full flex flex-col text-black bg-white `}
+        className={`${
+          bar == 1 ? " w-[252px] " : " w-[80px] "
+        } h-full flex flex-col text-black bg-white `}
       >
         <div className={`w-full pt-5 pb-14 px-[16px]`}>
           <button className="w-full h-full" onClick={toggleBar}>
@@ -79,10 +83,11 @@ export default function SideBar({
               <div className="w-full">
                 <a href="/dashboard">
                   <button
-                    className={`${bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${
+                      bar == 1
+                        ? "justify-start items-center"
+                        : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${dashboard}`}
                   >
                     {bar === 0 ? (
@@ -127,29 +132,21 @@ export default function SideBar({
             </div>
 
             <div className="flex">
-              <div className={`w-full  rounded-[8px] ${accountbar === 1 ? 'pb-1 px-1 yellow ' : ''} duration-100`}>
-
-                <div className={`${bar == 1
-                  ? "justify-start items-center"
-                  : " justify-center items-center"
-                  } w-full  h-[40px] flex my-1  ps-1 gap-1
-                            rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${detailAkun}`}>
-                  <button onClick={toggleAccountbar} className="w-5">
-                    <div >
-
-                      <svg className={`${accountbar === 1 ? 'rotate-90 ' : ''} w-full duration-100 `} width="9" height="9" viewBox="0 0 11 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 7L0.499999 13.0622L0.5 0.937822L11 7Z" fill="currentColor" />
-                      </svg>
-
-                    </div>
-                  </button>
-
-
-
+              <div
+                className={`w-full  rounded-[8px] ${
+                  accountbar === 1 ? "pb-1 px-1 yellow " : ""
+                } duration-100`}
+              >
+                <div
+                  className={`${
+                    bar == 1
+                      ? "justify-start items-center"
+                      : " justify-center items-center"
+                  } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                            rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${detailAkun}`}
+                >
                   <a href="/detailAkun" className="w-full">
-                    <button
-
-                    >
+                    <button>
                       {bar === 0 ? (
                         <div className="w-10">
                           <svg
@@ -168,8 +165,7 @@ export default function SideBar({
                       ) : (
                         <div className="flex gap-[15px] justify-center items-center  ">
                           <div className="flex gap-2">
-
-                            <div className=" ">
+                            <div className="pl-3">
                               <svg
                                 width="20"
                                 height="20"
@@ -191,13 +187,8 @@ export default function SideBar({
                       )}
                     </button>
                   </a>
-
-
-
-
-
                 </div>
-                {accountbar === 1 && (
+                {/* {accountbar === 1 && (
                   <>
                     <div className="flex flex-col ms-6 grey rounded-md py-2 px-3 font-medium">
                       <a className="hover:text-[#E3B02B]" href="/detailAkun">Detail Akun</a>
@@ -207,34 +198,45 @@ export default function SideBar({
 
                   </>
                 )
-                }
-
+                } */}
               </div>
             </div>
             <div className="flex mt-1">
-              <div className={`w-full  rounded-[8px] ${packagebar === 1 ? 'pb-1 px-1 yellow ' : ''} duration-100`}>
-
-                <div className={`${bar == 1
-                  ? "justify-start items-center"
-                  : " justify-center items-center"
+              <div
+                className={`w-full  rounded-[8px] ${
+                  packagebar === 1 ? "pb-1 px-1 yellow " : ""
+                } duration-100`}
+              >
+                <div
+                  className={`${
+                    bar == 1
+                      ? "justify-start items-center"
+                      : " justify-center items-center"
                   } w-full  h-[40px] flex my-1  ps-1 gap-1
-                            rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}>
+                            rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}
+                >
                   <button onClick={togglePackagebar} className="w-5">
-                    <div >
-
-                      <svg className={`${packagebar === 1 ? 'rotate-90 ' : ''} w-full duration-100 `} width="9" height="9" viewBox="0 0 11 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 7L0.499999 13.0622L0.5 0.937822L11 7Z" fill="currentColor" />
+                    <div>
+                      <svg
+                        className={`${
+                          packagebar === 1 ? "rotate-90 " : ""
+                        } w-full duration-100 `}
+                        width="9"
+                        height="9"
+                        viewBox="0 0 11 14"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 7L0.499999 13.0622L0.5 0.937822L11 7Z"
+                          fill="currentColor"
+                        />
                       </svg>
-
                     </div>
                   </button>
 
-
-
                   <a href="/paket" className="w-full">
-                    <button
-
-                    >
+                    <button>
                       {bar === 0 ? (
                         <div className="w-10">
                           <svg
@@ -253,7 +255,6 @@ export default function SideBar({
                       ) : (
                         <div className="flex gap-[15px] justify-center items-center  ">
                           <div className="flex gap-2">
-
                             <div className=" ">
                               <svg
                                 width="20"
@@ -276,50 +277,60 @@ export default function SideBar({
                       )}
                     </button>
                   </a>
-
-
-
-
-
                 </div>
                 {packagebar === 1 && (
                   <>
                     <div className="flex flex-col ms-6 grey rounded-md py-2 px-3 font-medium">
-                      <a className="hover:text-[#E3B02B]" href="/paket/tambah">Paket Baru</a>
-                      <a className="hover:text-[#E3B02B]" href="/paket">Paket Aktif</a>
-                      <a className="hover:text-[#E3B02B]" href="/paket/selesai">Paket Selesai</a>
+                      <a className="hover:text-[#E3B02B]" href="/paket/tambah">
+                        Paket Baru
+                      </a>
+                      <a className="hover:text-[#E3B02B]" href="/paket">
+                        Paket Aktif
+                      </a>
+                      <a className="hover:text-[#E3B02B]" href="/paket/selesai">
+                        Paket Selesai
+                      </a>
                     </div>
-
                   </>
-                )
-                }
-
+                )}
               </div>
             </div>
             <div className="flex mt-1">
-              <div className={`w-full  rounded-[8px] ${orderbar === 1 ? 'pb-1 px-1 yellow ' : ''} duration-100`}>
-
-                <div className={`${bar == 1
-                  ? "justify-start items-center"
-                  : " justify-center items-center"
+              <div
+                className={`w-full  rounded-[8px] ${
+                  orderbar === 1 ? "pb-1 px-1 yellow " : ""
+                } duration-100`}
+              >
+                <div
+                  className={`${
+                    bar == 1
+                      ? "justify-start items-center"
+                      : " justify-center items-center"
                   } w-full  h-[40px] flex my-1  ps-1 gap-1
-                            rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${order}`}>
+                            rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${order}`}
+                >
                   <button onClick={toggleOrderbar} className="w-5">
-                    <div >
-
-                      <svg className={`${orderbar === 1 ? 'rotate-90 ' : ''} w-full duration-100 `} width="9" height="9" viewBox="0 0 11 14" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
-                        <path d="M11 7L0.499999 13.0622L0.5 0.937822L11 7Z" fill="currentColor" />
+                    <div>
+                      <svg
+                        className={`${
+                          orderbar === 1 ? "rotate-90 " : ""
+                        } w-full duration-100 `}
+                        width="9"
+                        height="9"
+                        viewBox="0 0 11 14"
+                        fill="currentColor"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          d="M11 7L0.499999 13.0622L0.5 0.937822L11 7Z"
+                          fill="currentColor"
+                        />
                       </svg>
-
                     </div>
                   </button>
 
-
-
                   <a href="/order" className="w-full">
-                    <button
-
-                    >
+                    <button>
                       {bar === 0 ? (
                         <div className="w-10">
                           <svg
@@ -338,7 +349,6 @@ export default function SideBar({
                       ) : (
                         <div className="flex gap-[15px] justify-center items-center  ">
                           <div className="flex gap-2">
-
                             <div className=" ">
                               <svg
                                 width="20"
@@ -361,34 +371,29 @@ export default function SideBar({
                       )}
                     </button>
                   </a>
-
-
-
-
-
                 </div>
                 {orderbar === 1 && (
                   <>
                     <div className="flex flex-col ms-6 grey rounded-md py-2 px-3 font-medium">
-                      <a className="hover:text-[#E3B02B]" href="/order">Order Berjalan</a>
-                      <a className="hover:text-[#E3B02B]" href="/order/selesai">Order Selesai</a>
-
+                      <a className="hover:text-[#E3B02B]" href="/order">
+                        Order Berjalan
+                      </a>
+                      <a className="hover:text-[#E3B02B]" href="/order/selesai">
+                        Order Selesai
+                      </a>
                     </div>
-
                   </>
-                )
-                }
-
+                )}
               </div>
             </div>
-
           </div>
           <div>
             <button
-              className={`${bar == 1
-                ? "ms-5 justify-start items-center"
-                : "ms-2 justify-center items-center"
-                } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
+              className={`${
+                bar == 1
+                  ? "ms-5 justify-start items-center"
+                  : "ms-2 justify-center items-center"
+              } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
               onClick={submitLogout}
             >
               {bar === 0 ? (

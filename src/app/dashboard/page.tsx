@@ -10,38 +10,30 @@ import Image from "next/image";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-
 function Dashboard() {
   const router = useRouter();
   const [dataMitra, setDataMitra] = useState([]);
   let loading = false;
 
-
   useEffect(() => {
     getuser();
-});
+  }, []);
 
-
-async function getuser() {
-  loading = true
-    const dataStorage = sessionStorage.getItem("id_user")
-    const id = atob(`${dataStorage}`)
-
-    if (!dataStorage) {
+  async function getuser() {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}0/api/user`, {
+        withCredentials: true,
+      });
+      if (res.data.success == false) {
         router.push("/login");
-        loading = false
       }
-      loading = false
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
 
-    return dataStorage
-}
-
- 
-
-  if(loading = false){
-    return (
-      <div>Loading</div>
-    )
+  if ((loading = false)) {
+    return <div>Loading</div>;
   }
 
   return (
@@ -61,7 +53,7 @@ async function getuser() {
             <p className="font-medium text-medium text-black">
               PT.Travel Keren Dongs Indonesia
             </p>
-            <button type="button" >dfg</button>
+            <button type="button">dfg</button>
           </div>
         </div>
         {/* grid content */}

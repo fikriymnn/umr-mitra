@@ -5,10 +5,9 @@ import axios from "axios";
 import Image from "next/image";
 
 function TambahPaket() {
-  const url = "http://localhost:5000/api/paket";
   //State value
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState([{ img: "", name:"" }]);
+  const [content, setContent] = useState([{ img: "", name: "" }]);
   const [category, setCategory] = useState("");
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
@@ -36,7 +35,7 @@ function TambahPaket() {
         Disabilitas: false,
       },
       name: "",
-      content: [{ img: "", name:"" }],
+      content: [{ img: "", name: "" }],
     },
   ]);
 
@@ -51,7 +50,7 @@ function TambahPaket() {
     formData.append("content", file);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/upload",
+        `${process.env.NEXT_PUBLIC_URL}/api/upload`,
         formData,
         {
           headers: {
@@ -61,7 +60,7 @@ function TambahPaket() {
       );
       console.log(response);
       const link = response.data.data;
-      const name = response.data.name
+      const name = response.data.name;
       onchangeVal[i]["img"] = link;
       onchangeVal[i]["name"] = name;
       setContent(onchangeVal);
@@ -76,7 +75,7 @@ function TambahPaket() {
     const onchangeVal = [...content];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${name}`
+        `${process.env.NEXT_PUBLIC_URL}/api/upload/${name}`
       );
       console.log(response);
       onchangeVal[i]["img"] = "";
@@ -96,7 +95,7 @@ function TambahPaket() {
     formData.append("content", file);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/upload",
+        `${process.env.NEXT_PUBLIC_URL}/api/upload`,
         formData,
         {
           headers: {
@@ -105,10 +104,10 @@ function TambahPaket() {
         }
       );
       const link = response.data.data;
-      const name = response.data.name
+      const name = response.data.name;
       onchangeVal[i]["content"][ii]["img"] = link;
       onchangeVal[i]["content"][ii]["name"] = name;
-     
+
       setHotel(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
@@ -121,7 +120,7 @@ function TambahPaket() {
     const onchangeVal = [...hotel];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${name}`
+        `${process.env.NEXT_PUBLIC_URL}/api/upload/${name}`
       );
       console.log(response);
       onchangeVal[i]["content"][ii]["img"] = "";
@@ -135,7 +134,7 @@ function TambahPaket() {
   //add content carousel
   const handleClickContent = () => {
     const onchangeVal = [...content];
-    onchangeVal.push({ img: "" ,name:""});
+    onchangeVal.push({ img: "", name: "" });
     setContent(onchangeVal);
   };
   //delete content carousel
@@ -159,7 +158,7 @@ function TambahPaket() {
           Disabilitas: false,
         },
         name: "",
-        content: [{ img: "",name:"" }],
+        content: [{ img: "", name: "" }],
       },
     ]);
   };
@@ -197,7 +196,7 @@ function TambahPaket() {
   //add image in hotel dinamis
   const handleClickImg = (i: any) => {
     const onchangeVal = [...hotel];
-    onchangeVal[i]["content"].push({ img: "",name:"" });
+    onchangeVal[i]["content"].push({ img: "", name: "" });
     setHotel(onchangeVal);
   };
 
@@ -269,7 +268,7 @@ function TambahPaket() {
   // get user using cookie
   async function getuser() {
     try {
-      const res = await axios.get("http://localhost:5000/api/user", {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         withCredentials: true,
       });
       if (res.data.success == true) {
@@ -286,7 +285,7 @@ function TambahPaket() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        url,
+        `${process.env.NEXT_PUBLIC_URL}/api/paket`,
         {
           id_mitra: id,
           title: title,

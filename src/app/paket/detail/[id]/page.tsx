@@ -1,12 +1,11 @@
-"use client"
+"use client";
 import React, { useEffect, useState } from "react";
 import SideBar from "@/components/sideBar";
 
 import axios from "axios";
 import { format } from "date-fns";
 
-function Detail({params}:{params:any}) {
-
+function Detail({ params }: { params: any }) {
   const [DetailPaket, setDetailPaket] = useState<any>(null);
   useEffect(() => {
     getDetailPaket(params.id);
@@ -14,7 +13,9 @@ function Detail({params}:{params:any}) {
 
   async function getDetailPaket(idd: any) {
     try {
-      const res = await axios.get(`http://localhost:5000/api/paket/${idd}`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${idd}`
+      );
       if (res.data.success == true) {
         setDetailPaket(res.data.data);
       }
@@ -28,7 +29,7 @@ function Detail({params}:{params:any}) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paket/${params.id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${params.id}`,
         {
           status: "non_aktif",
         },

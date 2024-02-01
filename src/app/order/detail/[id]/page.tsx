@@ -3,26 +3,26 @@ import React, { useEffect, useState } from "react";
 import SideBar from "@/components/sideBar";
 import Image from "next/image";
 import axios from "axios";
-import Order from '../../page';
+import Order from "../../page";
 import { format } from "date-fns";
 
-function Detail({params}:{params:any}) {
-
+function Detail({ params }: { params: any }) {
   const [DetailOrder, setDetailOrder] = useState<any>(null);
-  
+
   useEffect(() => {
     getDetailPaket(params.id);
   }, [params.id]);
 
   async function getDetailPaket(idd: any) {
     try {
-      const res = await axios.get(`http://localhost:5000/api/order/${idd}`,
-      {
-        withCredentials: true
-      }
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/order/${idd}`,
+        {
+          withCredentials: true,
+        }
       );
       if (res.data.success == true) {
-        console.log(res.data.data)
+        console.log(res.data.data);
         setDetailOrder(res.data.data);
       }
     } catch (error: any) {
@@ -30,8 +30,8 @@ function Detail({params}:{params:any}) {
     }
   }
 
-  if(DetailOrder==null){
-    return <div>Loading</div>
+  if (DetailOrder == null) {
+    return <div>Loading</div>;
   }
   const date =
     DetailOrder.paket.waktu_keberangkatan == null
@@ -48,25 +48,22 @@ function Detail({params}:{params:any}) {
           <div className="bg-white rounded-[10px] w-full mt-[20px] p-5 pb-40">
             {" "}
             <p className=" text-xl font-semibold">Detail Pesanan Jemaah</p>
-
             <div className="mt-3 ">
-              <p className="ml-3 text-base font-semibold">
-                Status Pembayaran
-              </p>
+              <p className="ml-3 text-base font-semibold">Status Pembayaran</p>
               <div className="w-full bg-neutral-200 p-2 rounded-md">
                 <p className="text-[19px]">{DetailOrder.order.status}</p>
               </div>
             </div>
-
             <div className="mt-3 ">
               <p className="ml-3 text-base font-semibold">
                 Status Keberangkatan
               </p>
               <div className="w-full bg-neutral-200 p-2 rounded-md">
-                <p className="text-[19px]">{DetailOrder.order.status_keberangkatan}</p>
+                <p className="text-[19px]">
+                  {DetailOrder.order.status_keberangkatan}
+                </p>
               </div>
             </div>
-
             <div className="flex mt-5 gap-4 ml-3">
               <svg
                 width="32"
@@ -103,7 +100,6 @@ function Detail({params}:{params:any}) {
                 <p className="text-[19px]">{DetailOrder.order.email}</p>
               </div>
             </div>
-
             <p className=" text-xl mt-5 font-semibold">Detail Paket</p>
             <div className="mt-5 ">
               <p className="ml-3 text-base font-semibold">Nama Paket</p>
@@ -120,18 +116,19 @@ function Detail({params}:{params:any}) {
             <div className="mt-3 ">
               <p className="ml-3 text-base font-semibold">Kota Keberangkatan</p>
               <div className="w-full bg-neutral-200 p-2 rounded-md">
-                <p className="text-[19px]">{DetailOrder.paket.kota_keberangkatan}</p>
+                <p className="text-[19px]">
+                  {DetailOrder.paket.kota_keberangkatan}
+                </p>
               </div>
             </div>
-
             <div className="mt-3 ">
-              <p className="ml-3 text-base font-semibold">Waktu Keberangkatan</p>
+              <p className="ml-3 text-base font-semibold">
+                Waktu Keberangkatan
+              </p>
               <div className="w-full bg-neutral-200 p-2 rounded-md">
                 <p className="text-[19px]">{WaktuKeberangkatan}</p>
               </div>
             </div>
-
-
             <div className="flex mt-5 gap-4 ml-3">
               <svg
                 width="32"
@@ -177,7 +174,6 @@ function Detail({params}:{params:any}) {
             </p>
             <div className="flex  py-3 gap-2">
               <div className="border-2 rounded-md bg-white">
-                
                 <Image src={"/bca.png"} alt="" width={55} height={55} />
               </div>
               <p className="my-auto text-black font-medium">
@@ -185,9 +181,7 @@ function Detail({params}:{params:any}) {
               </p>
             </div>
             <div className="mt-3 ">
-              <p className="ml-3 text-base font-semibold">
-                Total Pembayaran
-              </p>
+              <p className="ml-3 text-base font-semibold">Total Pembayaran</p>
               <div className="w-full bg-neutral-200 p-2 rounded-md">
                 <p className="text-[19px]">{DetailOrder.order.jumlah_bayar}</p>
               </div>
@@ -197,21 +191,26 @@ function Detail({params}:{params:any}) {
                 Nama Pemilik Rekening
               </p>
               <div className="w-full bg-neutral-200 p-2 rounded-md">
-                <p className="text-[19px]">{DetailOrder.order.nama_pemilik_rekening}</p>
+                <p className="text-[19px]">
+                  {DetailOrder.order.nama_pemilik_rekening}
+                </p>
               </div>
             </div>
             <div className="mt-3 ">
               <p className="ml-3 text-base font-semibold">Bukti Pembayaran</p>
-              {
-                DetailOrder.order.bukti_pembayaran == ""?
+              {DetailOrder.order.bukti_pembayaran == "" ? (
                 <div className="w-[400px] h-[400px] bg-neutral-200 p-2 rounded-md flex justify-center items-center">
-                <p>Bukti Belum Diunggah</p>
-              </div>:
-              <div className="w-[400px] h-[400px] bg-neutral-200 p-2 rounded-md flex justify-center items-center">
-                <img alt="bukti pembayaran" src={DetailOrder.order.bukti_pembayaran} className="w-[400px] h-[400px] p-2 rounded-md"/>
-              </div>
-              }
-              
+                  <p>Bukti Belum Diunggah</p>
+                </div>
+              ) : (
+                <div className="w-[400px] h-[400px] bg-neutral-200 p-2 rounded-md flex justify-center items-center">
+                  <img
+                    alt="bukti pembayaran"
+                    src={DetailOrder.order.bukti_pembayaran}
+                    className="w-[400px] h-[400px] p-2 rounded-md"
+                  />
+                </div>
+              )}
             </div>
             <div className="flex mt-10 gap-4 ml-3">
               <svg
@@ -233,57 +232,56 @@ function Detail({params}:{params:any}) {
                 Detail Jemaah Didaftarkan
               </p>
             </div>
-            {
-              DetailOrder.order.jamaah.map((data:any, i:number)=>{
-                return(
-                   <div key={i} className=" border-2 bg-neutral-200 border-neutral-400 rounded-lg mt-5">
-              <div className="flex  ">
-                <div className="flex flex-col  w-full ">
-                  <div className="border-b-2 border-neutral-400 ">
-                    <p className="p-2 font-semibold   md:text-base sm:text-sm text-xs ">
-                      Jemaah Ke-{i + 1}
-                    </p>
-                  </div>
-                  <div className="p-2 border-b-2 border-neutral-400">
-                    <p className="font-semibold md:text-base sm:text-sm text-xs">
-                      Nama Lengkap
-                    </p>
-                    <p className="font-normal md:text-base sm:text-sm text-xs">
-                      {data.name}
-                    </p>
-                  </div>
-                  <div className="p-2 border-b-2 border-neutral-400">
-                    <p className="font-semibold md:text-base sm:text-sm text-xs">
-                      Gender
-                    </p>
-                    <p className="font-normal md:text-base sm:text-sm text-xs">
-                      {data.gender}
-                    </p>
-                  </div>
-                  <div className="p-2 border-b-2 border-neutral-400">
-                    <p className="font-semibold md:text-base sm:text-sm text-xs">
-                      Nomor WhatsApp
-                    </p>
-                    <p className="font-normal md:text-base sm:text-sm text-xs">
-                      {data.noWhatsapp}
-                    </p>
-                  </div>
-                  <div className="p-2">
-                    <p className="font-semibold md:text-base sm:text-sm text-xs">
-                      Alamat Email
-                    </p>
-                    <p className="font-normal md:text-base sm:text-sm text-xs">
-                      {data.email}
-                    </p>
+            {DetailOrder.order.jamaah.map((data: any, i: number) => {
+              return (
+                <div
+                  key={i}
+                  className=" border-2 bg-neutral-200 border-neutral-400 rounded-lg mt-5"
+                >
+                  <div className="flex  ">
+                    <div className="flex flex-col  w-full ">
+                      <div className="border-b-2 border-neutral-400 ">
+                        <p className="p-2 font-semibold   md:text-base sm:text-sm text-xs ">
+                          Jemaah Ke-{i + 1}
+                        </p>
+                      </div>
+                      <div className="p-2 border-b-2 border-neutral-400">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          Nama Lengkap
+                        </p>
+                        <p className="font-normal md:text-base sm:text-sm text-xs">
+                          {data.name}
+                        </p>
+                      </div>
+                      <div className="p-2 border-b-2 border-neutral-400">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          Gender
+                        </p>
+                        <p className="font-normal md:text-base sm:text-sm text-xs">
+                          {data.gender}
+                        </p>
+                      </div>
+                      <div className="p-2 border-b-2 border-neutral-400">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          Nomor WhatsApp
+                        </p>
+                        <p className="font-normal md:text-base sm:text-sm text-xs">
+                          {data.noWhatsapp}
+                        </p>
+                      </div>
+                      <div className="p-2">
+                        <p className="font-semibold md:text-base sm:text-sm text-xs">
+                          Alamat Email
+                        </p>
+                        <p className="font-normal md:text-base sm:text-sm text-xs">
+                          {data.email}
+                        </p>
+                      </div>
+                    </div>
                   </div>
                 </div>
-              </div>
-            </div>
-                )
-              })
-            }
-           
-           
+              );
+            })}
           </div>
         </div>
       </div>

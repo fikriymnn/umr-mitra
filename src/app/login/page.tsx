@@ -32,7 +32,7 @@ function Page() {
       alert("login success");
       push("/dashboard");
     } catch (error: any) {
-      alert(error);
+      alert(error.response.data.message);
     }
   }
   return (

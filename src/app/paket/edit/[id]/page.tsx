@@ -4,12 +4,10 @@ import SideBar from "@/components/sideBar";
 import axios from "axios";
 import Image from "next/image";
 
-
-function EditPaket({params}:{params:any}) {
-
+function EditPaket({ params }: { params: any }) {
   //State value
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState([{ img: "",name:"" }]);
+  const [content, setContent] = useState([{ img: "", name: "" }]);
   const [category, setCategory] = useState("");
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
@@ -37,7 +35,7 @@ function EditPaket({params}:{params:any}) {
         Disabilitas: false,
       },
       name: "",
-      content: [{ img: "", name:"" }],
+      content: [{ img: "", name: "" }],
     },
   ]);
 
@@ -47,7 +45,9 @@ function EditPaket({params}:{params:any}) {
 
   async function getDetailPaket(idd: any) {
     try {
-      const res = await axios.get(`http://localhost:5000/api/paket/${idd}`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${idd}`
+      );
       if (res.data.success == true) {
         let data = res.data.data;
         setTitle(data.title);
@@ -85,7 +85,7 @@ function EditPaket({params}:{params:any}) {
     formData.append("content", file);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/upload",
+        `${process.env.NEXT_PUBLIC_URL}/api/upload`,
         formData,
         {
           headers: {
@@ -93,7 +93,7 @@ function EditPaket({params}:{params:any}) {
           },
         }
       );
-      
+
       const link = response.data.data;
       const name = response.data.name;
       onchangeVal[i]["img"] = link;
@@ -110,7 +110,7 @@ function EditPaket({params}:{params:any}) {
     const onchangeVal = [...content];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${name}`
+        `${process.env.NEXT_PUBLIC_URL}/api/upload/${name}`
       );
       console.log(response);
       onchangeVal[i]["img"] = "";
@@ -130,7 +130,7 @@ function EditPaket({params}:{params:any}) {
     formData.append("content", file);
     try {
       const response = await axios.post(
-        "http://localhost:5000/api/upload",
+        `${process.env.NEXT_PUBLIC_URL}/api/upload`,
         formData,
         {
           headers: {
@@ -143,7 +143,7 @@ function EditPaket({params}:{params:any}) {
       const name = response.data.name;
       onchangeVal[i]["content"][ii]["img"] = link;
       onchangeVal[i]["content"][ii]["name"] = name;
-      
+
       setHotel(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
@@ -156,7 +156,7 @@ function EditPaket({params}:{params:any}) {
     const onchangeVal = [...hotel];
     try {
       const response = await axios.delete(
-        `http://localhost:5000/api/upload/${name}`
+        `${process.env.NEXT_PUBLIC_URL}/api/upload/${name}`
       );
       console.log(response);
       onchangeVal[i]["content"][ii]["img"] = "";
@@ -170,7 +170,7 @@ function EditPaket({params}:{params:any}) {
   //add content carousel
   const handleClickContent = () => {
     const onchangeVal = [...content];
-    onchangeVal.push({ img: "",name:"" });
+    onchangeVal.push({ img: "", name: "" });
     setContent(onchangeVal);
   };
   //delete content carousel
@@ -194,7 +194,7 @@ function EditPaket({params}:{params:any}) {
           Disabilitas: false,
         },
         name: "",
-        content: [{ img: "" ,name:""}],
+        content: [{ img: "", name: "" }],
       },
     ]);
   };
@@ -232,7 +232,7 @@ function EditPaket({params}:{params:any}) {
   //add image in hotel dinamis
   const handleClickImg = (i: any) => {
     const onchangeVal = [...hotel];
-    onchangeVal[i]["content"].push({ img: "",name:"" });
+    onchangeVal[i]["content"].push({ img: "", name: "" });
     setHotel(onchangeVal);
   };
 
@@ -304,7 +304,7 @@ function EditPaket({params}:{params:any}) {
   // get user using cookie
   async function getuser() {
     try {
-      const res = await axios.get("http://localhost:5000/api/user", {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         withCredentials: true,
       });
       if (res.data.success == true) {
@@ -321,7 +321,7 @@ function EditPaket({params}:{params:any}) {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paket/${params.id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${params.id}`,
         {
           title: title,
           description: description,

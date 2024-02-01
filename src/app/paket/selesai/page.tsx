@@ -11,35 +11,28 @@ function Selesai() {
   const [paket, setPaket] = useState([]);
   let loading = false;
 
-
   useEffect(() => {
     getuser();
-  });
-     async function getuser() {
-        loading = true
-        const dataStorage = await sessionStorage.getItem("id_user")
-        const encriptData = atob(`${dataStorage}`);
-        const id = encriptData;
+  }, []);
 
-        if (!dataStorage) {
-            loading = false
-            router.push("/login");
-          }
-
-        getpaket(id)
-
-         loading = false
-       
+  async function getuser() {
+    try {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
+        withCredentials: true,
+      });
+      if (res.data.success == false) {
+        router.push("/login");
+      }
+      getpaket(res.data.data._id);
+    } catch (error: any) {
+      console.log(error.response);
     }
-
-
+  }
 
   async function getpaket(id: any) {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=non_aktif&skip=0&limit=10`
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=non_aktif&skip=0&limit=10`;
     try {
-      const res = await axios.get(
-        url
-      );
+      const res = await axios.get(url);
 
       setPaket(res.data.data.paket);
     } catch (error: any) {
@@ -47,11 +40,9 @@ function Selesai() {
     }
   }
 
-   if(loading = false){
-        return (
-          <div>Loading</div>
-        )
-      }
+  if ((loading = false)) {
+    return <div>Loading</div>;
+  }
   return (
     <div className="flex">
       <SideBar paket=" text-white bg-[#E3B02B]" />
