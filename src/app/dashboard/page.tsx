@@ -21,7 +21,7 @@ function Dashboard() {
 
   async function getuser() {
     try {
-      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}0/api/user`, {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         withCredentials: true,
       });
       if (res.data.success == false) {

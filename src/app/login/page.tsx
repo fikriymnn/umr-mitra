@@ -2,8 +2,7 @@
 
 import axios from "axios";
 import { useRouter } from "next/navigation";
-import React, { useEffect, useRef, useState,  } from "react";
-
+import React, { useEffect, useRef, useState } from "react";
 
 function Page() {
   const { push } = useRouter();
@@ -19,15 +18,16 @@ function Page() {
         { email: Email, password: Password },
         {
           withCredentials: true,
+
           headers: { "Content-Type": "application/json" },
         }
       );
-     
+
       //enkripsi data
       const encriptData = btoa(response.data.data._id);
-       
+
       const idUser = encriptData;
-      
+
       sessionStorage.setItem("id_user", idUser);
       alert("login success");
       push("/dashboard");
