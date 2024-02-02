@@ -12,7 +12,7 @@ import { useRouter } from "next/navigation";
 
 function Dashboard() {
   const router = useRouter();
-  const [dataMitra, setDataMitra] = useState([]);
+  const [dataMitra, setDataMitra] = useState<any>(null);
   let loading = false;
 
   useEffect(() => {
@@ -21,18 +21,39 @@ function Dashboard() {
 
   async function getuser() {
     try {
+      loading = true;
       const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         withCredentials: true,
       });
       if (res.data.success == false) {
         router.push("/login");
       }
+      getMitras(res.data.data._id);
+      loading = false;
     } catch (error: any) {
       console.log(error.response);
     }
   }
 
-  if ((loading = false)) {
+  async function getMitras(id: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/mitra/${id}`;
+
+    try {
+      const res = await axios.get(url);
+
+      setDataMitra(res.data.data);
+
+      console.log(res.data.data);
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
+
+  // if (loading == false) {
+  //   return <div>Loading</div>;
+  // }
+
+  if (dataMitra == null) {
     return <div>Loading</div>;
   }
 
@@ -44,16 +65,15 @@ function Dashboard() {
         <div className="flex items-center justify-start bg-white  my-[21px] w-full h-[254px] rounded-[10px_10px_10px_10px] shadow-xl">
           <div
             className=" w-[148px] h-[148px] ml-[67px] rounded-full bg-black bg-cover bg-center"
-            style={{ backgroundImage: `url(profil.jpeg)` }}
+            style={{ backgroundImage: `url(${dataMitra.foto_profil})` }}
           ></div>
           <div className="flex flex-col items-start justify-start ml-[38px]">
             <p className="font-medium text-[40px] text-black">
-              Travel Keren Dongs
+              {dataMitra.nama_mitra}
             </p>
             <p className="font-medium text-medium text-black">
-              PT.Travel Keren Dongs Indonesia
+              {dataMitra.nama_pt}
             </p>
-            <button type="button">dfg</button>
           </div>
         </div>
         {/* grid content */}

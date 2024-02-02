@@ -174,7 +174,7 @@ function Detail({ params }: { params: any }) {
             </p>
             <div className="flex  py-3 gap-2">
               <div className="border-2 rounded-md bg-white">
-                <Image src={"/bca.png"} alt="" width={55} height={55} />
+                <img src={"/bca.png"} alt="" width={55} height={55} />
               </div>
               <p className="my-auto text-black font-medium">
                 {DetailOrder.order.no_rekening_bank}
@@ -290,7 +290,7 @@ function Detail({ params }: { params: any }) {
                         <p className="font-semibold md:text-base sm:text-sm text-xs">
                           Foto KTP
                         </p>
-                        <Image
+                        <img
                           src={data.foto_ktp}
                           alt="foto ktp"
                           width={0}
@@ -303,7 +303,7 @@ function Detail({ params }: { params: any }) {
                         <p className="font-semibold md:text-base sm:text-sm text-xs">
                           Foto KK
                         </p>
-                        <Image
+                        <img
                           src={data.foto_kk}
                           alt="foto ktp"
                           width={0}
@@ -316,7 +316,7 @@ function Detail({ params }: { params: any }) {
                         <p className="font-semibold md:text-base sm:text-sm text-xs">
                           Foto Passport
                         </p>
-                        <Image
+                        <img
                           src={data.foto_passport}
                           alt="foto ktp"
                           width={0}

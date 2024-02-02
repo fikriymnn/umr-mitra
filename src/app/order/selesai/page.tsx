@@ -29,11 +29,13 @@ function OrderSelesai() {
   }
 
   async function getOrder(id: any) {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/order?id_mitra=${id}&status=pembayaran selesai&skip=0&limit=100`;
     try {
-      const res = await axios.get(url, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/order?id_mitra=${id}&status=pembayaran selesai&skip=0&limit=100`,
+        {
+          withCredentials: true,
+        }
+      );
 
       setOrder(res.data.data);
       console.log(res.data.data);
@@ -75,16 +77,14 @@ function OrderSelesai() {
           </div>
           <div className="overflow-x-scroll">
             <div className="h-full min-w-full py-3 flex gap-3">
-              <div className="flex gap-3 w-6/12 ">
+              <div className="flex gap-3 w-5/12 ">
                 <div className="text-[20px] font-semibold w-[60px] ">No</div>
-                <div className="text-[20px] font-semibold w-full ">
+                <div className="text-[20px] font-semibold w-full">
                   Nama Pemesan
                 </div>
-                <div className="w-full text-[20px] font-semibold ">
-                  Jumlah Jamaah
-                </div>
+                <div className="w-5/12 text-[20px] font-semibold ">Jumlah</div>
               </div>
-              <div className="flex gap-3 w-6/12 justify-between">
+              <div className="flex gap-3 w-8/12 justify-between">
                 <div className="w-full  text-[20px] font-semibold ">Paket</div>
                 <div className="w-[450px]  flex gap-3 text-[20px] font-semibold">
                   Detail

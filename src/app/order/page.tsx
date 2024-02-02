@@ -89,18 +89,14 @@ function Order() {
           </div>
           <div className="overflow-x-scroll">
             <div className="h-full min-w-full py-3 flex gap-3">
-              <div className="flex gap-3 w-6/12 ">
+              <div className="flex gap-3 w-full ">
                 <div className="text-[20px] font-semibold w-[60px] ">No</div>
-                <div className="text-[20px] font-semibold w-full ">
+                <div className="text-[20px] font-semibold w-9/12 ">
                   Nama Pemesan
                 </div>
-                <div className="w-full text-[20px] font-semibold ">
-                  Jumlah Jamaah
-                </div>
-              </div>
-              <div className="flex gap-3 w-6/12 justify-between">
+                <div className="w-5/12 text-[20px] font-semibold ">Jumlah</div>
                 <div className="w-full  text-[20px] font-semibold ">Paket</div>
-                <div className="w-[450px]  flex gap-3 text-[20px] font-semibold">
+                <div className="w-10/12  flex gap-3 text-[20px] font-semibold">
                   Status
                 </div>
               </div>

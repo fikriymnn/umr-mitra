@@ -18,18 +18,18 @@ function ContentTableFinished({
   return (
     <div>
       <div className="rounded-md min-w-full flex gap-3 bg-slate-300 mb-1 px-2 py-2">
-        <div className="flex gap-3 w-6/12 ">
-          <div className="text-[20px] w-[60px] line-clamp-1">
+        <div className="flex gap-3 w-5/12 ">
+          <div className="text-[20px] w-[30px] line-clamp-1">
             <p>{no}</p>
           </div>
           <div className="text-[20px] w-full line-clamp-1">
             <p>{name}</p>
           </div>
-          <div className="w-full text-[20px] line-clamp-1">
+          <div className="w-4/12 text-[20px] line-clamp-1">
             <p>{jumlah}</p>
           </div>
         </div>
-        <div className="flex gap-3 w-6/12 justify-between">
+        <div className="flex gap-3 w-8/12 justify-between">
           <div className="w-full  text-[20px] line-clamp-1">
             <p>{paket}</p>
           </div>

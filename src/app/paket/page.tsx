@@ -7,7 +7,7 @@ import { useRouter } from "next/navigation";
 
 function Paket() {
   const router = useRouter();
-  const [paket, setPaket] = useState([]);
+  const [paket, setPaket] = useState<any>(null);
   let loading = false;
 
   useEffect(() => {
@@ -29,7 +29,7 @@ function Paket() {
   }
 
   async function getpaket(id: any) {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=50`;
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=300`;
     try {
       const res = await axios.get(url);
 
@@ -39,7 +39,10 @@ function Paket() {
     }
   }
 
-  if ((loading = false)) {
+  // if (loading == false) {
+  //   return <div>Loading</div>;
+  // }
+  if (paket == null) {
     return <div>Loading</div>;
   }
 
