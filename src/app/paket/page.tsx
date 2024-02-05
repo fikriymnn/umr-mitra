@@ -32,7 +32,7 @@ function Paket() {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=300`;
     try {
       const res = await axios.get(url);
-
+      console.log(res.data);
       setPaket(res.data.data.paket);
     } catch (error: any) {
       console.log(error.response);

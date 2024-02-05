@@ -63,10 +63,16 @@ function Dashboard() {
       <div className="min-h-screen w-screen grey px-[28px] overflow-y-scroll">
         {/* top content */}
         <div className="flex items-center justify-start bg-white  my-[21px] w-full h-[254px] rounded-[10px_10px_10px_10px] shadow-xl">
-          <div
+          {/* <div
             className=" w-[148px] h-[148px] ml-[67px] rounded-full bg-black bg-cover bg-center"
             style={{ backgroundImage: `url(${dataMitra.foto_profil})` }}
-          ></div>
+          ></div> */}
+          <img
+            src={dataMitra.foto_profil}
+            alt="Profil"
+            className="w-[148px] h-[148px] ml-[67px] rounded-full bg-black bg-cover bg-center"
+          />
+
           <div className="flex flex-col items-start justify-start ml-[38px]">
             <p className="font-medium text-[40px] text-black">
               {dataMitra.nama_mitra}

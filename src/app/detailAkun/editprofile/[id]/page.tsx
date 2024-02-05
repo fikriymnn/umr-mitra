@@ -5,6 +5,14 @@ import axios from "axios";
 import Link from "next/link";
 import React, { useEffect } from "react";
 import { useState } from "react";
+import {
+  getStorage,
+  deleteObject,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { storage } from "@/database/db";
 
 function EditProfile({ params }: { params: any }) {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -80,22 +88,32 @@ function EditProfile({ params }: { params: any }) {
   async function uploadImage(event: any) {
     event.preventDefault();
     const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("content", file);
+
+    const fileName = file.name + "   " + new Date();
+
     try {
-      const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL}/api/upload`,
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      const storageRef = ref(storage, `/profil/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (err) => console.log(err),
+        () => {
+          // download url
+
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            setfoto_profile(url);
+          });
         }
       );
-      console.log(response);
-      setfoto_profile(response.data.data);
     } catch (error: any) {
       alert(error.response.data.message);
+      console.log(error);
     }
   }
   return (
