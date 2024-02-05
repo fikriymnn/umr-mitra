@@ -4,14 +4,58 @@ import DashCardDoubleRow from "@/components/Dashboard/DashCardDoubleRow";
 import DashCardTripleRow from "@/components/Dashboard/DashCardTripleRow";
 import GridWrapper from "@/components/Dashboard/GridWrapper";
 import SideBar from "@/components/sideBar";
-import { useGlobalContext } from "@/context/AuthContext";
+
 import axios from "axios";
 import Image from "next/image";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function Dashboard() {
-  const [dataMitra, setDataMitra] = useState([]);
-  const { dataUser } = useGlobalContext();
+  const router = useRouter();
+  const [dataMitra, setDataMitra] = useState<any>(null);
+  let loading = false;
+
+  useEffect(() => {
+    getuser();
+  }, []);
+
+  async function getuser() {
+    try {
+      loading = true;
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
+        withCredentials: true,
+      });
+      if (res.data.success == false) {
+        router.push("/login");
+      }
+      getMitras(res.data.data._id);
+      loading = false;
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
+
+  async function getMitras(id: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/mitra/${id}`;
+
+    try {
+      const res = await axios.get(url);
+
+      setDataMitra(res.data.data);
+
+      console.log(res.data.data);
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
+
+  // if (loading == false) {
+  //   return <div>Loading</div>;
+  // }
+
+  if (dataMitra == null) {
+    return <div>Loading</div>;
+  }
 
   return (
     <div className="flex h-screen">
@@ -19,16 +63,22 @@ function Dashboard() {
       <div className="min-h-screen w-screen grey px-[28px] overflow-y-scroll">
         {/* top content */}
         <div className="flex items-center justify-start bg-white  my-[21px] w-full h-[254px] rounded-[10px_10px_10px_10px] shadow-xl">
-          <div
+          {/* <div
             className=" w-[148px] h-[148px] ml-[67px] rounded-full bg-black bg-cover bg-center"
-            style={{ backgroundImage: `url(profil.jpeg)` }}
-          ></div>
+            style={{ backgroundImage: `url(${dataMitra.foto_profil})` }}
+          ></div> */}
+          <img
+            src={dataMitra.foto_profil}
+            alt="Profil"
+            className="w-[148px] h-[148px] ml-[67px] rounded-full bg-black bg-cover bg-center"
+          />
+
           <div className="flex flex-col items-start justify-start ml-[38px]">
             <p className="font-medium text-[40px] text-black">
-              Travel Keren Dongs
+              {dataMitra.nama_mitra}
             </p>
             <p className="font-medium text-medium text-black">
-              PT.Travel Keren Dongs Indonesia
+              {dataMitra.nama_pt}
             </p>
           </div>
         </div>

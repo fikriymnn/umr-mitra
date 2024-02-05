@@ -3,14 +3,19 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import SideBar from "@/components/sideBar";
 import axios from "axios";
 import Image from "next/image";
-import { useSearchParams } from "next/navigation";
+import {
+  getStorage,
+  deleteObject,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { storage } from "@/database/db";
 
-function EditPaket() {
-  const searchParams = useSearchParams();
-  const idParams = searchParams.get("id");
+function EditPaket({ params }: { params: any }) {
   //State value
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState([{ img: "" }]);
+  const [content, setContent] = useState([{ img: "", name: "" }]);
   const [category, setCategory] = useState("");
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
@@ -38,17 +43,19 @@ function EditPaket() {
         Disabilitas: false,
       },
       name: "",
-      content: [{ img: "" }],
+      content: [{ img: "", name: "" }],
     },
   ]);
 
   useEffect(() => {
-    getDetailPaket(idParams);
-  }, [idParams]);
+    getDetailPaket(params.id);
+  }, [params.id]);
 
   async function getDetailPaket(idd: any) {
     try {
-      const res = await axios.get(`http://localhost:5000/api/paket/${idd}`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${idd}`
+      );
       if (res.data.success == true) {
         let data = res.data.data;
         setTitle(data.title);
@@ -81,39 +88,50 @@ function EditPaket() {
     const onchangeVal = [...content];
     // get the selected file from the input
     const file = event.target.files[0];
-    // create a new FormData object and append the file to it
-    const formData = new FormData();
-    formData.append("content", file);
+    const fileName = file.name + "   " + new Date();
+
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      const storageRef = ref(storage, `/paket/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (err) => console.log(err),
+        () => {
+          // download url
+
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            onchangeVal[i]["img"] = url;
+
+            onchangeVal[i]["name"] = fileName;
+            setContent(onchangeVal);
+          });
         }
       );
-      console.log(response);
-      const id = response.data.data;
-      onchangeVal[i]["img"] = id;
-      setContent(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
+      console.log(error);
     }
   }
 
   //handle image delete content carousel
-  async function deleteContent(e: any, event: any, i: any, id: any) {
+  async function deleteContent(e: any, i: any, name: any) {
     e.preventDefault();
     const onchangeVal = [...content];
+    const storage = getStorage();
+    // Create a reference to the file to delete
+    const desertRef = ref(storage, "paket/" + name);
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`
-      );
-      console.log(response);
+      deleteObject(desertRef);
       onchangeVal[i]["img"] = "";
+      onchangeVal[i]["name"] = "";
       setContent(onchangeVal);
+      console.log("berhasil");
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -123,39 +141,53 @@ function EditPaket() {
   async function changeImage(e: any, event: any, i: any, ii: any) {
     e.preventDefault();
     const onchangeVal = [...hotel];
+
     const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("content", file);
+    const fileName = file.name + "   " + new Date();
+
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      const storageRef = ref(storage, `/hotel/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (err) => console.log(err),
+        () => {
+          // download url
+
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            onchangeVal[i]["content"][ii]["img"] = url;
+            onchangeVal[i]["content"][ii]["name"] = fileName;
+
+            setHotel(onchangeVal);
+          });
         }
       );
-      console.log(response);
-      const id = response.data.data;
-      onchangeVal[i]["content"][ii]["img"] = id;
-      setHotel(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
+      console.log(error);
     }
   }
 
   //handle image delete content hotel
-  async function deleteImage(e: any, event: any, i: any, ii: any, id: any) {
+  async function deleteImage(e: any, event: any, i: any, ii: any, name: any) {
     e.preventDefault();
     const onchangeVal = [...hotel];
+
+    const storage = getStorage();
+    // Create a reference to the file to delete
+    const desertRef = ref(storage, "hotel/" + name);
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`
-      );
-      console.log(response);
+      deleteObject(desertRef);
       onchangeVal[i]["content"][ii]["img"] = "";
+      onchangeVal[i]["content"][ii]["name"] = "";
       setHotel(onchangeVal);
+      console.log("berhasil");
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -164,7 +196,7 @@ function EditPaket() {
   //add content carousel
   const handleClickContent = () => {
     const onchangeVal = [...content];
-    onchangeVal.push({ img: "" });
+    onchangeVal.push({ img: "", name: "" });
     setContent(onchangeVal);
   };
   //delete content carousel
@@ -188,7 +220,7 @@ function EditPaket() {
           Disabilitas: false,
         },
         name: "",
-        content: [{ img: "" }],
+        content: [{ img: "", name: "" }],
       },
     ]);
   };
@@ -226,7 +258,7 @@ function EditPaket() {
   //add image in hotel dinamis
   const handleClickImg = (i: any) => {
     const onchangeVal = [...hotel];
-    onchangeVal[i]["content"].push({ img: "" });
+    onchangeVal[i]["content"].push({ img: "", name: "" });
     setHotel(onchangeVal);
   };
 
@@ -298,7 +330,7 @@ function EditPaket() {
   // get user using cookie
   async function getuser() {
     try {
-      const res = await axios.get("http://localhost:5000/api/user", {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         withCredentials: true,
       });
       if (res.data.success == true) {
@@ -315,7 +347,7 @@ function EditPaket() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paket/${idParams}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${params.id}`,
         {
           title: title,
           description: description,
@@ -450,13 +482,13 @@ function EditPaket() {
                     ) : (
                       <div key={ii}>
                         <img
-                          src={`http://localhost:5000/images/${val.img}`}
+                          src={val.img}
                           className="h-28 w-28"
                           alt={`Image ${ii + 1}`}
                         />
                         <button
                           type="button"
-                          onClick={(e) => deleteContent(e, e, ii, val.img)}
+                          onClick={(e) => deleteContent(e, ii, val.name)}
                         >
                           delete
                         </button>
@@ -760,14 +792,14 @@ function EditPaket() {
                           ) : (
                             <div key={ii}>
                               <img
-                                src={`http://localhost:5000/images/${val.img}`}
+                                src={val.img}
                                 className="h-28 w-28"
                                 alt={`Image ${ii + 1}`}
                               />
                               <button
                                 type="button"
                                 onClick={(e) =>
-                                  deleteImage(e, e, i, ii, val.img)
+                                  deleteImage(e, e, i, ii, val.name)
                                 }
                               >
                                 delete
@@ -1036,3 +1068,96 @@ function EditPaket() {
 }
 
 export default EditPaket;
+
+// //handle image upload content carousel
+//   async function changeImageContent(e: any, event: any, i: any) {
+//     e.preventDefault();
+//     const onchangeVal = [...content];
+//     // get the selected file from the input
+//     const file = event.target.files[0];
+//     // create a new FormData object and append the file to it
+//     const formData = new FormData();
+//     formData.append("content", file);
+//     try {
+//       const response = await axios.post(
+//         `${process.env.NEXT_PUBLIC_URL}/api/upload`,
+//         formData,
+//         {
+//           headers: {
+//             "Content-Type": "multipart/form-data",
+//           },
+//         }
+//       );
+
+//       const link = response.data.data;
+//       const name = response.data.name;
+//       onchangeVal[i]["img"] = link;
+//       onchangeVal[i]["name"] = name;
+//       setContent(onchangeVal);
+//     } catch (error: any) {
+//       alert(error.response.data.message);
+//     }
+//   }
+
+//   //handle image delete content carousel
+//   async function deleteContent(e: any, event: any, i: any, name: any) {
+//     e.preventDefault();
+//     const onchangeVal = [...content];
+//     try {
+//       const response = await axios.delete(
+//         `${process.env.NEXT_PUBLIC_URL}/api/upload/${name}`
+//       );
+//       console.log(response);
+//       onchangeVal[i]["img"] = "";
+//       onchangeVal[i]["name"] = "";
+//       setContent(onchangeVal);
+//     } catch (error: any) {
+//       alert(error.response.data.message);
+//     }
+//   }
+
+//   //handle image upload content hotel
+//   async function changeImage(e: any, event: any, i: any, ii: any) {
+//     e.preventDefault();
+//     const onchangeVal = [...hotel];
+//     const file = event.target.files[0];
+//     const formData = new FormData();
+//     formData.append("content", file);
+//     try {
+//       const response = await axios.post(
+//         `${process.env.NEXT_PUBLIC_URL}/api/upload`,
+//         formData,
+//         {
+//           headers: {
+//             "Content-Type": "multipart/form-data",
+//           },
+//         }
+//       );
+//       console.log(response);
+//       const link = response.data.data;
+//       const name = response.data.name;
+//       onchangeVal[i]["content"][ii]["img"] = link;
+//       onchangeVal[i]["content"][ii]["name"] = name;
+
+//       setHotel(onchangeVal);
+//     } catch (error: any) {
+//       alert(error.response.data.message);
+//     }
+//   }
+
+//   //handle image delete content hotel
+//   async function deleteImage(e: any, event: any, i: any, ii: any, name: any) {
+//     e.preventDefault();
+//     const onchangeVal = [...hotel];
+//     try {
+//       const response = await axios.delete(
+//         `${process.env.NEXT_PUBLIC_URL}/api/upload/${name}`
+//       );
+//       console.log(response);
+//       onchangeVal[i]["content"][ii]["img"] = "";
+//       onchangeVal[i]["content"][ii]["name"] = "";
+//       setHotel(onchangeVal);
+//     } catch (error: any) {
+//       alert(error.response.data.message);
+//     }
+//   }

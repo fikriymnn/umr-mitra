@@ -1,28 +1,38 @@
 "use client";
-import { useGlobalContext } from "@/context/AuthContext";
+
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useRef, useState } from "react";
 
 function Page() {
   const { push } = useRouter();
-  const { setDataUser } = useGlobalContext();
+
   const [Email, setEmail] = useState("");
   const [Password, setPassword] = useState("");
-  const url = "http://localhost:5000/api/login_mitra";
 
   async function submitLogin(e: any) {
     e.preventDefault();
     try {
       const response = await axios.post(
-        url,
+        `${process.env.NEXT_PUBLIC_URL}/api/login_mitra`,
         { email: Email, password: Password },
+
         {
           withCredentials: true,
-          headers: { "Content-Type": "application/json" },
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
         }
       );
-      setDataUser(response.data.data);
+
+      //enkripsi data
+      // const encriptData = btoa(response.data.data._id);
+      // console.log(response);
+
+      // const idUser = encriptData;
+
+      // sessionStorage.setItem("id_user", idUser);
       alert("login success");
       push("/dashboard");
     } catch (error: any) {

@@ -1,21 +1,21 @@
 "use client";
 import React, { useEffect, useState } from "react";
 import SideBar from "@/components/sideBar";
-import { useSearchParams } from "next/navigation";
+
 import axios from "axios";
 import { format } from "date-fns";
 
-function Detail() {
-  const searchParams = useSearchParams();
-  const id = searchParams.get("id");
+function Detail({ params }: { params: any }) {
   const [DetailPaket, setDetailPaket] = useState<any>(null);
   useEffect(() => {
-    getDetailPaket(id);
-  }, [id]);
+    getDetailPaket(params.id);
+  }, [params.id]);
 
   async function getDetailPaket(idd: any) {
     try {
-      const res = await axios.get(`http://localhost:5000/api/paket/${idd}`);
+      const res = await axios.get(
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${idd}`
+      );
       if (res.data.success == true) {
         setDetailPaket(res.data.data);
       }
@@ -29,7 +29,7 @@ function Detail() {
     e.preventDefault();
     try {
       const response = await axios.put(
-        `http://localhost:5000/api/paket/${id}`,
+        `${process.env.NEXT_PUBLIC_URL}/api/paket/${params.id}`,
         {
           status: "non_aktif",
         },
@@ -78,7 +78,7 @@ function Detail() {
                 return (
                   <img
                     key={i}
-                    src={`http://localhost:5000/images/${data.img}`}
+                    src={data.img}
                     alt=""
                     className="bg-slate-200 h-20"
                   ></img>
@@ -206,7 +206,7 @@ function Detail() {
                       return (
                         <img
                           key={ii}
-                          src={`http://localhost:5000/images/${data.img}`}
+                          src={data.img}
                           alt=""
                           className="bg-slate-200 h-20"
                         ></img>
@@ -330,7 +330,7 @@ function Detail() {
           </div>
           <div className="pt-5">
             <a
-              href={`/paket/edit?id=${id}`}
+              href={`/paket/edit/${params.id}`}
               className="w-full font-semibold text-xl rounded-md p-3 text-semibold text-white bg-[#E3B02B] hover:bg-[#b18a2a]"
             >
               Edit Paket

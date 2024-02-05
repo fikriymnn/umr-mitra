@@ -4,21 +4,25 @@ import PackageTableColDtl from "@/components/PackageTableColDtl";
 import SideBar from "@/components/sideBar";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 function Selesai() {
+  const router = useRouter();
   const [paket, setPaket] = useState([]);
+  let loading = false;
 
-  let id: any = "";
   useEffect(() => {
     getuser();
-  });
+  }, []);
+
   async function getuser() {
     try {
-      const res = await axios.get("http://localhost:5000/api/user", {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         withCredentials: true,
       });
-
-      id = res.data.data._id;
+      if (res.data.success == false) {
+        router.push("/login");
+      }
       getpaket(res.data.data._id);
     } catch (error: any) {
       console.log(error.response);
@@ -26,15 +30,18 @@ function Selesai() {
   }
 
   async function getpaket(id: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=non_aktif&skip=0&limit=10`;
     try {
-      const res = await axios.get(
-        `http://localhost:5000/api/paket?id_mitra=${id}&status=non_aktif&skip=0&limit=10`
-      );
+      const res = await axios.get(url);
 
-      setPaket(res.data.data.data);
+      setPaket(res.data.data.paket);
     } catch (error: any) {
       console.log(error.response);
     }
+  }
+
+  if ((loading = false)) {
+    return <div>Loading</div>;
   }
   return (
     <div className="flex">

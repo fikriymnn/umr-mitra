@@ -3,12 +3,19 @@ import React, { useState, ChangeEvent, useEffect } from "react";
 import SideBar from "@/components/sideBar";
 import axios from "axios";
 import Image from "next/image";
+import {
+  getStorage,
+  deleteObject,
+  ref,
+  uploadBytesResumable,
+  getDownloadURL,
+} from "firebase/storage";
+import { storage } from "@/database/db";
 
 function TambahPaket() {
-  const url = "http://localhost:5000/api/paket";
   //State value
   const [title, setTitle] = useState("");
-  const [content, setContent] = useState([{ img: "" }]);
+  const [content, setContent] = useState([{ img: "", name: "" }]);
   const [category, setCategory] = useState("");
   const [jenisKeberangkatan, setJenisKeberangkatan] = useState("");
   const [description, setDescription] = useState("");
@@ -36,7 +43,7 @@ function TambahPaket() {
         Disabilitas: false,
       },
       name: "",
-      content: [{ img: "" }],
+      content: [{ img: "", name: "" }],
     },
   ]);
 
@@ -46,39 +53,50 @@ function TambahPaket() {
     const onchangeVal = [...content];
     // get the selected file from the input
     const file = event.target.files[0];
-    // create a new FormData object and append the file to it
-    const formData = new FormData();
-    formData.append("content", file);
+    const fileName = file.name + "   " + new Date();
+
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      const storageRef = ref(storage, `/paket/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (err) => console.log(err),
+        () => {
+          // download url
+
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            onchangeVal[i]["img"] = url;
+
+            onchangeVal[i]["name"] = fileName;
+            setContent(onchangeVal);
+          });
         }
       );
-      console.log(response);
-      const id = response.data.data;
-      onchangeVal[i]["img"] = id;
-      setContent(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
+      console.log(error);
     }
   }
 
   //handle image delete content carousel
-  async function deleteContent(e: any, event: any, i: any, id: any) {
+  async function deleteContent(e: any, i: any, name: any) {
     e.preventDefault();
     const onchangeVal = [...content];
+    const storage = getStorage();
+    // Create a reference to the file to delete
+    const desertRef = ref(storage, "paket/" + name);
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`
-      );
-      console.log(response);
+      deleteObject(desertRef);
       onchangeVal[i]["img"] = "";
+      onchangeVal[i]["name"] = "";
       setContent(onchangeVal);
+      console.log("berhasil");
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -88,39 +106,53 @@ function TambahPaket() {
   async function changeImage(e: any, event: any, i: any, ii: any) {
     e.preventDefault();
     const onchangeVal = [...hotel];
+
     const file = event.target.files[0];
-    const formData = new FormData();
-    formData.append("content", file);
+    const fileName = file.name + "   " + new Date();
+
     try {
-      const response = await axios.post(
-        "http://localhost:5000/api/upload",
-        formData,
-        {
-          headers: {
-            "Content-Type": "multipart/form-data",
-          },
+      const storageRef = ref(storage, `/hotel/${fileName}`);
+      const uploadTask = uploadBytesResumable(storageRef, file);
+
+      uploadTask.on(
+        "state_changed",
+        (snapshot) => {
+          const percent = Math.round(
+            (snapshot.bytesTransferred / snapshot.totalBytes) * 100
+          );
+        },
+        (err) => console.log(err),
+        () => {
+          // download url
+
+          getDownloadURL(uploadTask.snapshot.ref).then((url) => {
+            onchangeVal[i]["content"][ii]["img"] = url;
+            onchangeVal[i]["content"][ii]["name"] = fileName;
+
+            setHotel(onchangeVal);
+          });
         }
       );
-      console.log(response);
-      const id = response.data.data;
-      onchangeVal[i]["content"][ii]["img"] = id;
-      setHotel(onchangeVal);
     } catch (error: any) {
       alert(error.response.data.message);
+      console.log(error);
     }
   }
 
   //handle image delete content hotel
-  async function deleteImage(e: any, event: any, i: any, ii: any, id: any) {
+  async function deleteImage(e: any, event: any, i: any, ii: any, name: any) {
     e.preventDefault();
     const onchangeVal = [...hotel];
+
+    const storage = getStorage();
+    // Create a reference to the file to delete
+    const desertRef = ref(storage, "hotel/" + name);
     try {
-      const response = await axios.delete(
-        `http://localhost:5000/api/upload/${id}`
-      );
-      console.log(response);
+      deleteObject(desertRef);
       onchangeVal[i]["content"][ii]["img"] = "";
+      onchangeVal[i]["content"][ii]["name"] = "";
       setHotel(onchangeVal);
+      console.log("berhasil");
     } catch (error: any) {
       alert(error.response.data.message);
     }
@@ -129,7 +161,7 @@ function TambahPaket() {
   //add content carousel
   const handleClickContent = () => {
     const onchangeVal = [...content];
-    onchangeVal.push({ img: "" });
+    onchangeVal.push({ img: "", name: "" });
     setContent(onchangeVal);
   };
   //delete content carousel
@@ -153,7 +185,7 @@ function TambahPaket() {
           Disabilitas: false,
         },
         name: "",
-        content: [{ img: "" }],
+        content: [{ img: "", name: "" }],
       },
     ]);
   };
@@ -191,7 +223,7 @@ function TambahPaket() {
   //add image in hotel dinamis
   const handleClickImg = (i: any) => {
     const onchangeVal = [...hotel];
-    onchangeVal[i]["content"].push({ img: "" });
+    onchangeVal[i]["content"].push({ img: "", name: "" });
     setHotel(onchangeVal);
   };
 
@@ -263,7 +295,7 @@ function TambahPaket() {
   // get user using cookie
   async function getuser() {
     try {
-      const res = await axios.get("http://localhost:5000/api/user", {
+      const res = await axios.get(`${process.env.NEXT_PUBLIC_URL}/api/user`, {
         withCredentials: true,
       });
       if (res.data.success == true) {
@@ -280,7 +312,7 @@ function TambahPaket() {
     e.preventDefault();
     try {
       const response = await axios.post(
-        url,
+        `${process.env.NEXT_PUBLIC_URL}/api/paket`,
         {
           id_mitra: id,
           title: title,
@@ -413,13 +445,13 @@ function TambahPaket() {
                     ) : (
                       <div key={ii}>
                         <img
-                          src={`http://localhost:5000/images/${val.img}`}
+                          src={val.img}
                           className="h-28 w-28"
                           alt={`Image ${ii + 1}`}
                         />
                         <button
                           type="button"
-                          onClick={(e) => deleteContent(e, e, ii, val.img)}
+                          onClick={(e) => deleteContent(e, ii, val.name)}
                         >
                           delete
                         </button>
@@ -714,14 +746,14 @@ function TambahPaket() {
                           ) : (
                             <div key={ii}>
                               <img
-                                src={`http://localhost:5000/images/${val.img}`}
+                                src={val.img}
                                 className="h-28 w-28"
                                 alt={`Image ${ii + 1}`}
                               />
                               <button
                                 type="button"
                                 onClick={(e) =>
-                                  deleteImage(e, e, i, ii, val.img)
+                                  deleteImage(e, e, i, ii, val.name)
                                 }
                               >
                                 delete
