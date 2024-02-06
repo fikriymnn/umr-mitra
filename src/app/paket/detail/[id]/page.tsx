@@ -66,13 +66,15 @@ function Detail({ params }: { params: any }) {
               </button>
             </div>
           ) : (
-            <div></div>
+            <div className="w-full h-14 mt-2  rounded-md p-3 text-semibold text-white bg-slate-200 mb-1">
+
+            </div>
           )}
 
           <p className="font-semibold text-[20px]">Detail</p>
           <div className="w-full py-2 grid grid-cols-4 gap-2 ">
             {DetailPaket == null ? (
-              <div></div>
+              <div className="bg-slate-200 w-20 h-20"></div>
             ) : (
               DetailPaket.content_carousel.map((data: any, i: number) => {
                 return (
@@ -87,90 +89,153 @@ function Detail({ params }: { params: any }) {
             )}
           </div>
           <div className="flex w-full gap-10">
-            <div className="py-3 w-full">
+            <div className=" w-full">
               <div className="py-1 ">
                 <p className="text-[18px] font-medium">Nama Paket</p>
                 <div className="relative w-full">
-                  <p>{DetailPaket == null ? "" : DetailPaket.title}</p>
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-6/12 h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.title}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
               <div className="py-1 ">
                 <p className="text-[18px] font-medium">Kategori Paket</p>
                 <div className="relative w-full">
-                  <p>{DetailPaket == null ? "" : DetailPaket.category_paket}</p>
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-6/12 h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.category_paket}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
               <div className="py-1 ">
                 <p className="text-[18px] font-medium">Jenis Keberangkatan</p>
                 <div className="relative w-full">
-                  <p>
-                    {DetailPaket == null ? "" : DetailPaket.jenis_keberangkatan}
-                  </p>
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-6/12 h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.jenis_keberangkatan}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
-              <div className="py-1 mt-5">
+              <div className="py-1">
                 <p className="text-[18px] font-medium">Deskripsi Paket</p>
                 <div className="relative w-full">
-                  <p>{DetailPaket == null ? "" : DetailPaket.description}</p>
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-6/12 h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.description}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
             </div>
           </div>
           <div className="flex w-full gap-10">
-            <div className="py-3 w-full">
+            <div className=" w-full">
               <div className="">
                 <p className="text-[18px] font-medium">Pilihan Kamar</p>
                 <div className="relative w-full">
-                  <p>{DetailPaket == null ? "" : DetailPaket.pilihan_kamar}</p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.pilihan_kamar}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
-              <div className="mt-5">
+              <div className="">
                 <p className="text-[18px] font-medium">Tanggal Keberangkatan</p>
                 <div className="relative w-full">
-                  <p>{WaktuKeberangkatan}</p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {WaktuKeberangkatan}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
               <div className="mt-5">
                 <p className="text-[18px] font-medium">Maskapai Pesawat</p>
                 <div className="relative w-full">
-                  <p>
-                    {DetailPaket == null
-                      ? ""
-                      : DetailPaket.maskapai_penerbangan}
-                  </p>
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.maskapai_penerbangan}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
               <div className="mt-5">
                 <p className="text-[18px] font-medium">Kota Keberangkatan</p>
                 <div className="relative w-full">
-                  <p>
-                    {DetailPaket == null ? "" : DetailPaket.kota_keberangkatan}
-                  </p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.kota_keberangkatan}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
               <div className="mt-5">
                 <p className="text-[18px] font-medium">Durasi Perjalanan</p>
                 <div className="relative w-full">
-                  <p>
-                    {DetailPaket == null ? "" : DetailPaket.durasi_perjalanan}
-                  </p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.durasi_perjalanan}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
               <div className="mt-5">
                 <p className="text-[18px] font-medium">Kelas Hotel</p>
                 <div className="relative w-full">
-                  <p>
-                    {DetailPaket == null ? "" : DetailPaket.rating_hotel + "/5"}
-                  </p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.rating_hotel + "/5"}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
@@ -183,9 +248,15 @@ function Detail({ params }: { params: any }) {
               <div className="">
                 <p className="text-[18px] font-medium">Detail Fasilitas</p>
                 <div className="relative w-full">
-                  <p>
-                    {DetailPaket == null ? "" : DetailPaket.fasilitas_umroh}
-                  </p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.fasilitas_umroh}
+                    </p>
+                  )
+                  }
                 </div>
               </div>
             </div>
@@ -195,7 +266,7 @@ function Detail({ params }: { params: any }) {
 
           {/* ARRAY HOTEL */}
           {DetailPaket == null ? (
-            <div></div>
+            <div className="bg-slate-200 w-6/12 h-6"></div>
           ) : (
             DetailPaket.hotel.map((data: any, i: number) => {
               return (
@@ -218,13 +289,29 @@ function Detail({ params }: { params: any }) {
                       <div className="">
                         <p className="text-[18px] font-medium">Kota</p>
                         <div className="relative w-full">
-                          <p>{data.city}</p>
+
+                          {DetailPaket == null ? (
+                            <div className="bg-slate-200 w-full h-6"></div>
+                          ) : (
+                            <p>
+                              {DetailPaket.city}
+                            </p>
+                          )
+                          }
                           <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                         </div>
                         <div className="mt-5">
                           <p className="text-[18px] font-medium">Hotel</p>
                           <div className="relative w-full">
-                            <p>{data.name}</p>
+
+                            {DetailPaket == null ? (
+                              <div className="bg-slate-200 w-full h-6"></div>
+                            ) : (
+                              <p>
+                                {DetailPaket.name}
+                              </p>
+                            )
+                            }
                             <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                           </div>
                         </div>
@@ -273,7 +360,7 @@ function Detail({ params }: { params: any }) {
             <div className="py-3 w-full">
               {/* AGENDA ARRAY */}
               {DetailPaket == null ? (
-                <div></div>
+                <div className="bg-slate-200 w-20 h-20"></div>
               ) : (
                 DetailPaket.jadwal.map((data: any, i: number) => {
                   return (
@@ -300,9 +387,15 @@ function Detail({ params }: { params: any }) {
                   Detail Syarat dan Ketentuan
                 </p>
                 <div className="relative w-full">
-                  <p>
-                    {DetailPaket == null ? "" : DetailPaket.syarat_ketentuan}
-                  </p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.syarat_ketentuan}
+                    </p>
+                  )
+                  }
                 </div>
               </div>
             </div>
@@ -314,14 +407,30 @@ function Detail({ params }: { params: any }) {
               <div>
                 <p className="text-[18px] font-medium">Harga Paket</p>
                 <div className="relative w-full">
-                  <p>Rp {DetailPaket == null ? "" : DetailPaket.price}</p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      Rp {DetailPaket.price}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
                 <p className="text-[18px] font-medium mt-5">
                   Kuota Yang Disediakan
                 </p>
                 <div className="relative w-full ">
-                  <p>{DetailPaket == null ? "" : DetailPaket.kuota}</p>
+
+                  {DetailPaket == null ? (
+                    <div className="bg-slate-200 w-full h-6"></div>
+                  ) : (
+                    <p>
+                      {DetailPaket.kuota}
+                    </p>
+                  )
+                  }
                   <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                 </div>
               </div>
@@ -338,7 +447,7 @@ function Detail({ params }: { params: any }) {
           </div>
         </div>
       </div>
-    </div>
+    </div >
   );
 }
 

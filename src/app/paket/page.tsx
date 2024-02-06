@@ -8,7 +8,6 @@ import { useRouter } from "next/navigation";
 function Paket() {
   const router = useRouter();
   const [paket, setPaket] = useState<any>(null);
-  let loading = false;
 
   useEffect(() => {
     getuser();
@@ -39,19 +38,12 @@ function Paket() {
     }
   }
 
-  // if (loading == false) {
-  //   return <div>Loading</div>;
-  // }
-  if (paket == null) {
-    return <div>Loading</div>;
-  }
-
   return (
     <div className="flex ">
       <SideBar paket=" text-white bg-[#E3B02B]" />
       <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
         <p className="font-semibold text-[28px]">
-          Daftar Paket Aktif &#40; {paket.length} &#41;
+          Daftar Paket Aktif &#40; {paket == null ? " " : paket.length} &#41;
         </p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
           <div className="flex justify-between">
@@ -108,7 +100,14 @@ function Paket() {
               </div>
             </div>
             <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
-              {paket != null &&
+              {paket == null ? (
+                <>
+                  <div>
+                    <div className="w-full h-10 bg-slate-300 rounded-md"></div>
+                  </div>
+
+                </>
+              ) : (
                 paket.map((data: any, i: number) => {
                   return (
                     <PackageTableCol
@@ -120,8 +119,9 @@ function Paket() {
                       stock={data.sisa_kuota}
                       status={data.status}
                     />
-                  );
-                })}
+                  )
+                }
+                ))}
             </div>
           </div>
         </div>
