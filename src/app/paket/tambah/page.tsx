@@ -374,7 +374,7 @@ function TambahPaket() {
                       type="text"
                       onChange={(e) => setCategory(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                      placeholder="Masukkan Nama Paket"
+                      placeholder="Masukkan Kategori Paket"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
@@ -386,7 +386,7 @@ function TambahPaket() {
                       type="text"
                       onChange={(e) => setJenisKeberangkatan(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                      placeholder="Masukkan Nama Paket"
+                      placeholder="Masukkan Jenis Keberangkatan"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
@@ -418,6 +418,7 @@ function TambahPaket() {
                           <label className="w-full h-24 flex flex-col justify-center items-center">
                             <input
                               type="file"
+                              accept="image/*"
                               required
                               className="bg-black w-full h-full hidden"
                               onChange={(e) => changeImageContent(e, e, ii)}
@@ -549,7 +550,7 @@ function TambahPaket() {
                       type="number"
                       onChange={(e) => setKelasHotel(Number(e.target.value))}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                      placeholder="Masukkan Durasi"
+                      placeholder="Masukkan Kelas Hotel"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
@@ -719,6 +720,7 @@ function TambahPaket() {
                                 <label className="w-full h-24 flex flex-col justify-center items-center">
                                   <input
                                     type="file"
+                                    accept="image/*"
                                     required
                                     className="bg-black w-full h-full hidden"
                                     onChange={(e) => changeImage(e, e, i, ii)}
