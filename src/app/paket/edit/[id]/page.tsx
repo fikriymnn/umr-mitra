@@ -409,7 +409,7 @@ function EditPaket({ params }: { params: any }) {
                       value={category}
                       onChange={(e) => setCategory(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                      placeholder="Masukkan Nama Paket"
+                      placeholder="Masukkan Kategori Paket"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>
@@ -422,7 +422,7 @@ function EditPaket({ params }: { params: any }) {
                       value={jenisKeberangkatan}
                       onChange={(e) => setJenisKeberangkatan(e.target.value)}
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
-                      placeholder="Masukkan Nama Paket"
+                      placeholder="Masukkan Jenis Keberangkatan"
                     />
                     <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
                   </div>

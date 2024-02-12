@@ -7,8 +7,7 @@ import React, { useEffect, useState } from "react";
 
 function OrderSelesai() {
   const router = useRouter();
-  const [Order, setOrder] = useState([]);
-  let loading = false;
+  const [Order, setOrder] = useState<any>(null);
 
   useEffect(() => {
     getuser();
@@ -44,15 +43,13 @@ function OrderSelesai() {
     }
   }
 
-  if ((loading = false)) {
-    return <div>Loading</div>;
-  }
+
   return (
     <div className="flex ">
       <SideBar order=" text-white bg-[#E3B02B]" />
       <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
         <p className="font-semibold text-[28px]">
-          Daftar Order Selesai &#40; {Order.length} &#41;
+          Daftar Order Selesai &#40; {Order == null ? "" : Order.length} &#41;
         </p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
           <div className="flex justify-between">
@@ -92,19 +89,27 @@ function OrderSelesai() {
               </div>
             </div>
             <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
-              {Order.map((data: any, i: number) => {
-                return (
-                  <ContentTableFinished
-                    key={i}
-                    id={data.order._id}
-                    no={i + 1}
-                    name={data.order.nama_lengkap}
-                    jumlah={data.order.jamaah.length}
-                    paket={data.paket.title}
-                    status={data.order.status}
-                  />
-                );
-              })}
+              {Order == null ? (
+                <>
+                  <div>
+                    <div className="w-full h-10 bg-slate-300 rounded-md"></div>
+                  </div>
+                </>
+              ) : (
+                Order.map((data: any, i: number) => {
+                  return (
+                    <ContentTableFinished
+                      key={i}
+                      id={data.order._id}
+                      no={i + 1}
+                      name={data.order.nama_lengkap}
+                      jumlah={data.order.jamaah.length}
+                      paket={data.paket.title}
+                      status={data.order.status}
+                    />
+                  );
+                }
+                ))}
             </div>
           </div>
         </div>

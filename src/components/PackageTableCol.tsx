@@ -16,6 +16,14 @@ function PackageTableCol({
   id: any;
   status: any;
 }) {
+  const nominal = price;
+
+  const formattedNominal = nominal.toLocaleString('id-ID', {
+    style: 'currency',
+    currency: 'IDR',
+    minimumFractionDigits: 0,
+  });
+
   return (
     <div>
       <div className="rounded-md min-w-full flex gap-3 bg-slate-300 mb-1 px-2 py-2">
@@ -29,7 +37,7 @@ function PackageTableCol({
         </div>
         <div className="flex gap-3 w-7/12 justify-between">
           <div className="w-full text-[20px] line-clamp-1">
-            <p>{price}</p>
+            <p>{formattedNominal}</p>
           </div>
           <div className="w-full  text-[20px] line-clamp-1">
             <p>{stock}</p>

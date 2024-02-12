@@ -15,6 +15,7 @@ function ContentTableFinished({
   paket: any;
   status: any;
 }) {
+
   return (
     <div>
       <div className="rounded-md min-w-full flex gap-3 bg-slate-300 mb-1 px-2 py-2">
