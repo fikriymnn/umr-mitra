@@ -93,7 +93,7 @@ function Order() {
                 </div>
                 <div className="w-5/12 text-[20px] font-semibold ">Jumlah</div>
                 <div className="w-full  text-[20px] font-semibold ">Paket</div>
-                <div className="w-10/12  flex gap-3 text-[20px] font-semibold">
+                <div className="w-9/12  flex gap-3 text-[20px] font-semibold">
                   Status
                 </div>
               </div>
