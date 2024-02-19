@@ -21,6 +21,7 @@ function Paket() {
       if (res.data.success == false) {
         router.push("/login");
       }
+
       getpaket(res.data.data._id);
     } catch (error: any) {
       console.log(error.response);
@@ -31,7 +32,7 @@ function Paket() {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=300`;
     try {
       const res = await axios.get(url);
-      console.log(res.data);
+
       setPaket(res.data.data.paket);
     } catch (error: any) {
       console.log(error.response);
@@ -101,12 +102,11 @@ function Paket() {
             </div>
             <div className="max-h-[500px] overflow-y-scroll border-y-2 border-slate-400 py-3">
               {paket == null ? (
-                <>
+                <div>
                   <div>
                     <div className="w-full h-10 bg-slate-300 rounded-md"></div>
                   </div>
-
-                </>
+                </div>
               ) : (
                 paket.map((data: any, i: number) => {
                   return (
@@ -119,9 +119,9 @@ function Paket() {
                       stock={data.sisa_kuota}
                       status={data.status}
                     />
-                  )
-                }
-                ))}
+                  );
+                })
+              )}
             </div>
           </div>
         </div>
