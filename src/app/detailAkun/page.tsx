@@ -35,7 +35,7 @@ function DetailAkun() {
         `${process.env.NEXT_PUBLIC_URL}/api/mitra/${id}`
       );
       if (res.data.success == true) {
-        setDataMitra(res.data.data);
+        setDataMitra(res.data.data.mitra);
       }
       id = res.data.data._id;
     } catch (error: any) {
@@ -53,7 +53,6 @@ function DetailAkun() {
         <SideBar detailAkun="text-white bg-[#E3B02B]" />
         <div className="h-screen w-screen grey px-[28px] py-[20px]  overflow-y-scroll">
           <div>
-
             <label className="text-black font-semibold text-[28px] ">
               Detail Mitra
             </label>
@@ -71,16 +70,13 @@ function DetailAkun() {
                   )}
                 </div>
                 <div>
-
                   {dataMitra == null ? (
                     <div className="w-full h-7 rounded-md bg-zinc-200  mt-5" />
                   ) : (
                     <p className="flex justify-items-center justify-center mt-[20px] text-black text-2xl text-center font-semibold ">
                       {dataMitra.nama_mitra}
                     </p>
-                  )
-                  }
-
+                  )}
                 </div>
               </div>
 
@@ -92,8 +88,9 @@ function DetailAkun() {
                   <div className="grid justify-end">
                     <button className="w-40 h-8 justify-items-end bg-amber-400 rounded-md text-center text-base text-white font-medium">
                       <Link
-                        href={`/detailAkun/editprofile/${dataMitra == null ? "" : dataMitra._id
-                          }`}
+                        href={`/detailAkun/editprofile/${
+                          dataMitra == null ? "" : dataMitra._id
+                        }`}
                       >
                         Perbarui Data
                       </Link>
@@ -101,15 +98,13 @@ function DetailAkun() {
                   </div>
                 </div>
                 <div>
-
                   {dataMitra == null ? (
                     <div className=" w-6/12 h-7 rounded-md bg-zinc-200" />
                   ) : (
                     <p className="w-full h-7 text-lg text-black  font-semibold">
                       {dataMitra.nama_mitra}
                     </p>
-                  )
-                  }
+                  )}
                 </div>
 
                 <div className="mt-[22px]">
@@ -124,8 +119,7 @@ function DetailAkun() {
                     <p className="w-full h-7 text-lg text-black  font-semibold">
                       {dataMitra.nama_pt}
                     </p>
-                  )
-                  }
+                  )}
                 </div>
 
                 <div className="mt-[22px]">
@@ -134,16 +128,13 @@ function DetailAkun() {
                   </label>
                 </div>
                 <div>
-
                   {dataMitra == null ? (
                     <div className=" w-6/12 h-7 rounded-md bg-zinc-200"></div>
                   ) : (
                     <p className="w-full h-7 text-lg text-black  font-semibold">
                       {dataMitra.no_izin_umroh}
                     </p>
-                  )
-                  }
-
+                  )}
                 </div>
                 <div className="mt-[22px]">
                   <label className="w-full h-7 text-base text-black  font-normal">
@@ -157,8 +148,7 @@ function DetailAkun() {
                     <p className="w-full h-7 text-lg text-black  font-semibold">
                       {dataMitra.location}
                     </p>
-                  )
-                  }
+                  )}
                 </div>
                 <div className="mt-[22px]">
                   <label className="w-full h-7 text-base text-black  font-normal">
@@ -166,16 +156,13 @@ function DetailAkun() {
                   </label>
                 </div>
                 <div>
-
                   {dataMitra == null ? (
                     <div className=" w-6/12 h-7 rounded-md bg-zinc-200"></div>
                   ) : (
                     <p className="w-full h-7 text-lg text-black  font-semibold">
                       {dataMitra.email}
                     </p>
-                  )
-                  }
-
+                  )}
                 </div>
                 <div className="mt-[22px]">
                   <label className="w-full h-7 text-base text-black  font-normal">
@@ -183,16 +170,13 @@ function DetailAkun() {
                   </label>
                 </div>
                 <div>
-
                   {dataMitra == null ? (
                     <div className=" w-6/12 h-7 rounded-md bg-zinc-200"></div>
                   ) : (
                     <p className="w-full h-7 text-lg text-black  font-semibold">
                       {dataMitra.website}
                     </p>
-                  )
-                  }
-
+                  )}
                 </div>
                 <div className="mt-[22px]">
                   <label className="w-full h-7 text-base text-black  font-normal">
@@ -200,21 +184,19 @@ function DetailAkun() {
                   </label>
                 </div>
                 <div>
-
                   {dataMitra == null ? (
                     <div className=" w-6/12 h-7 rounded-md bg-zinc-200"></div>
                   ) : (
                     <p className="w-full h-7 text-lg text-black  font-semibold">
                       {dataMitra.rating}/5
                     </p>
-                  )
-                  }
+                  )}
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </div >
+      </div>
     </>
   );
 }

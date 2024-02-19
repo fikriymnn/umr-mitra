@@ -26,6 +26,7 @@ function Dashboard() {
       if (res.data.success == false) {
         router.push("/login");
       }
+
       getMitras(res.data.data._id);
     } catch (error: any) {
       console.log(error.response);
@@ -38,7 +39,7 @@ function Dashboard() {
     try {
       const res = await axios.get(url);
 
-      setDataMitra(res.data.data);
+      setDataMitra(res.data.data.mitra);
 
       console.log(res.data.data);
     } catch (error: any) {
@@ -57,7 +58,6 @@ function Dashboard() {
 
         <div className="min-h-screen w-screen grey px-[28px] overflow-y-scroll">
           <div className="flex items-center justify-start bg-white  my-[21px] w-full h-[254px] rounded-[10px_10px_10px_10px] shadow-xl">
-
             {dataMitra == null ? (
               <div className="w-[148px] h-[148px] ml-[67px] rounded-full bg-zinc-300"></div>
             ) : (
@@ -69,15 +69,13 @@ function Dashboard() {
             )}
 
             <div className="flex flex-col items-start justify-start ml-[38px]">
-
               {dataMitra == null ? (
                 <div className="w-44 h-10 rounded-md bg-zinc-200 "></div>
               ) : (
                 <p className="font-medium text-[40px] text-black">
                   {dataMitra.nama_mitra}
                 </p>
-              )
-              }
+              )}
 
               {dataMitra == null ? (
                 <div className="w-32 h-7 rounded-md bg-zinc-200  mt-2"></div>
@@ -85,8 +83,7 @@ function Dashboard() {
                 <p className="font-medium text-medium text-black">
                   {dataMitra.nama_pt}
                 </p>
-              )
-              }
+              )}
             </div>
           </div>
           {/* grid content */}
@@ -102,7 +99,6 @@ function Dashboard() {
             <DashCardDoubleRow title={"Paket Selesai"} value={"15"} />
           </GridWrapper>
         </div>
-
       </div>
     </>
   );

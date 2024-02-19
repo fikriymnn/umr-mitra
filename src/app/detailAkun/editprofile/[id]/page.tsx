@@ -48,13 +48,13 @@ function EditProfile({ params }: { params: any }) {
           `${process.env.NEXT_PUBLIC_URL}/api/mitra/${params.id}`
         );
         if (res.data.success == true) {
-          setDataMitra(res.data.data);
-          setnama_mitra(res.data.data.nama_mitra);
-          setnama_pt(res.data.data.nama_pt);
-          setemail(res.data.data.email);
-          setlocation(res.data.data.location);
-          setwebsite(res.data.data.website);
-          setfoto_profile(res.data.data.foto_profil);
+          setDataMitra(res.data.data.mitra);
+          setnama_mitra(res.data.data.mitra.nama_mitra);
+          setnama_pt(res.data.data.mitra.nama_pt);
+          setemail(res.data.data.mitra.email);
+          setlocation(res.data.data.mitra.location);
+          setwebsite(res.data.data.mitra.website);
+          setfoto_profile(res.data.data.mitra.foto_profil);
         }
       } catch (error: any) {
         console.log(error.response);

@@ -1,13 +1,15 @@
 "use client";
-import ContentTableOrder from "@/components/order/contentTable";
+import ContentTableKeberangkatan from "@/components/order/contentTableKeberangkatan";
 import SideBar from "@/components/sideBar";
 import axios from "axios";
 import React, { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 
-function Order() {
+function Keberangkatan() {
   const router = useRouter();
   const [Order, setOrder] = useState<any>(null);
+  const [IdMitra, setIdMitra] = useState<any>(null);
+  const fill = ["belum berangkat", "sudah berangkat"];
 
   useEffect(() => {
     getuser();
@@ -21,18 +23,29 @@ function Order() {
       if (res.data.success == false) {
         router.push("/login");
       }
-      getOrder(res.data.data._id);
+      getOrder(res.data.data._id, "all");
+      setIdMitra(res.data.data._id);
     } catch (error: any) {
       console.log(error.response);
     }
   }
 
-  async function getOrder(id: any) {
-    const url = `${process.env.NEXT_PUBLIC_URL}/api/order?id_mitra=${id}&skip=0&limit=100`;
+  async function getOrder(id: any, status: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/order`;
     try {
-      const res = await axios.get(url, {
-        withCredentials: true,
-      });
+      const res = await axios.get(
+        url,
+
+        {
+          params: {
+            id_mitra: id,
+            status_keberangkatan: status,
+            skip: 0,
+            limit: 100,
+          },
+          withCredentials: true,
+        }
+      );
 
       setOrder(res.data.data);
       console.log(res.data);
@@ -46,7 +59,7 @@ function Order() {
       <SideBar order=" text-white bg-[#E3B02B]" />
       <div className="h-screen w-screen grey px-[28px] py-[20px] overflow-y-scroll">
         <p className="font-semibold text-[28px]">
-          Daftar Order Berjalan &#40; {Order == null ? "" : Order.length} &#41;
+          Daftar keberangkatan &#40; {Order == null ? "" : Order.length} &#41;
         </p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
           <div className="relative flex gap-3 w-5/12 ">
@@ -55,6 +68,15 @@ function Order() {
               className="pl-10 pr-4 py-1 border rounded-md  text-black bg-slate-200 h-full px-2  w-full"
               placeholder="Cari Pesanan"
             />
+
+            <select
+              className=""
+              onChange={(e) => getOrder(IdMitra, e.target.value)}
+            >
+              <option value="all">Semua</option>
+              <option value="belum berangkat">Belum Berangkat</option>
+              <option value="sudah berangkat">Sudah Berangkat</option>
+            </select>
             <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
               <svg
                 width="14"
@@ -107,14 +129,14 @@ function Order() {
               ) : (
                 Order.map((data: any, i: number) => {
                   return (
-                    <ContentTableOrder
+                    <ContentTableKeberangkatan
                       key={i}
                       id={data._id}
                       no={i + 1}
                       name={data.nama_lengkap}
                       jumlah={data.jamaah.length}
                       paket={data.paket[0].title}
-                      status={data.status}
+                      status={data.status_keberangkatan}
                     />
                   );
                 })
@@ -127,4 +149,4 @@ function Order() {
   );
 }
 
-export default Order;
+export default Keberangkatan;
