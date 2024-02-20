@@ -61,23 +61,13 @@ function Pembayaran() {
           Daftar Pembayaran &#40; {Order == null ? "" : Order.length} &#41;
         </p>
         <div className="bg-white rounded-[10px] w-full mt-[20px] p-5">
-          <div className="relative flex gap-3 w-5/12 ">
+          <div className="flex relative  pt-3  gap-3 w-full">
             <input
               type="text"
-              className="pl-10 pr-4 py-1 border rounded-md  text-black bg-slate-200 h-full px-2  w-full"
-              placeholder="Cari Pesanan"
+              className="pl-10 pr-4 py-1 border rounded-md  text-black bg-slate-200 h-8 px-2  w-full"
+              placeholder="Cari Pembayaran"
             />
-
-            <select
-              className=""
-              onChange={(e) => getOrder(IdMitra, e.target.value)}
-            >
-              <option value="">Semua</option>
-              <option value="belum bayar">Belum Bayar</option>
-              <option value="diproses">Diproses</option>
-              <option value="pembayaran selesai">Selesai</option>
-            </select>
-            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+            <div className="absolute inset-y-0 left-0 pl-3 pt-[10px] flex items-center pointer-events-none">
               <svg
                 width="14"
                 height="14"
@@ -91,9 +81,22 @@ function Pembayaran() {
                 />
               </svg>
             </div>
+            <div className="flex w-full justify-end justify-items-end">
+              <select
+                className="bg-slate-200 rounded-md pr-10"
+                onChange={(e) => getOrder(IdMitra, e.target.value)}
+              >
+                <option value="">Semua</option>
+                <option value="belum bayar">Belum Bayar</option>
+                <option value="diproses">Diproses</option>
+                <option value="pembayaran selesai">Selesai</option>
+              </select>
+            </div>
+
+
           </div>
           <div className="flex justify-between">
-            <div className=" min-w-full py-3 pe-2 flex gap-3">
+            <div className=" min-w-full pt-3 pe-2 flex gap-3">
               <div className="flex gap-3 w-7/12 justify-between">
                 <div className="w-full text-[20px] font-semibold "></div>
                 <div className="w-full  text-[20px] font-semibold "></div>
@@ -109,10 +112,10 @@ function Pembayaran() {
             <div className="h-full min-w-full py-3 flex gap-3">
               <div className="flex gap-3 w-full ">
                 <div className="text-[20px] font-semibold w-[60px] ">No</div>
-                <div className="text-[20px] font-semibold w-9/12 ">
+                <div className="text-[20px] font-semibold w-8/12 ">
                   Nama Pemesan
                 </div>
-                <div className="w-5/12 text-[20px] font-semibold ">Jumlah</div>
+                <div className="w-4/12 text-[20px] font-semibold ">Jumlah</div>
                 <div className="w-full  text-[20px] font-semibold ">Paket</div>
                 <div className="w-9/12  flex gap-3 text-[20px] font-semibold">
                   Status

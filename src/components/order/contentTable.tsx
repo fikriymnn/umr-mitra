@@ -62,11 +62,11 @@ function ContentTableOrder({
             <p>{jumlah}</p>
           </div>
         </div>
-        <div className="flex gap-3 w-7/12 justify-between">
+        <div className="flex gap-3 w-8/12 justify-between">
           <div className="w-full  text-[20px] line-clamp-1">
             <p>{paket}</p>
           </div>
-          <div className="w-[450px] flex gap-3">
+          <div className="w-full flex gap-3">
             <div className=" w-full">
               <div
                 style={buttonStyle}

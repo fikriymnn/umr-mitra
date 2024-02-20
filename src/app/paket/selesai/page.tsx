@@ -89,7 +89,7 @@ function Selesai() {
               <div className="flex gap-3 w-7/12 justify-between">
                 <div className="w-full text-[20px] font-semibold ">Harga</div>
                 <div className="w-full  text-[20px] font-semibold ">
-                  jumlah Jemaah
+                  Jumlah Jemaah
                 </div>
                 <div className="w-[450px]  flex gap-3"></div>
               </div>
