@@ -28,6 +28,7 @@ export default function Home() {
       }
     } catch (error: any) {
       console.log(error.response);
+      router.push("/login");
     }
   }
 
