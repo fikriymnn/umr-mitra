@@ -54,9 +54,8 @@ export default function SideBar({
   return (
     <div className="z-40 ">
       <div
-        className={`${
-          bar == 1 ? " w-[252px] " : " w-[80px] "
-        } h-full flex flex-col text-black bg-white `}
+        className={`${bar == 1 ? " w-[252px] " : " w-[80px] "
+          } h-full flex flex-col text-black bg-white `}
       >
         <div className={`w-full pt-5 pb-14 px-[16px]`}>
           <button className="w-full h-full" onClick={toggleBar}>
@@ -83,11 +82,10 @@ export default function SideBar({
               <div className="w-full">
                 <a href="/dashboard">
                   <button
-                    className={`${
-                      bar == 1
-                        ? "justify-start items-center"
-                        : " justify-center items-center"
-                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                    className={`${bar == 1
+                      ? "justify-start items-center"
+                      : " justify-center items-center"
+                      } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${dashboard}`}
                   >
                     {bar === 0 ? (
@@ -133,16 +131,14 @@ export default function SideBar({
 
             <div className="flex">
               <div
-                className={`w-full  rounded-[8px] ${
-                  accountbar === 1 ? "pb-1 px-1 yellow " : ""
-                } duration-100`}
+                className={`w-full  rounded-[8px] ${accountbar === 1 ? "pb-1 px-1 yellow " : ""
+                  } duration-100`}
               >
                 <div
-                  className={`${
-                    bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                  } w-full  h-[40px] flex my-1  mb-[10px] ps-3
+                  className={`${bar == 1
+                    ? "justify-start items-center"
+                    : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  mb-[10px] ps-3
                             rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${detailAkun}`}
                 >
                   <a href="/detailAkun" className="w-full">
@@ -203,24 +199,21 @@ export default function SideBar({
             </div>
             <div className="flex mt-1">
               <div
-                className={`w-full  rounded-[8px] ${
-                  packagebar === 1 ? "pb-1 px-1 yellow " : ""
-                } duration-100`}
+                className={`w-full  rounded-[8px] ${packagebar === 1 ? "pb-1 px-1 yellow " : ""
+                  } duration-100`}
               >
                 <div
-                  className={`${
-                    bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                  } w-full  h-[40px] flex my-1  ps-1 gap-1
+                  className={`${bar == 1
+                    ? "justify-start items-center"
+                    : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  ps-1 gap-1
                             rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${paket}`}
                 >
                   <button onClick={togglePackagebar} className="w-5">
                     <div>
                       <svg
-                        className={`${
-                          packagebar === 1 ? "rotate-90 " : ""
-                        } w-full duration-100 `}
+                        className={`${packagebar === 1 ? "rotate-90 " : ""
+                          } w-full duration-100 `}
                         width="9"
                         height="9"
                         viewBox="0 0 11 14"
@@ -238,7 +231,7 @@ export default function SideBar({
                   <a href="/paket" className="w-full">
                     <button>
                       {bar === 0 ? (
-                        <div className="w-10">
+                        <div className="w-10 pl-[6px]">
                           <svg
                             width="20"
                             height="20"
@@ -297,24 +290,21 @@ export default function SideBar({
             </div>
             <div className="flex mt-1">
               <div
-                className={`w-full  rounded-[8px] ${
-                  orderbar === 1 ? "pb-1 px-1 yellow " : ""
-                } duration-100`}
+                className={`w-full  rounded-[8px] ${orderbar === 1 ? "pb-1 px-1 yellow " : ""
+                  } duration-100`}
               >
                 <div
-                  className={`${
-                    bar == 1
-                      ? "justify-start items-center"
-                      : " justify-center items-center"
-                  } w-full  h-[40px] flex my-1  ps-1 gap-1
+                  className={`${bar == 1
+                    ? "justify-start items-center"
+                    : " justify-center items-center"
+                    } w-full  h-[40px] flex my-1  ps-1 gap-1
                             rounded-md hover:bg-amber-400 shrink-0 hover:text-white duration-200 ease-in-out ${order}`}
                 >
                   <button onClick={toggleOrderbar} className="w-5">
                     <div>
                       <svg
-                        className={`${
-                          orderbar === 1 ? "rotate-90 " : ""
-                        } w-full duration-100 `}
+                        className={`${orderbar === 1 ? "rotate-90 " : ""
+                          } w-full duration-100 `}
                         width="9"
                         height="9"
                         viewBox="0 0 11 14"
@@ -332,7 +322,7 @@ export default function SideBar({
                   <a href="/order" className="w-full">
                     <button>
                       {bar === 0 ? (
-                        <div className="w-10">
+                        <div className="w-10 pl-[6px]">
                           <svg
                             width="20"
                             height="20"
@@ -395,11 +385,10 @@ export default function SideBar({
           </div>
           <div>
             <button
-              className={`${
-                bar == 1
-                  ? "ms-5 justify-start items-center"
-                  : "ms-2 justify-center items-center"
-              } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
+              className={`${bar == 1
+                ? "ms-5 justify-start items-center"
+                : "ms-2 justify-center items-center"
+                } w-[155px] h-[58px] duration-100 hover:translate-x-[-5px]  `}
               onClick={submitLogout}
             >
               {bar === 0 ? (
