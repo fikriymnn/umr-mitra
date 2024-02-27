@@ -8,7 +8,8 @@ import { useRouter } from "next/navigation";
 function Pembayaran() {
   const router = useRouter();
   const [Order, setOrder] = useState<any>(null);
-  const [IdMitra, setIdMitra] = useState<any>(null);
+  const [IdMitra, setIdMitra] = useState<any>("");
+  const [cari, setCari] = useState<any>(null);
 
   useEffect(() => {
     getuser();
@@ -52,7 +53,29 @@ function Pembayaran() {
       console.log(error.response);
     }
   }
+  async function searchOrder(id: any, status: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/order`;
+    try {
+      const res = await axios.get(
+        url,
 
+        {
+          params: {
+            nama_lengkap: cari,
+            id_mitra: id,
+            status: status,
+            skip: 0,
+            limit: 100,
+          },
+          withCredentials: true,
+        }
+      );
+
+      setOrder(res.data.data);
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
   return (
     <div className="flex ">
       <SideBar order=" text-white bg-[#E3B02B]" />
@@ -66,6 +89,7 @@ function Pembayaran() {
               type="text"
               className="pl-10 pr-4 py-1 border rounded-md  text-black bg-slate-200 h-8 px-2  w-full"
               placeholder="Cari Pembayaran"
+              onChange={(e) => setCari(e.target.value)}
             />
             <div className="absolute inset-y-0 left-0 pl-3 pt-[10px] flex items-center pointer-events-none">
               <svg
@@ -81,6 +105,10 @@ function Pembayaran() {
                 />
               </svg>
             </div>
+            <button className="bg-slate-200 px-2 py-1 font-semibold rounded-md"
+              onClick={() => searchOrder(IdMitra, status)}>
+              Search
+            </button>
             <div className="flex w-full justify-end justify-items-end">
               <select
                 className="bg-slate-200 rounded-md pr-10"
