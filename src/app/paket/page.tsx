@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 function Paket() {
   const router = useRouter();
   const [paket, setPaket] = useState<any>(null);
+  const [cari, setCari] = useState<any>(null);
+  const [IdMitra, setIdMitra] = useState<any>("");
 
   useEffect(() => {
     getuser();
@@ -21,8 +23,9 @@ function Paket() {
       if (res.data.success == false) {
         router.push("/login");
       }
-
+      setIdMitra(res.data.data._id)
       getpaket(res.data.data._id);
+
     } catch (error: any) {
       console.log(error.response);
     }
@@ -31,14 +34,32 @@ function Paket() {
   async function getpaket(id: any) {
     const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=300`;
     try {
-      const res = await axios.get(url);
+      const res = await axios.get(url,
+      );
+
+      setPaket(res.data.data.paket);
+
+
+    } catch (error: any) {
+      console.log(error.response);
+
+    }
+  }
+  async function searchOrder(id: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/paket?id_mitra=${id}&status=aktif&skip=0&limit=300`;
+    try {
+      const res = await axios.get(url, {
+        params: {
+          title: cari
+        },
+        withCredentials: true,
+      })
 
       setPaket(res.data.data.paket);
     } catch (error: any) {
       console.log(error.response);
     }
   }
-
   return (
     <div className="flex ">
       <SideBar paket=" text-white bg-[#E3B02B]" />
@@ -54,6 +75,7 @@ function Paket() {
                   type="text"
                   className="pl-10 pr-4 py-1 border rounded-md  text-black bg-slate-200 h-full px-2  w-full"
                   placeholder="Cari Paket"
+                  onChange={(e) => setCari(e.target.value)}
                 />
                 <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
                   <svg
@@ -69,6 +91,10 @@ function Paket() {
                     />
                   </svg>
                 </div>
+                <button className="bg-slate-200 px-2 py-1 font-semibold rounded-md"
+                  onClick={() => searchOrder(IdMitra)}>
+                  Search
+                </button>
               </div>
               <div className="flex gap-3 w-7/12 justify-between">
                 <div className="w-full text-[20px] font-semibold "></div>

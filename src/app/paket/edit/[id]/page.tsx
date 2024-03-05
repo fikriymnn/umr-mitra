@@ -29,6 +29,7 @@ function EditPaket({ params }: { params: any }) {
   const [syarat, setSyarat] = useState("");
   const [harga, setHarga] = useState<number>();
   const [kuota, setKuota] = useState<number>();
+  const [sisaKuota, setSisaKuota] = useState<number>();
   const [jadwal, setJadwal] = useState([{ hari: "Hari 1", agenda: "" }]);
   const [TahapPembayaran, setTahapPembayaran] = useState([
     { tahap: "", tanggal: "", price: "" },
@@ -76,6 +77,7 @@ function EditPaket({ params }: { params: any }) {
         setJadwal(data.jadwal);
         setHotel(data.hotel);
         setTahapPembayaran(data.tahap_pembayaran);
+        setSisaKuota(data.sisa_kuota)
       }
     } catch (error: any) {
       console.log(error.response);
@@ -366,7 +368,7 @@ function EditPaket({ params }: { params: any }) {
           pilihan_kamar: pilihanKamar,
           fasilitas_umroh: fasillitas,
           syarat_ketentuan: syarat,
-          sisa_kuota: kuota,
+          sisa_kuota: sisaKuota,
           // tahap_pembayaran: TahapPembayaran,
         },
         {
@@ -1042,6 +1044,22 @@ function EditPaket({ params }: { params: any }) {
                       value={kuota}
                       onChange={(e) =>
                         setKuota(Number(e.target.value.replace(/\D/g, "")))
+                      }
+                      className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
+                      placeholder="Masukkan Jumlah Kuota"
+                    />
+                    <div className="absolute bottom-0 left-0 w-0 h-0 border-t-2 border-gray-300 border-opacity-50"></div>
+                  </div>
+                  <p className="text-[16px] font-medium mt-5">
+                    Kuota Tersisa
+                  </p>
+                  <div className="relative w-full ">
+                    <input
+                      type="text"
+                      required
+                      value={sisaKuota}
+                      onChange={(e) =>
+                        setSisaKuota(Number(e.target.value.replace(/\D/g, "")))
                       }
                       className="border-b-[1px] border-black pt-2 w-full focus:outline-none focus:border-opacity-100"
                       placeholder="Masukkan Jumlah Kuota"

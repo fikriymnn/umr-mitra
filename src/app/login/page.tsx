@@ -60,19 +60,7 @@ function Page() {
               className="bg-white shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
             >
               <div>
-                <div className=" ">
-                  <label className="w-80 text-black text-1xl font-semibold ">
-                    Nama Mitra
-                  </label>
-                </div>
-                <input
-                  className="mb-[8px] h-11 bg-neutral-200 rounded w-80 text-stone-500 text-opacity-60 text-base font-normal "
-                  id="namamitra"
-                  placeholder="Masukkan Nama Mitra"
-                  required
-                  type="text"
-                  style={{ paddingLeft: "10px" }}
-                />
+
               </div>
               <div>
                 <div className="">

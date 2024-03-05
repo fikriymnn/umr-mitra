@@ -8,6 +8,8 @@ import { useRouter } from "next/navigation";
 function Order() {
   const router = useRouter();
   const [Order, setOrder] = useState<any>(null);
+  const [cari, setCari] = useState<any>(null);
+  const [IdMitra, setIdMitra] = useState<any>("");
 
   useEffect(() => {
     getuser();
@@ -21,6 +23,7 @@ function Order() {
       if (res.data.success == false) {
         router.push("/login");
       }
+      setIdMitra(res.data.data._id)
       getOrder(res.data.data._id);
     } catch (error: any) {
       console.log(error.response);
@@ -35,12 +38,25 @@ function Order() {
       });
 
       setOrder(res.data.data);
-      console.log(res.data);
     } catch (error: any) {
       console.log(error.response);
     }
   }
+  async function searchOrder(id: any) {
+    const url = `${process.env.NEXT_PUBLIC_URL}/api/order?id_mitra=${id}&skip=0&limit=100`;
+    try {
+      const res = await axios.get(url, {
+        params: {
+          nama_lengkap: cari
+        },
+        withCredentials: true,
+      })
 
+      setOrder(res.data.data);
+    } catch (error: any) {
+      console.log(error.response);
+    }
+  }
   return (
     <div className="flex ">
       <SideBar order=" text-white bg-[#E3B02B]" />
@@ -54,6 +70,7 @@ function Order() {
               type="text"
               className="pl-10 pr-4 py-1 border rounded-md  text-black bg-slate-200 h-8 px-2  w-full"
               placeholder="Cari Order"
+              onChange={(e) => setCari(e.target.value)}
             />
             <div className="absolute inset-y-0 left-0 pl-3 pt-[10px] flex items-center pointer-events-none">
               <svg
@@ -69,6 +86,10 @@ function Order() {
                 />
               </svg>
             </div>
+            <button className="bg-slate-200 px-2 py-1 font-semibold rounded-md"
+              onClick={() => searchOrder(IdMitra)}>
+              Search
+            </button>
           </div>
           <div className="flex justify-between">
             <div className=" min-w-full pt-3 pe-2 flex gap-3">
