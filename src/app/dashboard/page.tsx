@@ -57,18 +57,21 @@ function Dashboard() {
         <SideBar dashboard=" text-white bg-[#E3B02B]" />
 
         <div className="min-h-screen w-screen grey px-[28px] overflow-y-scroll">
-          <div className="flex items-center justify-start bg-white  my-[21px] w-full h-[254px] rounded-[10px_10px_10px_10px] shadow-xl">
-            {dataMitra == null ? (
-              <div className="w-[148px] h-[148px] ml-[67px] rounded-full bg-zinc-300"></div>
-            ) : (
-              <img
-                src={dataMitra.foto_profil}
-                alt="Profil"
-                className="w-[148px] h-[148px] ml-[67px] rounded-full bg-zinc-300 bg-cover bg-center"
-              />
-            )}
+          <div className="grid grid-cols-12 items-center justify-start bg-white  my-[21px] w-full h-[30%] rounded-lg shadow-xl">
+            <div className="col-span-3">
+              {dataMitra == null ? (
+                <div className="w-[148px] h-[148px] ml-[67px] rounded-full bg-zinc-300"></div>
+              ) : (
+                <img
+                  src={dataMitra.foto_profil}
+                  alt="Profil"
+                  className="w-[148px] h-[148px] ml-[67px] rounded-full bg-zinc-300 bg-cover bg-center"
+                />
+              )}
+            </div>
 
-            <div className="flex flex-col items-start justify-start ml-[38px]">
+
+            <div className="flex flex-col lg:items-start lg:justify-start items-center  justify-end col-span-9">
               {dataMitra == null ? (
                 <div className="w-44 h-10 rounded-md bg-zinc-200 "></div>
               ) : (

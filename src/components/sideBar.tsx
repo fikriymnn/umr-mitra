@@ -31,8 +31,13 @@ export default function SideBar({
   const toggleAccountbar = () => {
     setAccountbar((prevValue) => (prevValue === 0 ? 1 : 0));
   };
+
+
+
   const toggleBar = () => {
-    setBar((prevBar) => (prevBar === 1 ? 0 : 1));
+
+    setBar((prevBar) => (prevBar === 1 ? 0 : 1)); // Toggle the sidebar on larger screens
+
   };
 
   async function submitLogout(e: any) {
@@ -51,6 +56,8 @@ export default function SideBar({
       alert(error.response.data.message);
     }
   }
+
+
   return (
     <div className="z-40 ">
       <div

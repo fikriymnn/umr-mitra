@@ -127,8 +127,8 @@ function EditProfile({ params }: { params: any }) {
                 Edit Detail Profile
               </label>
               <div className="flex ">
-                <div className="flex flex-col bg-white w-2/4 h-full shadow-xl rounded-lg px-9 pt-6 pb-8 mb-4 mt-[20px]">
-                  <div className="flex flex-wrap ">
+                <div className="flex flex-col w-[50%] bg-white h-full shadow-xl rounded-lg px-8 py-8">
+                  <div className="flex w-full gap-10">
                     <img
                       alt=""
                       src={foto_profil}
@@ -136,17 +136,20 @@ function EditProfile({ params }: { params: any }) {
                       width={128}
                       className="w-32 h-32 bg-zinc-300 rounded-full"
                     />
-                    <label className="w-24 h-7 bg-amber-400 rounded-sm ml-[26px] mt-[58px] cursor-pointer pt-[2px]">
-                      <span className="ml-[12px] text-white  font-normal text-center">
-                        Pilih Foto
-                      </span>
-                      <input
-                        accept="image/*"
-                        type="file"
-                        onChange={(e) => uploadImage(e)}
-                        className="hidden"
-                      />
-                    </label>
+                    <div className="flex w-ful items-center">
+                      <button className="h-8 bg-amber-400 rounded-sm  cursor-pointer pt-[2px]">
+                        <span className="px-4 text-white  font-normal text-center">
+                          Pilih Foto
+                        </span>
+                        <input
+                          accept="image/*"
+                          type="file"
+                          onChange={(e) => uploadImage(e)}
+                          className="hidden"
+                        />
+                      </button>
+                    </div>
+
                   </div>
 
                   <div className="mt-[20px]">
